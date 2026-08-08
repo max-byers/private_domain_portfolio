@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Homesteading Family &mdash; Grow, Preserve &amp; Thrive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            900: '#1F2731',
+            800: '#232D3A',
+            700: '#2C3849',
+          },
+          brand: {
+            green: '#04B784',
+            greendark: '#039468',
+          },
+          ink: '#394351',
+        },
+        fontFamily: {
+          serif: ['"DM Serif Display"', 'serif'],
+          sans: ['"DM Sans"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  /* transform/opacity-only transitions, spring-style easing */
+  .btn-anim {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-anim:hover { transform: translateY(-2px); }
+  .btn-anim:active { transform: translateY(0) scale(0.98); }
+
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .link-underline:hover::after { transform: scaleX(1); }
+
+  .link-underline-static::after { transform: scaleX(1); }
+
+  .social-dot {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  }
+  .social-dot:hover { transform: translateY(-3px) scale(1.05); }
+
+  .shadow-soft {
+    box-shadow: 0 10px 30px -10px rgba(4, 183, 132, 0.35);
+  }
+  .shadow-card {
+    box-shadow: 0 20px 40px -20px rgba(31, 39, 49, 0.45);
+  }
+</style>
+</head>
+<body class="font-sans text-ink bg-white antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-gradient-to-b from-navy-800 to-navy-900">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 shrink-0">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          <path d="M17 8.5V3" stroke="white" stroke-width="1.2"/>
+          <path d="M6 27C6.5 24 9 23 9 23" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="font-serif text-white leading-tight text-[15px] tracking-[0.14em] uppercase">
+          Homesteading<br class="lg:hidden" /><span class="lg:ml-1">Family</span>
+        </span>
+      </a>
+
+      <!-- desktop nav -->
+      <nav class="hidden lg:flex items-center gap-4 font-sans text-sm">
+        <a href="#" class="btn-anim inline-flex items-center gap-1.5 rounded-lg border border-brand-green px-5 py-2.5 text-brand-green hover:bg-brand-green/10">
+          Sign In
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </a>
+        <a href="#newsletter" class="btn-anim shadow-soft inline-flex items-center rounded-lg bg-brand-green px-5 py-2.5 font-medium text-white hover:bg-brand-greendark">
+          Join the Newsletter
+        </a>
+        <button aria-label="Search" class="text-white/90 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+      </nav>
+
+      <button aria-label="Menu" class="text-white p-1">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://placehold.co/1600x1400/6b5645/e8dcc8?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/40 to-navy-900/10"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-5 lg:px-8 pt-28 pb-16 lg:pt-40 lg:pb-24 min-h-[640px] lg:min-h-[720px] flex flex-col justify-end">
+      <div class="max-w-xl">
+        <p class="font-sans font-bold text-brand-green uppercase tracking-[0.15em] text-[15px] mb-3">Helping Families</p>
+        <h1 class="font-serif text-white text-[44px] leading-[1.05] lg:text-[64px] mb-5">
+          Grow, Preserve &amp; Thrive
+        </h1>
+        <p class="text-white/90 text-[17px] leading-[1.7] mb-8 max-w-md">
+          You can learn the traditional skills to help your family become more healthy, free and secure.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+          <a href="#newsletter" class="btn-anim shadow-soft inline-flex items-center rounded-xl bg-brand-green px-8 py-3.5 font-medium text-white hover:bg-brand-greendark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green">
+            Learn More
+          </a>
+          <a href="#classes" class="link-underline link-underline-static inline-flex items-center gap-2 font-medium text-white hover:text-brand-green transition-colors">
+            Explore Classes
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- floating share widget -->
+    <div class="flex flex-col items-center gap-3 absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10">
+      <button aria-label="Like" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+      </button>
+      <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink shadow-card">1.7K</span>
+      <button aria-label="Share" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-3.9M8.6 13.5l6.8 3.9"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- JOIN THE MOVEMENT / TESTIMONIAL -->
+  <section class="bg-gradient-to-b from-navy-800 to-navy-900">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8 py-20 text-center">
+      <p class="font-sans font-bold text-brand-green uppercase tracking-[0.15em] text-sm mb-4">Join the Movement</p>
+      <h2 class="font-serif text-white text-[32px] leading-tight lg:text-[42px] mb-10">They can homestead, so can you!</h2>
+
+      <div class="grid gap-14 lg:grid-cols-2 lg:text-left lg:gap-16">
+        <figure class="flex flex-col items-center lg:items-start">
+          <img src="https://placehold.co/200x200/c9a876/394351?text=%E2%80%8B" alt="Carrie Z." class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-green/40 mb-6" />
+          <blockquote class="text-white/90 leading-[1.7] mb-6">
+            "I've learned so much in just the short few months since discovering Homesteading Family. I started with bread making, then learned canning, then soapmaking! The support from admins and community members is amazing. I love these new skills that bless my family. Thank you!"
+          </blockquote>
+          <figcaption class="font-semibold text-brand-green">Carrie Z.</figcaption>
+        </figure>
+
+        <figure class="hidden lg:flex flex-col items-start">
+          <img src="https://placehold.co/200x200/8c9a6b/394351?text=%E2%80%8B" alt="Jennifer O." class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-green/40 mb-6" />
+          <blockquote class="text-white/90 leading-[1.7] mb-6">
+            "From baking our own bread to making homemade soap, I'm looking forward to the upcoming years and growing with Homesteading Family. Thank you for the wonderful gift of teaching these things!"
+          </blockquote>
+          <figcaption class="font-semibold text-brand-green">Jennifer O.</figcaption>
+        </figure>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 mt-10">
+        <span class="h-2 w-2 rounded-full bg-brand-green"></span>
+        <span class="h-2 w-2 rounded-full bg-white/30"></span>
+        <span class="h-2 w-2 rounded-full bg-white/30"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME TO HOMESTEADING FAMILY -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-5xl">
+      <img src="https://placehold.co/1400x900/7a6a52/e8dcc8?text=%E2%80%8B" alt="Carolyn and Josh Thomas" class="w-full h-[280px] lg:h-[420px] object-cover" />
+    </div>
+
+    <div class="mx-auto max-w-5xl px-6 lg:px-8 py-14 lg:grid lg:grid-cols-5 lg:gap-14 lg:py-20">
+      <div class="lg:col-span-2">
+        <p class="font-sans font-bold text-brand-green uppercase tracking-[0.15em] text-sm mb-3">Welcome To</p>
+        <h2 class="font-serif text-navy-900 text-[36px] leading-[1.1] lg:text-[44px]">Homesteading Family</h2>
+      </div>
+
+      <div class="lg:col-span-3 mt-8 lg:mt-0 space-y-5 text-[17px] leading-[1.7] text-ink">
+        <p>We're Carolyn and Josh Thomas! We live on 40 acres in Idaho with our 11 children where we grow, preserve, and prepare most of our own food right in our own backyard.</p>
+        <p>As young parents with a quickly growing family and a desire to feed them healthy, whole foods (even on a tight budget) we knew very quickly that we were going to have to figure out how to grow and prepare it ourselves&hellip; good food was just too expensive!</p>
+        <p>But we didn't have anyone around us that we could ask about how to make this homesteading thing work. We felt completely alone and scrambling for answers while dealing with the demands of life.</p>
+        <p>After years of studying, trial and error and learning from anyone who knew more than us, we started figuring out how to make a productive, old fashioned life in the midst of a modern world. We were raising and growing most of our family's food and medicine, and enjoying the results of eating healthy food, working together as a family, and being more connected to our land.</p>
+        <p>We didn't want others to have to go through the same struggles we experienced, so we created Homesteading Family.</p>
+        <p>As the years have passed we have had an opportunity to speak into the lives of more and more families&hellip; and while we are so blessed to get to help others, we also know that this is just the beginning.</p>
+        <p>Now it is time to take the next step in your journey. The Homestead Kitchen Membership will help you transform your home from a consumer based home into a productive and healthy home, through thoughtful instruction and well-designed content.</p>
+        <p>We hope you join us and can't wait to see how your homestead grows.</p>
+
+        <div id="newsletter" class="pt-2">
+          <a href="#" class="btn-anim shadow-soft inline-flex items-center rounded-xl bg-brand-green px-7 py-3.5 font-medium text-white hover:bg-brand-greendark">
+            Subscribe to the Newsletter
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative h-[220px] lg:h-[320px] overflow-hidden">
+      <img src="https://placehold.co/1600x700/8a6f42/e8dcc8?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-white/0 via-navy-900/30 to-navy-900"></div>
+    </div>
+  </section>
+
+  <!-- QUOTE / TESTIMONIAL IMAGE SECTION -->
+  <section class="relative">
+    <div class="absolute inset-0">
+      <img src="https://placehold.co/1600x1000/4a3a52/2a1f30?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-900/70 via-purple-950/40 to-navy-900"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-2xl px-6 lg:px-8 py-24 text-center">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#04B784" stroke-width="1.4" class="mx-auto mb-6">
+        <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>
+        <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" fill="#04B784" stroke="none"/>
+      </svg>
+      <blockquote class="text-white text-lg leading-[1.7] mb-8">
+        &ldquo;I grew up on the edge of a small homestead, but life carried me into the city and I never expected to raise my own kids there. We brought a little of that upbringing back into our home when they were young, and now, even living in town, I find myself longing for the homestead life. Learning alongside your videos has already been such a gift, and I'll keep learning even as I dream about moving somewhere with a little more land someday.&rdquo;
+      </blockquote>
+      <p class="font-semibold text-white">&ndash; Rebecca A.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-800">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-20 pb-14 lg:pt-24">
+      <div class="flex flex-col items-center text-center mb-16 lg:mb-20">
+        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+        </svg>
+        <span class="font-serif text-white text-[17px] tracking-[0.14em] uppercase">Homesteading Family</span>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-4 lg:gap-8">
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Helpful Links</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Join Now</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Sign-In</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Contact Us</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Blog</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Podcast</a></li>
+          </ul>
+
+          <h3 class="font-sans font-bold text-white text-lg mt-10 mb-5">Popular Categories</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Grow</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Preserve</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Thrive</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Cook</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Homestead</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Raise</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Recent Blogs</h3>
+          <ul class="space-y-4 text-white/80 leading-snug">
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Homestead Fencing Ideas: How I Choose the Right Fence for Every Part of the Homestead</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Vegetable Garden Maintenance: 9 Tips to Avoid Garden Overwhelm</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Fermented Pepper Sauce Recipe | Easy, Tangy Homemade Fermented Sauce</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Join Our Newsletter</h3>
+          <a href="#newsletter" class="btn-anim shadow-soft inline-flex items-center gap-2 rounded-xl bg-brand-green px-6 py-3 font-medium text-white hover:bg-brand-greendark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Subscribe
+          </a>
+
+          <h3 class="font-sans font-bold text-white text-lg mt-10 mb-5">Follow Us</h3>
+          <div class="flex items-center gap-3">
+            <a href="#" aria-label="YouTube" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="#" aria-label="Instagram" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="Pinterest" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg></a>
+            <a href="#" aria-label="Rumble" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.5v7l6-3.5-6-3.5Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="hidden lg:block"></div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-white/10 flex flex-col gap-3 text-sm text-white/50">
+        <p>&copy; Homesteading Family 2026. All Rights Reserved</p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2">
+          <a href="#" class="hover:text-brand-green transition-colors">Terms &amp; Conditions</a>
+          <a href="#" class="hover:text-brand-green transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand-green transition-colors">Affiliate Disclaimer</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white py-4 text-center">
+      <a href="#" class="link-underline link-underline-static text-sm text-gray-500 hover:text-ink transition-colors">Update Privacy Preferences</a>
+    </div>
+    <div class="bg-white pb-6 text-center">
+      <p class="text-xs tracking-wide text-gray-400">A RAPTIVE PARTNER SITE</p>
+    </div>
+  </footer>
+
+</body>
+</html>

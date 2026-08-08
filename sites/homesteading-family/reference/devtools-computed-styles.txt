@@ -1,0 +1,60 @@
+element.style {
+    display: none;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+iframe {
+    overflow-clip-margin: content-box !important;
+    overflow: clip !important;
+    border-width: 2px;
+    border-style: inset;
+    border-color: currentcolor;
+    border-image: none;
+}
+:root {
+    --page-title-display: none;
+}
+:root {
+    --swiper-navigation-size: 44px;
+}
+:root {
+    --swiper-theme-color: #007aff;
+}
+:root {
+    --page-title-display: block;
+}
+:root {
+    --wprm-list-checkbox-size: 18px;
+    --wprm-list-checkbox-left-position: 0px;
+    --wprm-list-checkbox-top-position: 0px;
+    --wprm-list-checkbox-background: #fff;
+    --wprm-list-checkbox-borderwidth: 1px;
+    --wprm-list-checkbox-border-style: solid;
+    --wprm-list-checkbox-border-color: inherit;
+    --wprm-list-checkbox-border-radius: 0px;
+    --wprm-list-checkbox-check-width: 2px;
+    --wprm-list-checkbox-check-color: inherit;
+}
+:root {
+    --wprm-popup-font-size: 16px;
+    --wprm-popup-background: #fff;
+    --wprm-popup-title: #000;
+    --wprm-popup-content: #444;
+    --wprm-popup-button-background: #5a822b;
+    --wprm-popup-button-text: #fff;
+}
+:root {
+    --comment-rating-star-color: #343434;
+}
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
