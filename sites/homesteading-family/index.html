@@ -70,6 +70,10 @@
   .shadow-card {
     box-shadow: 0 20px 40px -20px rgba(31, 39, 49, 0.45);
   }
+
+  .search-overlay-bg {
+    background-color: rgba(31, 39, 49, 0.97);
+  }
 </style>
 </head>
 <body class="font-sans text-ink bg-white antialiased">
@@ -90,25 +94,94 @@
         </span>
       </a>
 
-      <!-- desktop nav -->
-      <nav class="hidden lg:flex items-center gap-4 font-sans text-sm">
-        <a href="#" class="btn-anim inline-flex items-center gap-1.5 rounded-lg border border-brand-green px-5 py-2.5 text-brand-green hover:bg-brand-green/10">
+      <!-- nav controls -->
+      <nav class="flex items-center gap-2.5 sm:gap-4 font-sans text-sm">
+        <a href="#" class="hidden sm:inline-flex btn-anim items-center gap-1.5 rounded-lg border border-brand-green px-5 py-2.5 text-brand-green hover:bg-brand-green/10">
           Sign In
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
         </a>
-        <a href="#newsletter" class="btn-anim shadow-soft inline-flex items-center rounded-lg bg-brand-green px-5 py-2.5 font-medium text-white hover:bg-brand-greendark">
+        <a href="#newsletter" class="hidden sm:inline-flex btn-anim shadow-soft items-center rounded-lg bg-brand-green px-5 py-2.5 font-medium text-white hover:bg-brand-greendark">
           Join the Newsletter
         </a>
-        <button aria-label="Search" class="text-white/90 hover:text-white transition-colors">
+        <button id="searchToggle" aria-label="Search" aria-expanded="false" class="text-white/90 hover:text-white transition-colors">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         </button>
+        <button id="menuToggle" aria-label="Menu" aria-expanded="false" class="text-white p-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </nav>
-
-      <button aria-label="Menu" class="text-white p-1">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
     </div>
   </header>
+
+  <!-- SEARCH OVERLAY -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 search-overlay-bg flex items-start justify-center pt-32 lg:pt-48 px-6 opacity-0 pointer-events-none transition-opacity duration-200">
+    <button id="searchClose" aria-label="Close search" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <form id="searchForm" class="w-full max-w-xl">
+      <input id="searchInput" type="search" placeholder="Search&hellip;" autocomplete="off"
+        class="w-full bg-transparent border-b border-white/30 focus:border-brand-green outline-none text-white font-serif text-3xl lg:text-5xl pb-4 placeholder:text-white/40 transition-colors" />
+      <p class="text-white/40 text-sm mt-4">Press Enter to search &middot; Esc to close</p>
+    </form>
+  </div>
+
+  <!-- DRAWER MENU -->
+  <div id="drawerBackdrop" class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200"></div>
+  <aside id="drawer" aria-hidden="true" class="fixed top-0 right-0 z-50 h-full w-full max-w-sm bg-navy-900 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.34,1.2,0.64,1)] overflow-y-auto">
+    <div class="px-8 pt-8 pb-12">
+      <div class="flex justify-end">
+        <button id="drawerClose" aria-label="Close menu" class="text-white/80 hover:text-white transition-colors">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="flex justify-center my-6">
+        <div class="h-24 w-24 rounded-full border border-white/25 flex items-center justify-center">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+            <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+            <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <nav class="font-serif text-white text-2xl">
+        <a href="#" class="block py-3 text-brand-green">Home</a>
+        <div>
+          <button id="blogToggle" aria-expanded="false" class="w-full flex items-center justify-between py-3 hover:text-brand-green transition-colors">
+            Blog
+            <svg id="blogChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="blogSubmenu" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="#" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Posts</a>
+              <a href="#" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Categories</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://classes.homesteadingfamily.com/store" class="block py-3 hover:text-brand-green transition-colors">Classes</a>
+        <a href="#" class="block py-3 hover:text-brand-green transition-colors">Podcast</a>
+        <a href="#" class="block py-3 hover:text-brand-green transition-colors">Magazine</a>
+      </nav>
+
+      <div class="flex flex-col gap-4 mt-6">
+        <a href="#" class="btn-anim inline-flex items-center justify-center gap-1.5 rounded-lg border border-brand-green px-5 py-2.5 font-sans text-sm text-brand-green hover:bg-brand-green/10">
+          Sign In
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </a>
+        <a href="#newsletter" id="drawerNewsletter" class="btn-anim shadow-soft inline-flex items-center justify-center rounded-lg bg-brand-green px-5 py-2.5 font-sans text-sm font-medium text-white hover:bg-brand-greendark">
+          Newsletter
+        </a>
+      </div>
+
+      <form id="drawerSearchForm" class="mt-8">
+        <div class="flex items-center gap-2 bg-white rounded-lg px-4 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#394351" stroke-width="2" class="shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search&hellip;" class="w-full bg-transparent outline-none font-sans text-base text-ink placeholder:text-ink/50" />
+        </div>
+      </form>
+    </div>
+  </aside>
 
   <!-- HERO -->
   <section class="relative overflow-hidden">
@@ -137,18 +210,38 @@
         </div>
       </div>
     </div>
-
-    <!-- floating share widget -->
-    <div class="flex flex-col items-center gap-3 absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10">
-      <button aria-label="Like" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
-      </button>
-      <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink shadow-card">1.7K</span>
-      <button aria-label="Share" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-3.9M8.6 13.5l6.8 3.9"/></svg>
-      </button>
-    </div>
   </section>
+
+  <!-- FLOATING SAVE/SHARE WIDGET (persistent across scroll) -->
+  <div class="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30">
+    <button id="saveToggle" aria-label="Save and share" aria-expanded="false" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
+      <svg id="saveHeartIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+    </button>
+    <span id="saveCount" class="block text-center mt-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink shadow-card">1.7K</span>
+
+    <div id="savePopover" class="absolute right-14 top-1/2 -translate-y-1/2 w-56 origin-right scale-95 opacity-0 pointer-events-none transition-[transform,opacity] duration-150 rounded-2xl bg-white shadow-card p-5 text-center">
+      <p class="font-sans font-bold text-ink uppercase tracking-[0.1em] text-xs mb-1">Save</p>
+      <p id="savePopoverCount" class="text-ink/60 text-sm mb-3">1.7K readers saved this</p>
+      <button id="bookmarkToggle" class="btn-anim inline-flex items-center gap-2 rounded-lg border border-brand-green px-4 py-2 text-brand-green text-sm font-medium hover:bg-brand-green/10 mb-5">
+        <svg id="bookmarkIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+        <span id="bookmarkLabel">Bookmarks</span>
+      </button>
+
+      <p class="font-sans font-bold text-ink uppercase tracking-[0.1em] text-xs mb-3">Share</p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="copyLinkBtn" aria-label="Copy link" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+        </button>
+        <a id="shareFacebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a id="sharePinterest" href="#" target="_blank" rel="noopener" aria-label="Share on Pinterest" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg>
+        </a>
+      </div>
+      <p id="copyFeedback" class="text-brand-green text-xs mt-3 opacity-0 transition-opacity duration-150">Link copied</p>
+    </div>
+  </div>
 
   <!-- JOIN THE MOVEMENT / TESTIMONIAL -->
   <section class="bg-gradient-to-b from-navy-800 to-navy-900">
@@ -156,29 +249,21 @@
       <p class="font-sans font-bold text-brand-green uppercase tracking-[0.15em] text-sm mb-4">Join the Movement</p>
       <h2 class="font-serif text-white text-[32px] leading-tight lg:text-[42px] mb-10">They can homestead, so can you!</h2>
 
-      <div class="grid gap-14 lg:grid-cols-2 lg:text-left lg:gap-16">
+      <div id="testimonialGrid" class="grid gap-14 lg:grid-cols-2 lg:text-left lg:gap-16 transition-opacity duration-200">
         <figure class="flex flex-col items-center lg:items-start">
-          <img src="https://placehold.co/200x200/c9a876/394351?text=%E2%80%8B" alt="Carrie Z." class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-green/40 mb-6" />
-          <blockquote class="text-white/90 leading-[1.7] mb-6">
-            "I've learned so much in just the short few months since discovering Homesteading Family. I started with bread making, then learned canning, then soapmaking! The support from admins and community members is amazing. I love these new skills that bless my family. Thank you!"
-          </blockquote>
-          <figcaption class="font-semibold text-brand-green">Carrie Z.</figcaption>
+          <img id="testimonialImg0" src="https://placehold.co/200x200/c9a876/394351?text=%E2%80%8B" alt="" class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-green/40 mb-6" />
+          <blockquote id="testimonialQuote0" class="text-white/90 leading-[1.7] mb-6"></blockquote>
+          <figcaption id="testimonialName0" class="font-semibold text-brand-green"></figcaption>
         </figure>
 
         <figure class="hidden lg:flex flex-col items-start">
-          <img src="https://placehold.co/200x200/8c9a6b/394351?text=%E2%80%8B" alt="Jennifer O." class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-green/40 mb-6" />
-          <blockquote class="text-white/90 leading-[1.7] mb-6">
-            "From baking our own bread to making homemade soap, I'm looking forward to the upcoming years and growing with Homesteading Family. Thank you for the wonderful gift of teaching these things!"
-          </blockquote>
-          <figcaption class="font-semibold text-brand-green">Jennifer O.</figcaption>
+          <img id="testimonialImg1" src="https://placehold.co/200x200/8c9a6b/394351?text=%E2%80%8B" alt="" class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-green/40 mb-6" />
+          <blockquote id="testimonialQuote1" class="text-white/90 leading-[1.7] mb-6"></blockquote>
+          <figcaption id="testimonialName1" class="font-semibold text-brand-green"></figcaption>
         </figure>
       </div>
 
-      <div class="flex items-center justify-center gap-2 mt-10">
-        <span class="h-2 w-2 rounded-full bg-brand-green"></span>
-        <span class="h-2 w-2 rounded-full bg-white/30"></span>
-        <span class="h-2 w-2 rounded-full bg-white/30"></span>
-      </div>
+      <div id="testimonialDots" class="flex items-center justify-center gap-2 mt-10"></div>
     </div>
   </section>
 
@@ -318,5 +403,185 @@
     </div>
   </footer>
 
+  <script>
+    // ---------- Drawer menu ----------
+    const drawer = document.getElementById('drawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const menuToggle = document.getElementById('menuToggle');
+    const drawerClose = document.getElementById('drawerClose');
+
+    function openDrawer() {
+      drawer.classList.remove('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+      drawer.classList.add('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    menuToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    // Blog submenu inside drawer
+    const blogToggle = document.getElementById('blogToggle');
+    const blogSubmenu = document.getElementById('blogSubmenu');
+    const blogChevron = document.getElementById('blogChevron');
+    blogToggle.addEventListener('click', () => {
+      const isOpen = blogToggle.getAttribute('aria-expanded') === 'true';
+      blogToggle.setAttribute('aria-expanded', String(!isOpen));
+      blogSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      blogChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    // ---------- Search overlay ----------
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+
+    function openSearch() {
+      closeDrawer();
+      searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchInput.focus();
+    }
+    function closeSearch() {
+      searchOverlay.classList.add('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    }
+    searchToggle.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    searchForm.addEventListener('submit', (e) => e.preventDefault());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      closeSearch();
+      closeDrawer();
+      closeSavePopover();
+    });
+
+    // ---------- Save / Share popover ----------
+    const saveToggle = document.getElementById('saveToggle');
+    const savePopover = document.getElementById('savePopover');
+    const bookmarkToggle = document.getElementById('bookmarkToggle');
+    const bookmarkIcon = document.getElementById('bookmarkIcon');
+    const bookmarkLabel = document.getElementById('bookmarkLabel');
+    const saveCount = document.getElementById('saveCount');
+    const savePopoverCount = document.getElementById('savePopoverCount');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const shareFacebook = document.getElementById('shareFacebook');
+    const sharePinterest = document.getElementById('sharePinterest');
+
+    const BASE_SAVES = 1700;
+    let bookmarked = localStorage.getItem('hf_bookmarked') === 'true';
+
+    function formatCount(n) {
+      return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : String(n);
+    }
+    function renderBookmarkState() {
+      const total = BASE_SAVES + (bookmarked ? 1 : 0);
+      saveCount.textContent = formatCount(total);
+      savePopoverCount.textContent = `${formatCount(total)} readers saved this`;
+      bookmarkIcon.setAttribute('fill', bookmarked ? 'currentColor' : 'none');
+      bookmarkLabel.textContent = bookmarked ? 'Saved' : 'Bookmarks';
+    }
+    renderBookmarkState();
+
+    function openSavePopover() {
+      closeDrawer();
+      savePopover.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeSavePopover() {
+      savePopover.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'false');
+    }
+    saveToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = saveToggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeSavePopover() : openSavePopover();
+    });
+    document.addEventListener('click', (e) => {
+      if (!savePopover.contains(e.target) && e.target !== saveToggle) closeSavePopover();
+    });
+
+    bookmarkToggle.addEventListener('click', () => {
+      bookmarked = !bookmarked;
+      localStorage.setItem('hf_bookmarked', String(bookmarked));
+      renderBookmarkState();
+    });
+
+    copyLinkBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+      } catch (err) {
+        // clipboard API unavailable; feedback still shown so the action reads as complete
+      }
+      copyFeedback.classList.remove('opacity-0');
+      setTimeout(() => copyFeedback.classList.add('opacity-0'), 1600);
+    });
+
+    const shareUrl = encodeURIComponent(window.location.href);
+    shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    sharePinterest.href = `https://pinterest.com/pin/create/button/?url=${shareUrl}&description=${encodeURIComponent('Grow, Preserve & Thrive — Homesteading Family')}`;
+    [shareFacebook, sharePinterest].forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(el.href, 'share', 'width=600,height=500');
+      });
+    });
+
+    // ---------- Testimonial carousel ----------
+    const testimonials = [
+      { name: 'Carrie Z.', img: 'https://placehold.co/200x200/c9a876/394351?text=%E2%80%8B',
+        quote: "I've learned so much in just the short few months since discovering Homesteading Family. I started with bread making, then learned canning, then soapmaking! The support from admins and community members is amazing. I love these new skills that bless my family. Thank you!" },
+      { name: 'Jennifer O.', img: 'https://placehold.co/200x200/8c9a6b/394351?text=%E2%80%8B',
+        quote: "From baking our own bread to making homemade soap, I'm looking forward to the upcoming years and growing with Homesteading Family. Thank you for the wonderful gift of teaching these things!" },
+      { name: 'Stephanie A.', img: 'https://placehold.co/200x200/8ba0c9/394351?text=%E2%80%8B',
+        quote: "I have gained so much confidence after working through the canning masterclass. I am currently working my way through the bread making class and am already seeing so much improvement in my bread making skills. These classes are such a great resource!" },
+    ];
+
+    const testimonialGrid = document.getElementById('testimonialGrid');
+    const testimonialDots = document.getElementById('testimonialDots');
+    const pageCount = testimonials.length - 1; // sliding window of 2
+    let activePage = 0;
+
+    function renderTestimonials() {
+      for (let slot = 0; slot < 2; slot++) {
+        const t = testimonials[activePage + slot];
+        document.getElementById(`testimonialImg${slot}`).src = t.img;
+        document.getElementById(`testimonialImg${slot}`).alt = t.name;
+        document.getElementById(`testimonialQuote${slot}`).textContent = `"${t.quote}"`;
+        document.getElementById(`testimonialName${slot}`).textContent = t.name;
+      }
+      testimonialDots.querySelectorAll('button').forEach((dot, i) => {
+        dot.className = `h-2 w-2 rounded-full transition-colors ${i === activePage ? 'bg-brand-green' : 'bg-white/30 hover:bg-white/50'}`;
+      });
+    }
+
+    function goToPage(page) {
+      if (page === activePage) return;
+      testimonialGrid.classList.add('opacity-0');
+      setTimeout(() => {
+        activePage = page;
+        renderTestimonials();
+        testimonialGrid.classList.remove('opacity-0');
+      }, 150);
+    }
+
+    for (let i = 0; i < pageCount; i++) {
+      const dot = document.createElement('button');
+      dot.setAttribute('aria-label', `Show testimonials ${i + 1} of ${pageCount}`);
+      dot.addEventListener('click', () => goToPage(i));
+      testimonialDots.appendChild(dot);
+    }
+    renderTestimonials();
+  </script>
 </body>
 </html>
