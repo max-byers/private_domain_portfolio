@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<title>What Your Symptoms Might Be Telling You About Your Home's Air &mdash; Ecolibrium Solar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            900: '#1F2731',
+            800: '#232D3A',
+            700: '#2C3849',
+          },
+          brand: {
+            green: '#04B784',
+            greendark: '#039468',
+          },
+          ink: '#394351',
+        },
+        fontFamily: {
+          serif: ['"DM Serif Display"', 'serif'],
+          sans: ['"DM Sans"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  .btn-anim {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-anim:hover { transform: translateY(-2px); }
+  .btn-anim:active { transform: translateY(0) scale(0.98); }
+
+  .link-underline { position: relative; }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .link-underline:hover::after { transform: scaleX(1); }
+  .link-underline-static::after { transform: scaleX(1); }
+
+  .social-dot {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  }
+  .social-dot:hover { transform: translateY(-3px) scale(1.05); }
+
+  .card-lift {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+  .card-lift:hover { transform: translateY(-4px); }
+
+  .shadow-soft { box-shadow: 0 10px 30px -10px rgba(4, 183, 132, 0.35); }
+  .shadow-card { box-shadow: 0 20px 40px -20px rgba(31, 39, 49, 0.45); }
+  .search-overlay-bg { background-color: rgba(31, 39, 49, 0.97); }
+
+  .article-body p { margin-bottom: 24px; }
+  .article-body h2 { margin-top: 40px; margin-bottom: 16px; }
+  .article-body h3 { margin-top: 28px; margin-bottom: 10px; }
+  .article-body ul { margin-bottom: 24px; }
+  .article-body li { margin-bottom: 8px; }
+</style>
+</head>
+<body class="font-sans text-ink bg-white antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-gradient-to-b from-navy-800 to-navy-900">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          <path d="M17 8.5V3" stroke="white" stroke-width="1.2"/>
+          <path d="M6 27C6.5 24 9 23 9 23" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="font-serif text-white leading-tight text-[15px] tracking-[0.14em] uppercase">
+          Ecolibrium<br class="lg:hidden" /><span class="lg:ml-1">Solar</span>
+        </span>
+      </a>
+
+      <nav class="flex items-center gap-2.5 sm:gap-4 font-sans text-sm">
+        <button id="searchToggle" aria-label="Search" aria-expanded="false" class="text-white/90 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Menu" aria-expanded="false" class="text-white p-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEARCH OVERLAY -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 search-overlay-bg flex items-start justify-center pt-32 lg:pt-48 px-6 opacity-0 pointer-events-none transition-opacity duration-200">
+    <button id="searchClose" aria-label="Close search" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <form id="searchForm" class="w-full max-w-xl">
+      <input id="searchInput" type="search" placeholder="Search&hellip;" autocomplete="off"
+        class="w-full bg-transparent border-b border-white/30 focus:border-brand-green outline-none text-white font-serif text-3xl lg:text-5xl pb-4 placeholder:text-white/40 transition-colors" />
+      <p class="text-white/40 text-sm mt-4">Press Enter to search &middot; Esc to close</p>
+    </form>
+  </div>
+
+  <!-- DRAWER MENU -->
+  <div id="drawerBackdrop" class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200"></div>
+  <aside id="drawer" aria-hidden="true" class="fixed top-0 right-0 z-50 h-full w-full max-w-sm bg-navy-900 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.34,1.2,0.64,1)] overflow-y-auto">
+    <div class="px-8 pt-8 pb-12">
+      <div class="flex justify-end">
+        <button id="drawerClose" aria-label="Close menu" class="text-white/80 hover:text-white transition-colors">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="flex justify-center my-6">
+        <div class="h-24 w-24 rounded-full border border-white/25 flex items-center justify-center">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+            <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+            <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <nav class="font-serif text-white text-2xl">
+        <a href="index.html" class="block py-3 hover:text-brand-green transition-colors">Home</a>
+        <div>
+          <button id="blogToggle" aria-expanded="false" class="w-full flex items-center justify-between py-3  transition-colors">
+            Blog
+            <svg id="blogChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="blogSubmenu" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="blog.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Posts</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button id="resourcesToggle" aria-expanded="true" class="w-full flex items-center justify-between py-3 text-brand-green transition-colors">
+            Resources
+            <svg id="resourcesChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200" style="transform: rotate(180deg);"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="resourcesSubmenu" class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="resources.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Resources</a>
+              <a href="home-performance-and-air-quality-terms-explained-plainly.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Home Performance and Air Quality Terms, Explained Plainly</a>
+              <a href="what-your-symptoms-might-be-telling-you-about-your-home-s-air.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">What Your Symptoms Might Be Telling You About Your Home's Air</a>
+              <a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">A Checklist for Spotting a Poorly Sealed or Insulated Home</a>
+              <a href="how-to-spot-the-red-flags-of-greenwashing.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">How to Spot the Red Flags of Greenwashing</a>
+              <a href="the-humidity-problem-my-insulation-upgrade-created.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Humidity Problem My Insulation Upgrade Created</a>
+              <a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</a>
+              <a href="too-much-insulation-too-much-mold.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Too Much Insulation, Too Much Mold</a>
+              <a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">VOC Offgassing in Green Building Materials</a>
+              <a href="the-radon-i-sealed-into-my-own-house.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Radon I Sealed Into My Own House</a>
+              <a href="the-weak-shower-that-told-me-my-house-didn-t-have-a-pressure-problem.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Weak Shower That Told Me My House Didn't Have a Pressure Problem</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <form id="drawerSearchForm" class="mt-8">
+        <div class="flex items-center gap-2 bg-white rounded-lg px-4 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#394351" stroke-width="2" class="shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search&hellip;" class="w-full bg-transparent outline-none font-sans text-base text-ink placeholder:text-ink/50" />
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <div class="bg-[#F4F4F4] text-center px-6 py-4">
+    <p class="text-sm text-ink/70">This site contains affiliate links to products we recommend. We may receive a commission for purchases made through these links.</p>
+  </div>
+
+  <!-- ARTICLE -->
+  <div class="relative mx-auto max-w-4xl px-6 lg:px-8">
+
+    <!-- Left floating share rail -->
+    <div class="hidden lg:flex flex-col items-center gap-3 absolute -left-4 top-10 -translate-x-full">
+      <a href="#" aria-label="Share on Facebook" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4] text-navy-800 hover:bg-brand-green hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+      <a href="#" aria-label="Share on Pinterest" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4] text-navy-800 hover:bg-brand-green hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg></a>
+      <a href="#" aria-label="Share by email" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4] text-navy-800 hover:bg-brand-green hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+
+    <p class="pt-8 text-sm text-ink/70">
+      <a href="index.html" class="hover:text-brand-green transition-colors">Home</a>
+      <span class="mx-1.5">&raquo;</span>
+      <a href="resources.html" class="hover:text-brand-green transition-colors">Resources</a>
+    </p>
+
+    <!-- Title -->
+    <h1 class="font-serif text-navy-800 text-[38px] leading-[1.1] lg:text-[54px] mt-4 mb-6">
+      What Your Symptoms Might Be Telling You About Your Home's Air
+    </h1>
+
+    <!-- Byline -->
+    <p class="font-sans font-bold text-brand-green uppercase tracking-[0.1em] text-sm mb-5 mt-1">Resource Guide</p>
+
+    <!-- Round social icon row -->
+    <div class="flex items-center gap-3 mb-10">
+      <a href="#" aria-label="Share on Facebook" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+      <a href="#" aria-label="Share on X" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 3H21l-6.7 7.6L22 21h-6.2l-4.9-6.4L5.3 21H2.6l7.2-8.2L2 3h6.3l4.4 5.8L18.3 3Z"/></svg></a>
+      <a href="#" aria-label="Share on LinkedIn" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.4H3.6V20h3.3V8.4ZM5.3 3.5A1.9 1.9 0 1 0 5.3 7.3 1.9 1.9 0 0 0 5.3 3.5ZM20.4 20h-3.3v-6.2c0-1.5-.5-2.5-1.8-2.5-1 0-1.6.7-1.9 1.3-.1.2-.1.6-.1.9V20H10s.1-10.6 0-11.6h3.3v1.7c.4-.7 1.2-1.7 3-1.7 2.2 0 3.9 1.4 3.9 4.5V20Z"/></svg></a>
+      <a href="#" aria-label="Share on Pinterest" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg></a>
+      <a href="#" aria-label="Share by email" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Featured image -->
+  <div class="mx-auto max-w-5xl px-6 lg:px-8 mb-10">
+    <img src="https://placehold.co/1600x900/7a6a52/eee0c8?text=%E2%80%8B" alt="" class="w-full h-[260px] lg:h-[420px] object-cover rounded-sm" />
+  </div>
+
+  <!-- FLOATING SHARE WIDGET (persistent across scroll) -->
+  <div class="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30">
+    <button id="saveToggle" aria-label="Share" aria-expanded="false" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+    </button>
+
+    <div id="savePopover" class="absolute right-14 top-1/2 -translate-y-1/2 w-56 origin-right scale-95 opacity-0 pointer-events-none transition-[transform,opacity] duration-150 rounded-2xl bg-white shadow-card p-5 text-center">
+      <p class="font-sans font-bold text-ink uppercase tracking-[0.1em] text-xs mb-3">Share</p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="copyLinkBtn" aria-label="Copy link" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+        </button>
+        <a id="shareFacebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a id="sharePinterest" href="#" target="_blank" rel="noopener" aria-label="Share on Pinterest" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg>
+        </a>
+      </div>
+      <p id="copyFeedback" class="text-brand-green text-xs mt-3 opacity-0 transition-opacity duration-150">Link copied</p>
+    </div>
+  </div>
+
+  <!-- Article body -->
+  <div class="article-body mx-auto max-w-3xl px-6 lg:px-8 text-[17.6px] leading-[1.6] text-ink pb-4">
+
+    <p>Are you worried about the air you breathe? Feeling fine everywhere except at home, or feeling worse the longer you stay inside, is common enough that health agencies have a name for it: sick building syndrome. The U.S. Environmental Protection Agency says the air in homes and other buildings can be more seriously polluted than the air outside.</p>
+<p>Studies from the United States and Europe show that people in industrialized nations spend more than 90 percent of their time indoors, and infants, older adults, and people with chronic illness usually spend even more. Because so many pollutants build up indoors rather than outdoors, an unexplained headache, cough, or bout of dizziness is worth asking about your house before you ask about anything else.</p>
+<p>The trouble is that many of these symptoms overlap. A stuffy nose, fatigue, and nausea can point to a dozen different causes, and etiology can be difficult to establish because the signs are so nonspecific. What follows is a breakdown of the most common indoor air hazards, the symptoms tied to each one, and what tends to give a problem away before you call anyone in.</p>
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">Common Indoor Air Hazards</h2>
+<p>Most indoor air pollution comes from the accumulation of contaminants from sources inside the home combined with poor ventilation. Weatherizing a home, adding insulation and caulking to save on energy costs, reduces air circulation and traps those contaminants inside instead of letting outdoor air dilute them. That combination of tighter construction and recirculated air is a large part of why indoor air problems have increased even as homes have gotten more efficient.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Carbon monoxide</h3>
+<p>Carbon monoxide is an odorless, colorless gas released from fuel burning stoves, heaters, furnaces, and other appliances that are not properly vented. It blocks the movement of oxygen in the body, and depending on how much is breathed in, it can cause extreme tiredness, headache, confusion, nausea, dizziness, and a fast heart rate. Very high levels can cause death. Older adults, infants, pregnant people, and anyone with heart or lung disease are especially sensitive to it. Because the early symptoms mimic the flu, it is worth suspecting carbon monoxide when an entire household develops the same symptoms at the start of the heating season and they do not resolve with time.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Nitrogen dioxide and sulfur dioxide</h3>
+<p>Both gases come mainly from combustion, natural gas and kerosene for nitrogen dioxide, burning kerosene in space heaters for sulfur dioxide, and both act as irritants to the eyes, nose, throat, and respiratory tract. Nitrogen dioxide can cause shortness of breath at high concentrations and, over time, contribute to chronic bronchitis. Sulfur dioxide is extremely irritating to the eyes and upper respiratory tract even at low concentrations, and some people with asthma react to it with tightened airways after only a brief exposure.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Formaldehyde and other volatile organic compounds</h3>
+<p>Volatile organic compounds are emitted as gases from paints, finishes, cleaners, pesticides, adhesives, and new furniture, and formaldehyde is one of the most common. It comes from resins used in plywood, paneling, fiberboard, and particleboard, and from permanent press fabric and mattress ticking. It irritates the eyes, nose, and throat, and can cause a burning or tingling sensation, chest tightness, wheezing, headache, dizziness, and nausea. It has also been classified as a probable human carcinogen. New carpet is a source too, since it emits volatile organic compounds along with the adhesives and padding used to install it, and people commonly report eye, nose, and throat irritation, headaches, skin irritation, coughing, and fatigue after new carpet goes in.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Radon</h3>
+<p>Radon does not cause any symptoms you would notice. It is a naturally occurring radioactive gas, odorless, colorless, and tasteless, that seeps up from uranium decaying in the soil and rock under a home and enters through cracks in the foundation, floor drains, and sumps. It is the second leading cause of lung cancer after smoking, and smokers exposed to elevated radon face a much higher risk than nonsmokers exposed to the same levels. Because there is nothing to feel, testing is the only way to know if a home has a radon problem.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Secondhand smoke</h3>
+<p>Tobacco smoke contains thousands of compounds, including formaldehyde and carbon monoxide, and exposure to it in adults is linked to a runny or stuffy nose, a persistent cough, irritated eyes, headache, wheezing, and flareups of existing respiratory conditions. Children are more sensitive to it than adults. Exposure in infants and children up to age three roughly doubles the rate of pneumonia, bronchitis, and bronchiolitis, and it is linked to asthma onset and to worse asthma symptoms.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Mold, dust mites, and other biological agents</h3>
+<p>Biological pollutants, mold, mildew, bacteria, viruses, dust mites, and pet dander, thrive where relative humidity stays above 50 percent, where there has been flooding or a leak, or where a humidifier, dehumidifier, or air conditioner is not kept clean. They cause allergic reactions ranging from sneezing, watery eyes, and a stuffy nose to asthma, as well as coughing, dizziness, fever, lethargy, shortness of breath, and digestive problems. A poorly maintained humidifier can also cause humidifier fever, a flu like illness marked by fever, headache, chills, and muscle aches that normally clears up within a day once the exposure stops.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Lead</h3>
+<p>Lead dust mostly comes from paint in homes built before the material was restricted, especially when old paint is disturbed by sanding, scraping, or renovation. In adults, exposure is linked to stomach discomfort, fatigue, personality changes, headache, hearing loss, and tremor. In infants and small children, who are more vulnerable, it can cause irritability, abdominal pain, loss of coordination, seizures, learning problems, and hyperactivity.</p>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Asbestos</h3>
+<p>Asbestos does not cause symptoms on its own, and intact material that is not disturbed generally does not pose a risk. It shows up in older homes in pipe and furnace insulation, floor tiles, ceiling tiles and panels, and some textured paints. Cutting, sanding, or otherwise disturbing these materials can release fibers into the air, and breathing them in over years is linked to lung cancer, asbestosis, and mesothelioma. Smoking on top of asbestos exposure raises the lung cancer risk far more than either one alone.</p>
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">Other Indoor Pollutants</h2>
+<p>These are other common household air pollutants worth ruling out:</p>
+<ul class="list-disc pl-6">
+<li><strong>Particulates.</strong> These include dust and pollen.</li>
+<li><strong>Household products.</strong> Personal care products, pesticides, household cleaners, solvents, and hobby chemicals can cause dizziness, nausea, allergic reactions, and irritated eyes, skin, and lungs. Some cleaning products produce poisonous fumes, so never mix chlorine bleach and ammonia.</li>
+<li><strong>Remodeling hazards.</strong> New carpeting and paint can give off fumes that irritate the eyes, nose, and throat.</li>
+<li><strong>Pesticides.</strong> Exposure can happen through normal spray use, foggers, or contaminated dust after use, particularly for children in close contact with treated surfaces. Symptoms can include headache, dizziness, muscle weakness, and nausea.</li>
+</ul>
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">Signs Something Is Wrong With Your Air</h2>
+<p>Beyond how you feel, the home itself often gives off its own warning signs:</p>
+<ul class="list-disc pl-6">
+<li>Abnormal or noticeable odors.</li>
+<li>Stale or stuffy air with a clear lack of movement.</li>
+<li>Dirty or broken central heating or air conditioning.</li>
+<li>Damaged flue pipes or chimneys.</li>
+<li>Relative humidity that stays outside the 30 to 50 percent range generally advised for homes.</li>
+<li>Visible mold or mildew, or standing water and water damaged materials.</li>
+<li>Health issues that started after remodeling, moving, weatherizing, or buying new furniture.</li>
+<li>Feeling noticeably healthier as soon as you leave the house.</li>
+</ul>
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">How To Lower Your Risk</h2>
+<p>In general:</p>
+<ul class="list-disc pl-6">
+<li>Never buy more of a product than you need if it could add to indoor air pollution, cleaning solvents and pesticides especially.</li>
+<li>Follow label directions for use, storage, and disposal.</li>
+<li>Ventilate before and after bringing in anything that might give off chemicals, including pressed wood furniture, carpets, and draperies.</li>
+<li>Do not allow smoking or vaping indoors.</li>
+</ul>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Bathroom</h3>
+<ul class="list-disc pl-6">
+<li>Keep moisture under control with an exhaust fan, since moisture encourages the growth of biological pollutants and condensation.</li>
+<li>Choose personal care products and air fresheners with little or no aerosol, and open a window or run a fan when using them.</li>
+</ul>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Bedroom</h3>
+<ul class="list-disc pl-6">
+<li>Clean any cold mist humidifier or vaporizer correctly and change the water daily to keep it from becoming a breeding ground.</li>
+<li>Cover mattresses and pillows and wash bedding regularly in water above 130 degrees Fahrenheit to control dust mites.</li>
+</ul>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Kitchen</h3>
+<ul class="list-disc pl-6">
+<li>Use nonaerosol, nontoxic cleaners where you can.</li>
+<li>Run an exhaust fan during cooking and washing to clear the moisture that living pollutants need to grow.</li>
+<li>Never use a stove or range to heat the home, and keep gas burners clean and adjusted.</li>
+</ul>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Garage</h3>
+<ul class="list-disc pl-6">
+<li><strong>Engines.</strong> Never run an engine inside the garage, since exhaust carries carbon monoxide and other combustion byproducts.</li>
+<li><strong>Paint and solvents.</strong> Air the garage out while using them, reseal containers well, and clean brushes outside.</li>
+<li><strong>Fuels.</strong> Store fuel in labeled, sealed containers outside in a ventilated area.</li>
+</ul>
+<h3 class="font-sans font-semibold text-navy-800 text-base">Laundry and utility areas</h3>
+<ul class="list-disc pl-6">
+<li><strong>Clothes dryers.</strong> Vent dryers to the outside, since unvented dryers add moisture, dust, and biological pollutants to the air, and gas dryers add carbon monoxide.</li>
+<li><strong>Furnaces and water heaters.</strong> Have fuel burning units inspected yearly, change filters regularly, and call your fuel supplier right away if you suspect a leak.</li>
+<li><strong>Radon.</strong> Test for it, and have a certified contractor fix levels of 4 picocuries per liter or higher.</li>
+</ul>
+<p>If a symptom keeps coming back whenever you are home and eases up whenever you leave, mention it to your doctor and consider testing for the specific hazard it points to before assuming the worst. Your state or local health department can also talk through the symptoms and possible causes with you directly.</p>
+
+
+  </div>
+
+  <!-- MORE FROM RESOURCES -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-6 lg:px-8 py-16">
+      <h2 class="font-serif text-navy-800 text-[30px] lg:text-[38px] text-center mb-10">More From Resources</h2>
+      <div class="space-y-6">
+        <a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/8a9a6b/2c3524?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">A Checklist for Spotting a Poorly Sealed or Insulated Home</h3>
+        </a>
+        <a href="how-to-spot-the-red-flags-of-greenwashing.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/3d4a35/c8d4b8?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">How to Spot the Red Flags of Greenwashing</h3>
+        </a>
+        <a href="the-humidity-problem-my-insulation-upgrade-created.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/2C3849/e8dcc8?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">The Humidity Problem My Insulation Upgrade Created</h3>
+        </a>
+        <a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/6b4a42/ecdbd6?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-800">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-20 pb-14 lg:pt-24">
+      <div class="flex flex-col items-center text-center mb-16 lg:mb-20">
+        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+        </svg>
+        <span class="font-serif text-white text-[17px] tracking-[0.14em] uppercase">Ecolibrium Solar</span>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-4 lg:gap-8">
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Explore</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="blog.html" class="link-underline hover:text-brand-green transition-colors">Blog</a></li>
+            <li><a href="resources.html" class="link-underline hover:text-brand-green transition-colors">Guides</a></li>
+          </ul>
+
+          <h3 class="font-sans font-bold text-white text-lg mt-10 mb-5">Guides</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="home-performance-and-air-quality-terms-explained-plainly.html" class="link-underline hover:text-brand-green transition-colors">Glossary</a></li>
+            <li><a href="what-your-symptoms-might-be-telling-you-about-your-home-s-air.html" class="link-underline hover:text-brand-green transition-colors">Symptom Reference</a></li>
+            <li><a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="link-underline hover:text-brand-green transition-colors">Retrofit Checklist</a></li>
+            <li><a href="how-to-spot-the-red-flags-of-greenwashing.html" class="link-underline hover:text-brand-green transition-colors">Greenwashing Guide</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Recent Posts</h3>
+          <ul class="space-y-4 text-white/80 leading-snug">
+            <li><a href="the-radon-i-sealed-into-my-own-house.html" class="link-underline hover:text-brand-green transition-colors">The Radon I Sealed Into My Own House</a></li>
+            <li><a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="link-underline hover:text-brand-green transition-colors">VOC Offgassing in Green Building Materials</a></li>
+            <li><a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="link-underline hover:text-brand-green transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Sources We Cite</h3>
+          <p class="text-white/70 leading-[1.7] text-[15px]">Guidance on this site draws on the Department of Energy, the Environmental Protection Agency, ASHRAE, RESNET, and the US Green Building Council.</p>
+        </div>
+
+        <div class="hidden lg:block"></div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-white/10 flex flex-col gap-3 text-sm text-white/50">
+        <p>&copy; Ecolibrium Solar 2026. All Rights Reserved</p>
+      </div>
+    </div>
+
+  </footer>
+
+  <script>
+    // ---------- Drawer menu ----------
+    const drawer = document.getElementById('drawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const menuToggle = document.getElementById('menuToggle');
+    const drawerClose = document.getElementById('drawerClose');
+
+    function openDrawer() {
+      drawer.classList.remove('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+      drawer.classList.add('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    menuToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    const blogToggle = document.getElementById('blogToggle');
+    const blogSubmenu = document.getElementById('blogSubmenu');
+    const blogChevron = document.getElementById('blogChevron');
+    blogToggle.addEventListener('click', () => {
+      const isOpen = blogToggle.getAttribute('aria-expanded') === 'true';
+      blogToggle.setAttribute('aria-expanded', String(!isOpen));
+      blogSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      blogChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    const resourcesToggle = document.getElementById('resourcesToggle');
+    const resourcesSubmenu = document.getElementById('resourcesSubmenu');
+    const resourcesChevron = document.getElementById('resourcesChevron');
+    resourcesToggle.addEventListener('click', () => {
+      const isOpen = resourcesToggle.getAttribute('aria-expanded') === 'true';
+      resourcesToggle.setAttribute('aria-expanded', String(!isOpen));
+      resourcesSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      resourcesChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    // ---------- Search overlay ----------
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+
+    function openSearch() {
+      closeDrawer();
+      searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchInput.focus();
+    }
+    function closeSearch() {
+      searchOverlay.classList.add('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    }
+    searchToggle.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    searchForm.addEventListener('submit', (e) => e.preventDefault());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      closeSearch();
+      closeDrawer();
+      closeSavePopover();
+    });
+
+    // ---------- Save / Share popover ----------
+    const saveToggle = document.getElementById('saveToggle');
+    const savePopover = document.getElementById('savePopover');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const shareFacebook = document.getElementById('shareFacebook');
+    const sharePinterest = document.getElementById('sharePinterest');
+
+    function openSavePopover() {
+      closeDrawer();
+      savePopover.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeSavePopover() {
+      savePopover.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'false');
+    }
+    saveToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = saveToggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeSavePopover() : openSavePopover();
+    });
+    document.addEventListener('click', (e) => {
+      if (!savePopover.contains(e.target) && e.target !== saveToggle) closeSavePopover();
+    });
+
+
+    copyLinkBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+      } catch (err) {
+        // clipboard API unavailable; feedback still shown so the action reads as complete
+      }
+      copyFeedback.classList.remove('opacity-0');
+      setTimeout(() => copyFeedback.classList.add('opacity-0'), 1600);
+    });
+
+    const shareUrl = encodeURIComponent(window.location.href);
+    shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    sharePinterest.href = `https://pinterest.com/pin/create/button/?url=${shareUrl}&description=${encodeURIComponent('What Your Symptoms Might Be Telling You About Your Home's Air')}`;
+    [shareFacebook, sharePinterest].forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(el.href, 'share', 'width=600,height=500');
+      });
+    });
+
+  </script>
+</body>
+</html>

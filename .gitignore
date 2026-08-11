@@ -1,2 +1,4 @@
 node_modules/
 sites/*/temporary screenshots/
+.env
+.env.*

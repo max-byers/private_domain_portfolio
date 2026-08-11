@@ -1,0 +1,83 @@
+Reference: homesteadingfamily.com blog post page
+Source URL: https://homesteadingfamily.com/how-to-handle-farm-fresh-eggs/
+Captured via Chrome DevTools computed styles, 2026-08-08.
+Screenshots (in this folder) walk the page top to bottom: 01 header/title/meta,
+02 body + inline image + subscribe box, 03 body + bold-lead-in callout +
+"MY LATEST VIDEOS" divider, 04 H2 section, 05 end-of-article CTA banner +
+"Popular Posts" module, 06 footer.
+
+COLORS
+------
+Header/nav background: rgb(35, 45, 58)      #232D3A  (dark navy)
+Heading text color:    rgb(35, 45, 58)      #232D3A  (same navy, reused on white bg)
+Body text color:       rgb(57, 67, 81)      #394351
+Accent / link / button: rgb(4, 183, 132)    #04B784  (teal-green)
+Button text on accent: rgb(255, 255, 255)   #FFFFFF
+Page/content background: white
+Footer background:     rgb(35, 45, 58)      #232D3A  (same navy as header)
+
+TYPOGRAPHY
+----------
+Headings font: "DM Serif Display", serif fallback sans-serif
+Body font:     "DM Sans", sans-serif
+
+H1 (article title)
+  font: DM Serif Display, 58.3px, weight 500, line-height 58.3px (1:1), color #232D3A
+
+H2 (section heading, e.g. "Proper Farm Fresh Egg Storage Tips")
+  font: DM Serif Display, 35.3px, weight 500, line-height 42.3px (~1.2), color #232D3A
+  margin-top: 24px, margin-bottom: 16px
+
+H3 (smaller heading, e.g. related-post card titles)
+  font: DM Sans, 16px, weight 600, line-height 19.2px (1.2), color #232D3A
+
+Body paragraph (p)
+  font: DM Sans, 17.6px, weight 400, line-height 28.16px (1.6), color #394351
+  margin-bottom: 14.4px
+
+Inline link (a, within body copy)
+  font: DM Sans, 17.6px, weight 400 (often wrapped in <strong> for bold links),
+  color #04B784 (teal-green), no underline in normal state
+
+List item (li)
+  font: DM Sans, 17.6px, weight 400, line-height 28.16px, color #394351
+
+Bold/strong text
+  font: DM Sans, 17.6px, weight 700, same color as surrounding paragraph
+
+LAYOUT
+------
+Article content column width: 692px (fixed-ish max column inside a wider page,
+  page built on Elementor with a 2-column layout: content ~66%, presumably a
+  sidebar/ad column for the remainder on desktop)
+Structure is Elementor + WP block editor: headings use class "wp-block-heading",
+  content wrapped in "elementor-widget-theme-post-content"
+
+RECURRING CONTENT BLOCKS (see screenshots)
+-------------------------------------------
+- Sticky/fixed dark navy header: logo left, Sign In + "Join the Newsletter"
+  (pill button, teal-green bg, white text, 8px border-radius) + search icon +
+  hamburger menu, right-aligned
+- Floating left-side share rail (Facebook/Pinterest/email icons + share count),
+  fixed position, follows scroll
+- Breadcrumb ("Home » Category") above the H1
+- Byline row: "Posted <date> in <Category>, <Category>" then author name in
+  small-caps teal-green below
+- Round social-share icon row (Facebook/Twitter/LinkedIn/Pinterest/email)
+  directly under the byline
+- Full-width featured image directly below the title block
+- Body copy interleaved with full-width in-article photos and an embedded
+  video block (rounded corners, centered play button)
+- Boxed "Subscribe to Homesteading Family!" callout mid-article: white card,
+  thin border, bold heading, checkbox consent line, email input + teal button
+- Bold lead-in phrases used as mini-callouts within paragraphs (e.g.
+  "Homesteading Hack —", "check out ... here" as a bolded inline link)
+  rather than separate styled boxes
+- "MY LATEST VIDEOS" as a plain small-caps section divider (no card/box)
+  above an embedded video row
+- Dark navy full-width CTA band near the end of page ("Sign Up for Updates" +
+  teal "Subscribe Now!" button), then a white "Popular Posts" section with
+  image + title rows
+- Footer: navy background, related-post text links, "Join Our Newsletter"
+  teal button, "Follow Us" round teal social icons (YouTube/FB/IG/Pinterest/
+  Rumble), thin divider, copyright + legal links row

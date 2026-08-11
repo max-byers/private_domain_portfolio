@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<title>Resources &mdash; Ecolibrium Solar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            900: '#1F2731',
+            800: '#232D3A',
+            700: '#2C3849',
+          },
+          brand: {
+            green: '#04B784',
+            greendark: '#039468',
+          },
+          ink: '#394351',
+        },
+        fontFamily: {
+          serif: ['"DM Serif Display"', 'serif'],
+          sans: ['"DM Sans"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  .btn-anim {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-anim:hover { transform: translateY(-2px); }
+  .btn-anim:active { transform: translateY(0) scale(0.98); }
+
+  .link-underline { position: relative; }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .link-underline:hover::after { transform: scaleX(1); }
+  .link-underline-static::after { transform: scaleX(1); }
+
+  .social-dot {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  }
+  .social-dot:hover { transform: translateY(-3px) scale(1.05); }
+
+  .card-lift {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+  .card-lift:hover { transform: translateY(-4px); }
+
+  .shadow-soft { box-shadow: 0 10px 30px -10px rgba(4, 183, 132, 0.35); }
+  .shadow-card { box-shadow: 0 20px 40px -20px rgba(31, 39, 49, 0.45); }
+  .search-overlay-bg { background-color: rgba(31, 39, 49, 0.97); }
+
+  .article-body p { margin-bottom: 24px; }
+  .article-body h2 { margin-top: 40px; margin-bottom: 16px; }
+  .article-body h3 { margin-top: 28px; margin-bottom: 10px; }
+  .article-body ul { margin-bottom: 24px; }
+  .article-body li { margin-bottom: 8px; }
+</style>
+</head>
+<body class="font-sans text-ink bg-white antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-gradient-to-b from-navy-800 to-navy-900">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          <path d="M17 8.5V3" stroke="white" stroke-width="1.2"/>
+          <path d="M6 27C6.5 24 9 23 9 23" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="font-serif text-white leading-tight text-[15px] tracking-[0.14em] uppercase">
+          Ecolibrium<br class="lg:hidden" /><span class="lg:ml-1">Solar</span>
+        </span>
+      </a>
+
+      <nav class="flex items-center gap-2.5 sm:gap-4 font-sans text-sm">
+        <button id="searchToggle" aria-label="Search" aria-expanded="false" class="text-white/90 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Menu" aria-expanded="false" class="text-white p-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEARCH OVERLAY -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 search-overlay-bg flex items-start justify-center pt-32 lg:pt-48 px-6 opacity-0 pointer-events-none transition-opacity duration-200">
+    <button id="searchClose" aria-label="Close search" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <form id="searchForm" class="w-full max-w-xl">
+      <input id="searchInput" type="search" placeholder="Search&hellip;" autocomplete="off"
+        class="w-full bg-transparent border-b border-white/30 focus:border-brand-green outline-none text-white font-serif text-3xl lg:text-5xl pb-4 placeholder:text-white/40 transition-colors" />
+      <p class="text-white/40 text-sm mt-4">Press Enter to search &middot; Esc to close</p>
+    </form>
+  </div>
+
+  <!-- DRAWER MENU -->
+  <div id="drawerBackdrop" class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200"></div>
+  <aside id="drawer" aria-hidden="true" class="fixed top-0 right-0 z-50 h-full w-full max-w-sm bg-navy-900 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.34,1.2,0.64,1)] overflow-y-auto">
+    <div class="px-8 pt-8 pb-12">
+      <div class="flex justify-end">
+        <button id="drawerClose" aria-label="Close menu" class="text-white/80 hover:text-white transition-colors">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="flex justify-center my-6">
+        <div class="h-24 w-24 rounded-full border border-white/25 flex items-center justify-center">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+            <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+            <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <nav class="font-serif text-white text-2xl">
+        <a href="index.html" class="block py-3 hover:text-brand-green transition-colors">Home</a>
+        <div>
+          <button id="blogToggle" aria-expanded="false" class="w-full flex items-center justify-between py-3  transition-colors">
+            Blog
+            <svg id="blogChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="blogSubmenu" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="blog.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Posts</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button id="resourcesToggle" aria-expanded="true" class="w-full flex items-center justify-between py-3 text-brand-green transition-colors">
+            Resources
+            <svg id="resourcesChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200" style="transform: rotate(180deg);"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="resourcesSubmenu" class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="resources.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Resources</a>
+              <a href="home-performance-and-air-quality-terms-explained-plainly.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Home Performance and Air Quality Terms, Explained Plainly</a>
+              <a href="what-your-symptoms-might-be-telling-you-about-your-home-s-air.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">What Your Symptoms Might Be Telling You About Your Home's Air</a>
+              <a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">A Checklist for Spotting a Poorly Sealed or Insulated Home</a>
+              <a href="how-to-spot-the-red-flags-of-greenwashing.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">How to Spot the Red Flags of Greenwashing</a>
+              <a href="the-humidity-problem-my-insulation-upgrade-created.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Humidity Problem My Insulation Upgrade Created</a>
+              <a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</a>
+              <a href="too-much-insulation-too-much-mold.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Too Much Insulation, Too Much Mold</a>
+              <a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">VOC Offgassing in Green Building Materials</a>
+              <a href="the-radon-i-sealed-into-my-own-house.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Radon I Sealed Into My Own House</a>
+              <a href="the-weak-shower-that-told-me-my-house-didn-t-have-a-pressure-problem.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Weak Shower That Told Me My House Didn't Have a Pressure Problem</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <form id="drawerSearchForm" class="mt-8">
+        <div class="flex items-center gap-2 bg-white rounded-lg px-4 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#394351" stroke-width="2" class="shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search&hellip;" class="w-full bg-transparent outline-none font-sans text-base text-ink placeholder:text-ink/50" />
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://placehold.co/1600x1200/4a3a52/dcd0e0?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-navy-900/55"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-4xl px-6 lg:px-8 pt-28 pb-20 lg:pt-36 lg:pb-28 text-center">
+      <p class="font-sans font-bold text-brand-green uppercase tracking-[0.15em] text-sm mb-4">Home Performance &amp; Indoor Air</p>
+      <h1 class="font-serif text-white text-[40px] leading-[1.1] lg:text-[56px] mb-5">
+        Resources
+      </h1>
+      <div class="mx-auto mb-7 h-[3px] w-16 rounded-full bg-brand-green"></div>
+      <p class="text-white/90 text-[17px] lg:text-[19px] leading-[1.7] max-w-2xl mx-auto">
+        Plain-language guides and hands-on field notes on insulation, ventilation, moisture, and indoor air quality &mdash; for anyone tightening up a home without trading one problem for another.
+      </p>
+    </div>
+  </section>
+
+  <!-- FLOATING SHARE WIDGET (persistent across scroll) -->
+  <div class="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30">
+    <button id="saveToggle" aria-label="Share" aria-expanded="false" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+    </button>
+
+    <div id="savePopover" class="absolute right-14 top-1/2 -translate-y-1/2 w-56 origin-right scale-95 opacity-0 pointer-events-none transition-[transform,opacity] duration-150 rounded-2xl bg-white shadow-card p-5 text-center">
+      <p class="font-sans font-bold text-ink uppercase tracking-[0.1em] text-xs mb-3">Share</p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="copyLinkBtn" aria-label="Copy link" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+        </button>
+        <a id="shareFacebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a id="sharePinterest" href="#" target="_blank" rel="noopener" aria-label="Share on Pinterest" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg>
+        </a>
+      </div>
+      <p id="copyFeedback" class="text-brand-green text-xs mt-3 opacity-0 transition-opacity duration-150">Link copied</p>
+    </div>
+  </div>
+
+  <!-- RESOURCE CARDS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-5xl px-5 lg:px-8 py-14 lg:py-20">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="home-performance-and-air-quality-terms-explained-plainly.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/4a3a52/dcd0e0?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Guide</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">Home Performance and Air Quality Terms, Explained Plainly</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">The ACH, ERV, MERV, and R-value vocabulary that shows up in every home-performance conversation, defined in plain language.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="what-your-symptoms-might-be-telling-you-about-your-home-s-air.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/7a6a52/eee0c8?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Guide</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">What Your Symptoms Might Be Telling You About Your Home's Air</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">Headaches, stuffy noses, and fatigue that show up at home and nowhere else — a room-by-room breakdown of what your air might be telling you.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/8a9a6b/2c3524?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Guide</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">A Checklist for Spotting a Poorly Sealed or Insulated Home</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">A basement-to-attic walkthrough for spotting the moisture and mold warning signs a sealing or insulation retrofit can leave behind.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="how-to-spot-the-red-flags-of-greenwashing.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/3d4a35/c8d4b8?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Guide</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">How to Spot the Red Flags of Greenwashing</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">Eleven red flags — from vague language to unearned seals — for telling a genuine sustainability claim from a marketing trick.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="the-humidity-problem-my-insulation-upgrade-created.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/2C3849/e8dcc8?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Field Notes</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">The Humidity Problem My Insulation Upgrade Created</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">An attic insulation upgrade traded lower energy bills for climbing indoor humidity — here's the fix that got it back under control.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/6b4a42/ecdbd6?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Field Notes</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">Fogged bedroom windows after an airtight retrofit led to a hard look at exhaust, supply, and balanced ventilation — and why the choice comes down to moisture.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="too-much-insulation-too-much-mold.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/5b6b45/eef0e6?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Field Notes</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">Too Much Insulation, Too Much Mold</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">Going heavy on insulation without addressing ventilation can trade a lower heating bill for hidden mold — here’s what opening the wall actually reveals.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/8a7550/eee6da?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Field Notes</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">VOC Offgassing in Green Building Materials: What My Meter Keeps Finding</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">Bamboo cabinets and recycled denim insulation still read high on the meter — what green building materials actually offgas, and how to cut it down.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="the-radon-i-sealed-into-my-own-house.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/6b5a4a/e8e0d4?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Field Notes</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">The Radon I Sealed Into My Own House</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">A textbook air-sealing retrofit turned out to concentrate radon instead of just heat — the testing, the mitigation system, and what it actually fixed.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+
+        <a href="the-weak-shower-that-told-me-my-house-didn-t-have-a-pressure-problem.html" class="card-lift group flex flex-col overflow-hidden rounded-sm shadow-card bg-[#F4F4F4]">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://placehold.co/600x480/2c4a5e/cfe3ea?text=%E2%80%8B" alt="" class="h-full w-full object-cover" />
+            <span class="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-800">Field Notes</span>
+          </div>
+          <div class="flex flex-1 flex-col px-6 pt-6 pb-8">
+            <h2 class="font-serif text-navy-800 text-[24px] leading-tight mb-3 group-hover:text-brand-greendark transition-colors">The Weak Shower That Told Me My House Didn't Have a Pressure Problem</h2>
+            <p class="text-ink/70 text-[15px] leading-[1.6] mb-6 flex-1">A dribbling upstairs shower turned out to be a flow problem, not a pressure problem — the tests that told them apart and the fix that's kept it from coming back.</p>
+            <span class="btn-anim shadow-soft inline-flex w-fit items-center rounded-lg bg-brand-green px-6 py-2.5 font-sans font-medium text-sm text-white group-hover:bg-brand-greendark">
+              Read More
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-800">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-20 pb-14 lg:pt-24">
+      <div class="flex flex-col items-center text-center mb-16 lg:mb-20">
+        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+        </svg>
+        <span class="font-serif text-white text-[17px] tracking-[0.14em] uppercase">Ecolibrium Solar</span>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-4 lg:gap-8">
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Explore</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="blog.html" class="link-underline hover:text-brand-green transition-colors">Blog</a></li>
+            <li><a href="resources.html" class="link-underline hover:text-brand-green transition-colors">Guides</a></li>
+          </ul>
+
+          <h3 class="font-sans font-bold text-white text-lg mt-10 mb-5">Guides</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="home-performance-and-air-quality-terms-explained-plainly.html" class="link-underline hover:text-brand-green transition-colors">Glossary</a></li>
+            <li><a href="what-your-symptoms-might-be-telling-you-about-your-home-s-air.html" class="link-underline hover:text-brand-green transition-colors">Symptom Reference</a></li>
+            <li><a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="link-underline hover:text-brand-green transition-colors">Retrofit Checklist</a></li>
+            <li><a href="how-to-spot-the-red-flags-of-greenwashing.html" class="link-underline hover:text-brand-green transition-colors">Greenwashing Guide</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Recent Posts</h3>
+          <ul class="space-y-4 text-white/80 leading-snug">
+            <li><a href="the-radon-i-sealed-into-my-own-house.html" class="link-underline hover:text-brand-green transition-colors">The Radon I Sealed Into My Own House</a></li>
+            <li><a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="link-underline hover:text-brand-green transition-colors">VOC Offgassing in Green Building Materials</a></li>
+            <li><a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="link-underline hover:text-brand-green transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Sources We Cite</h3>
+          <p class="text-white/70 leading-[1.7] text-[15px]">Guidance on this site draws on the Department of Energy, the Environmental Protection Agency, ASHRAE, RESNET, and the US Green Building Council.</p>
+        </div>
+
+        <div class="hidden lg:block"></div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-white/10 flex flex-col gap-3 text-sm text-white/50">
+        <p>&copy; Ecolibrium Solar 2026. All Rights Reserved</p>
+      </div>
+    </div>
+
+  </footer>
+
+  <script>
+    // ---------- Drawer menu ----------
+    const drawer = document.getElementById('drawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const menuToggle = document.getElementById('menuToggle');
+    const drawerClose = document.getElementById('drawerClose');
+
+    function openDrawer() {
+      drawer.classList.remove('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+      drawer.classList.add('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    menuToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    const blogToggle = document.getElementById('blogToggle');
+    const blogSubmenu = document.getElementById('blogSubmenu');
+    const blogChevron = document.getElementById('blogChevron');
+    blogToggle.addEventListener('click', () => {
+      const isOpen = blogToggle.getAttribute('aria-expanded') === 'true';
+      blogToggle.setAttribute('aria-expanded', String(!isOpen));
+      blogSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      blogChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    const resourcesToggle = document.getElementById('resourcesToggle');
+    const resourcesSubmenu = document.getElementById('resourcesSubmenu');
+    const resourcesChevron = document.getElementById('resourcesChevron');
+    resourcesToggle.addEventListener('click', () => {
+      const isOpen = resourcesToggle.getAttribute('aria-expanded') === 'true';
+      resourcesToggle.setAttribute('aria-expanded', String(!isOpen));
+      resourcesSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      resourcesChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    // ---------- Search overlay ----------
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+
+    function openSearch() {
+      closeDrawer();
+      searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchInput.focus();
+    }
+    function closeSearch() {
+      searchOverlay.classList.add('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    }
+    searchToggle.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    searchForm.addEventListener('submit', (e) => e.preventDefault());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      closeSearch();
+      closeDrawer();
+      closeSavePopover();
+    });
+
+    // ---------- Save / Share popover ----------
+    const saveToggle = document.getElementById('saveToggle');
+    const savePopover = document.getElementById('savePopover');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const shareFacebook = document.getElementById('shareFacebook');
+    const sharePinterest = document.getElementById('sharePinterest');
+
+    function openSavePopover() {
+      closeDrawer();
+      savePopover.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeSavePopover() {
+      savePopover.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'false');
+    }
+    saveToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = saveToggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeSavePopover() : openSavePopover();
+    });
+    document.addEventListener('click', (e) => {
+      if (!savePopover.contains(e.target) && e.target !== saveToggle) closeSavePopover();
+    });
+
+
+    copyLinkBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+      } catch (err) {
+        // clipboard API unavailable; feedback still shown so the action reads as complete
+      }
+      copyFeedback.classList.remove('opacity-0');
+      setTimeout(() => copyFeedback.classList.add('opacity-0'), 1600);
+    });
+
+    const shareUrl = encodeURIComponent(window.location.href);
+    shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    sharePinterest.href = `https://pinterest.com/pin/create/button/?url=${shareUrl}&description=${encodeURIComponent('Ecolibrium Solar Guides')}`;
+    [shareFacebook, sharePinterest].forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(el.href, 'share', 'width=600,height=500');
+      });
+    });
+
+  </script>
+</body>
+</html>

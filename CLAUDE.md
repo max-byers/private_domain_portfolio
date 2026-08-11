@@ -16,7 +16,7 @@
 
 ## Local Server
 - **Always serve on localhost** — never screenshot a `file:///` URL.
-- Start the dev server: `node serve.mjs sites/<site-name>` (e.g. `node serve.mjs sites/homesteading-family`) — serves that site at `http://localhost:3000`
+- Start the dev server: `node serve.mjs sites/<site-name>` (e.g. `node serve.mjs sites/ecolibriumsolar`) — serves that site at `http://localhost:3000`
 - `serve.mjs` lives in the repo root. Start it in the background before taking any screenshots.
 - If the server is already running, do not start a second instance.
 
