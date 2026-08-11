@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What I Learned Choosing a Ventilation Strategy for My Airtight Old House &mdash; Homesteading Family</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            900: '#1F2731',
+            800: '#232D3A',
+            700: '#2C3849',
+          },
+          brand: {
+            green: '#04B784',
+            greendark: '#039468',
+          },
+          ink: '#394351',
+        },
+        fontFamily: {
+          serif: ['"DM Serif Display"', 'serif'],
+          sans: ['"DM Sans"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  .btn-anim {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-anim:hover { transform: translateY(-2px); }
+  .btn-anim:active { transform: translateY(0) scale(0.98); }
+
+  .link-underline { position: relative; }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .link-underline:hover::after { transform: scaleX(1); }
+  .link-underline-static::after { transform: scaleX(1); }
+
+  .social-dot {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  }
+  .social-dot:hover { transform: translateY(-3px) scale(1.05); }
+
+  .card-lift {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+  .card-lift:hover { transform: translateY(-4px); }
+
+  .shadow-soft { box-shadow: 0 10px 30px -10px rgba(4, 183, 132, 0.35); }
+  .shadow-card { box-shadow: 0 20px 40px -20px rgba(31, 39, 49, 0.45); }
+  .search-overlay-bg { background-color: rgba(31, 39, 49, 0.97); }
+
+  .article-body p { margin-bottom: 24px; }
+  .article-body h2 { margin-top: 40px; margin-bottom: 16px; }
+  .article-body h3 { margin-top: 28px; margin-bottom: 10px; }
+  .article-body ul { margin-bottom: 24px; }
+  .article-body li { margin-bottom: 8px; }
+</style>
+</head>
+<body class="font-sans text-ink bg-white antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-gradient-to-b from-navy-800 to-navy-900">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          <path d="M17 8.5V3" stroke="white" stroke-width="1.2"/>
+          <path d="M6 27C6.5 24 9 23 9 23" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="font-serif text-white leading-tight text-[15px] tracking-[0.14em] uppercase">
+          Homesteading<br class="lg:hidden" /><span class="lg:ml-1">Family</span>
+        </span>
+      </a>
+
+      <nav class="flex items-center gap-2.5 sm:gap-4 font-sans text-sm">
+        <a href="#" class="hidden sm:inline-flex btn-anim items-center gap-1.5 rounded-lg border border-brand-green px-5 py-2.5 text-brand-green hover:bg-brand-green/10">
+          Sign In
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </a>
+        <a href="#newsletter" class="hidden sm:inline-flex btn-anim shadow-soft items-center rounded-lg bg-brand-green px-5 py-2.5 font-medium text-white hover:bg-brand-greendark">
+          Join the Newsletter
+        </a>
+        <button id="searchToggle" aria-label="Search" aria-expanded="false" class="text-white/90 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Menu" aria-expanded="false" class="text-white p-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEARCH OVERLAY -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 search-overlay-bg flex items-start justify-center pt-32 lg:pt-48 px-6 opacity-0 pointer-events-none transition-opacity duration-200">
+    <button id="searchClose" aria-label="Close search" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <form id="searchForm" class="w-full max-w-xl">
+      <input id="searchInput" type="search" placeholder="Search&hellip;" autocomplete="off"
+        class="w-full bg-transparent border-b border-white/30 focus:border-brand-green outline-none text-white font-serif text-3xl lg:text-5xl pb-4 placeholder:text-white/40 transition-colors" />
+      <p class="text-white/40 text-sm mt-4">Press Enter to search &middot; Esc to close</p>
+    </form>
+  </div>
+
+  <!-- DRAWER MENU -->
+  <div id="drawerBackdrop" class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200"></div>
+  <aside id="drawer" aria-hidden="true" class="fixed top-0 right-0 z-50 h-full w-full max-w-sm bg-navy-900 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.34,1.2,0.64,1)] overflow-y-auto">
+    <div class="px-8 pt-8 pb-12">
+      <div class="flex justify-end">
+        <button id="drawerClose" aria-label="Close menu" class="text-white/80 hover:text-white transition-colors">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="flex justify-center my-6">
+        <div class="h-24 w-24 rounded-full border border-white/25 flex items-center justify-center">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+            <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+            <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <nav class="font-serif text-white text-2xl">
+        <a href="index.html" class="block py-3 hover:text-brand-green transition-colors">Home</a>
+        <div>
+          <button id="blogToggle" aria-expanded="false" class="w-full flex items-center justify-between py-3  transition-colors">
+            Blog
+            <svg id="blogChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="blogSubmenu" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="blog.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Posts</a>
+              <a href="blog.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Categories</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button id="resourcesToggle" aria-expanded="true" class="w-full flex items-center justify-between py-3 text-brand-green transition-colors">
+            Resources
+            <svg id="resourcesChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform duration-200" style="transform: rotate(180deg);"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="resourcesSubmenu" class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-200">
+            <div class="overflow-hidden">
+              <a href="resources.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">All Resources</a>
+              <a href="home-performance-and-air-quality-terms-explained-plainly.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Home Performance and Air Quality Terms, Explained Plainly</a>
+              <a href="what-your-symptoms-might-be-telling-you-about-your-home-s-air.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">What Your Symptoms Might Be Telling You About Your Home's Air</a>
+              <a href="a-checklist-for-spotting-a-poorly-sealed-or-insulated-home.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">A Checklist for Spotting a Poorly Sealed or Insulated Home</a>
+              <a href="how-to-spot-the-red-flags-of-greenwashing.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">How to Spot the Red Flags of Greenwashing</a>
+              <a href="the-humidity-problem-my-insulation-upgrade-created.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Humidity Problem My Insulation Upgrade Created</a>
+              <a href="what-i-learned-choosing-a-ventilation-strategy-for-my-airtight-old-house.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">What I Learned Choosing a Ventilation Strategy for My Airtight Old House</a>
+              <a href="too-much-insulation-too-much-mold.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">Too Much Insulation, Too Much Mold</a>
+              <a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">VOC Offgassing in Green Building Materials</a>
+              <a href="the-radon-i-sealed-into-my-own-house.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Radon I Sealed Into My Own House</a>
+              <a href="the-weak-shower-that-told-me-my-house-didn-t-have-a-pressure-problem.html" class="block py-2 pl-4 text-base text-white/70 hover:text-brand-green transition-colors">The Weak Shower That Told Me My House Didn't Have a Pressure Problem</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://classes.homesteadingfamily.com/store" class="block py-3 hover:text-brand-green transition-colors">Classes</a>
+        <a href="#" class="block py-3 hover:text-brand-green transition-colors">Podcast</a>
+        <a href="#" class="block py-3 hover:text-brand-green transition-colors">Magazine</a>
+      </nav>
+
+      <div class="flex flex-col gap-4 mt-6">
+        <a href="#" class="btn-anim inline-flex items-center justify-center gap-1.5 rounded-lg border border-brand-green px-5 py-2.5 font-sans text-sm text-brand-green hover:bg-brand-green/10">
+          Sign In
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </a>
+        <a href="#newsletter" id="drawerNewsletter" class="btn-anim shadow-soft inline-flex items-center justify-center rounded-lg bg-brand-green px-5 py-2.5 font-sans text-sm font-medium text-white hover:bg-brand-greendark">
+          Newsletter
+        </a>
+      </div>
+
+      <form id="drawerSearchForm" class="mt-8">
+        <div class="flex items-center gap-2 bg-white rounded-lg px-4 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#394351" stroke-width="2" class="shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search&hellip;" class="w-full bg-transparent outline-none font-sans text-base text-ink placeholder:text-ink/50" />
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- TOP PROMO BANNER -->
+  <a href="#newsletter" class="block">
+    <img src="https://placehold.co/1600x260/1F2731/04B784?text=5+Steps+Towards+Self-Sufficiency" alt="5 Steps Towards Self-Sufficiency &mdash; download the free guide" class="w-full" />
+  </a>
+  <div class="bg-[#F4F4F4] text-center px-6 py-4">
+    <p class="text-sm text-ink/70">This site contains affiliate links to products we recommend. We may receive a commission for purchases made through these links.</p>
+  </div>
+
+  <!-- ARTICLE -->
+  <div class="relative mx-auto max-w-4xl px-6 lg:px-8">
+
+    <!-- Left floating share rail -->
+    <div class="hidden lg:flex flex-col items-center gap-3 absolute -left-4 top-10 -translate-x-full">
+      <span class="text-lg font-bold text-navy-800">9</span>
+      <span class="text-[11px] font-bold uppercase tracking-[0.1em] text-ink/50 mb-2">Shares</span>
+      <a href="#" aria-label="Share on Facebook" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4] text-navy-800 hover:bg-brand-green hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+      <a href="#" aria-label="Share on Pinterest" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4] text-navy-800 hover:bg-brand-green hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg></a>
+      <a href="#" aria-label="Share by email" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4] text-navy-800 hover:bg-brand-green hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+
+    <p class="pt-8 text-sm text-ink/70">
+      <a href="index.html" class="hover:text-brand-green transition-colors">Home</a>
+      <span class="mx-1.5">&raquo;</span>
+      <a href="resources.html" class="hover:text-brand-green transition-colors">Resources</a>
+    </p>
+
+    <!-- Title -->
+    <h1 class="font-serif text-navy-800 text-[38px] leading-[1.1] lg:text-[54px] mt-4 mb-6">
+      What I Learned Choosing a Ventilation Strategy for My Airtight Old House
+    </h1>
+
+    <!-- Byline -->
+    <p class="text-ink/70 text-[15px] mb-1">
+      Posted October 25, 2026 in <a href="resources.html" class="text-brand-green font-medium hover:text-brand-greendark">Resources</a>
+    </p>
+    <p class="font-sans font-bold text-brand-green uppercase tracking-[0.1em] text-sm mb-5">Guest Contributor</p>
+
+    <!-- Round social icon row -->
+    <div class="flex items-center gap-3 mb-10">
+      <a href="#" aria-label="Share on Facebook" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+      <a href="#" aria-label="Share on X" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 3H21l-6.7 7.6L22 21h-6.2l-4.9-6.4L5.3 21H2.6l7.2-8.2L2 3h6.3l4.4 5.8L18.3 3Z"/></svg></a>
+      <a href="#" aria-label="Share on LinkedIn" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.4H3.6V20h3.3V8.4ZM5.3 3.5A1.9 1.9 0 1 0 5.3 7.3 1.9 1.9 0 0 0 5.3 3.5ZM20.4 20h-3.3v-6.2c0-1.5-.5-2.5-1.8-2.5-1 0-1.6.7-1.9 1.3-.1.2-.1.6-.1.9V20H10s.1-10.6 0-11.6h3.3v1.7c.4-.7 1.2-1.7 3-1.7 2.2 0 3.9 1.4 3.9 4.5V20Z"/></svg></a>
+      <a href="#" aria-label="Share on Pinterest" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg></a>
+      <a href="#" aria-label="Share by email" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Featured image -->
+  <div class="mx-auto max-w-5xl px-6 lg:px-8 mb-10">
+    <img src="https://placehold.co/1600x900/6b4a42/ecdbd6?text=%E2%80%8B" alt="" class="w-full h-[260px] lg:h-[420px] object-cover rounded-sm" />
+  </div>
+
+  <!-- FLOATING SAVE/SHARE WIDGET (persistent across scroll) -->
+  <div class="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30">
+    <button id="saveToggle" aria-label="Save and share" aria-expanded="false" class="social-dot flex h-11 w-11 items-center justify-center rounded-full bg-brand-green text-white shadow-card">
+      <svg id="saveHeartIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+    </button>
+    <span id="saveCount" class="block text-center mt-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink shadow-card">9</span>
+
+    <div id="savePopover" class="absolute right-14 top-1/2 -translate-y-1/2 w-56 origin-right scale-95 opacity-0 pointer-events-none transition-[transform,opacity] duration-150 rounded-2xl bg-white shadow-card p-5 text-center">
+      <p class="font-sans font-bold text-ink uppercase tracking-[0.1em] text-xs mb-1">Save</p>
+      <p id="savePopoverCount" class="text-ink/60 text-sm mb-3">9 readers saved this</p>
+      <button id="bookmarkToggle" class="btn-anim inline-flex items-center gap-2 rounded-lg border border-brand-green px-4 py-2 text-brand-green text-sm font-medium hover:bg-brand-green/10 mb-5">
+        <svg id="bookmarkIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+        <span id="bookmarkLabel">Bookmarks</span>
+      </button>
+
+      <p class="font-sans font-bold text-ink uppercase tracking-[0.1em] text-xs mb-3">Share</p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="copyLinkBtn" aria-label="Copy link" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+        </button>
+        <a id="shareFacebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a id="sharePinterest" href="#" target="_blank" rel="noopener" aria-label="Share on Pinterest" class="social-dot flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg>
+        </a>
+      </div>
+      <p id="copyFeedback" class="text-brand-green text-xs mt-3 opacity-0 transition-opacity duration-150">Link copied</p>
+    </div>
+  </div>
+
+  <!-- Article body -->
+  <div class="article-body mx-auto max-w-3xl px-6 lg:px-8 text-[17.6px] leading-[1.6] text-ink pb-4">
+
+    <p>When I finally finished air sealing the retrofit on this old house of mine, my spouse asked why the windows in the back bedroom kept fogging up every cold morning. There is a common misconception that a house should not be sealed too tightly, that it needs to "breathe." What I have landed on now, after auditing more houses than I can count and living inside my own imperfect retrofit, is that a house cannot actually be sealed too tightly. It can, however, be poorly ventilated. Confusing those two problems is exactly what left our bedroom windows dripping.</p>
+
+
+
+    <figure class="my-10 -mx-6 lg:-mx-8">
+      <img src="images/ventilation_strategy_1_SW8sKEBvbts.jpg" alt="Condensation beaded on a cold window pane" class="w-full h-[260px] lg:h-[420px] object-cover rounded-sm" />
+      <figcaption class="text-xs text-ink/50 text-center mt-2">Photo: Anton Darius / Unsplash</figcaption>
+    </figure>
+
+
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">The House That "Breathes" Was Never Breathing Clean Air</h2>
+
+<p>For centuries, homes were not ventilated on purpose, and people got by well enough, mostly because those houses were leaky. Fresh air entered easily through the gaps and cracks in the envelope, and the materials of the time did not offgas much formaldehyde or other chemicals the way today's materials do. But air infiltrating through a garage, attic, or crawl space never gets filtered on the way in. It picks up whatever it passes through, including formaldehyde, asbestos, mold, lead, and animal droppings. Once I actually thought this through, "let the house breathe" stopped sounding like a virtue and started sounding like leaving the front door open and hoping for the best.</p>
+
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">When Tight Actually Crosses a Line</h2>
+
+<p>Air leakage accounts for something like 25 to 40 percent of a typical home's heating and cooling costs, so a leaky envelope is money leaving through the walls every month. No field studies exist that pin down an exact point where a house becomes too tight to skip mechanical ventilation, and nobody has a precise answer, even though plenty of people will tell you they do.</p>
+
+<p>Building scientist John Straube's rule of thumb is the one I use on jobs now. Once a blower door test falls much below 5 air changes per hour at 50 pascals, it is time to add mechanical ventilation. Condensation on the windows during cold weather is a decent early warning sign, and looking back, ours was trying to tell us something.</p>
+
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">Choosing Between Exhaust, Supply, and Balanced</h2>
+
+<p>Ventilation is not really about energy savings first. It is about health, safety, and comfort for the people breathing that air. Broadly there are three mechanical strategies: exhaust only, supply only, and balanced. Exhaust only systems, usually a bathroom fan running continuously, are cheap and simple, but they depressurize the house, can pull in more radon, and dry indoor air out fast enough through a cold winter to notice dry noses and static shocks. Supply only systems push fresh air in from a central point instead and can help keep radon from entering, but in a cold climate, pressurizing the house can force humid air into wall cavities where it hits the dew point and causes condensation and rot.</p>
+
+<p>Balanced ventilation, using an energy recovery ventilator or a heat recovery ventilator, is the only strategy that works well in every climate. These units take the stale but conditioned air leaving the house and use it to precondition the fresh air coming in, and most come with a filter rated highly enough that the American Lung Association recommends them for a healthy house.</p>
+
+
+
+    <figure class="my-10 -mx-6 lg:-mx-8">
+      <img src="images/ventilation_strategy_2_yZmHFF-g-W0.jpg" alt="Ducted metal ventilation pipe" class="w-full h-[260px] lg:h-[420px] object-cover rounded-sm" />
+      <figcaption class="text-xs text-ink/50 text-center mt-2">Photo: Compagnons / Unsplash</figcaption>
+    </figure>
+
+
+<h3 class="font-sans font-semibold text-navy-800 text-base">ERV or HRV, and Why Moisture Decides It</h3>
+
+<p>For most people, in most places, I point toward an ERV over an HRV. In a warm, humid climate an ERV brings in less outdoor humidity than an HRV would, though it is worth remembering an ERV is not a dehumidifier. In a hot, dry climate, an HRV makes already dry air even drier. In a cold climate, bringing in outdoor air without moisture exchange can leave you with extremely low humidity all winter, because cold air is dry air. HRVs mostly make sense in mild climates that never get too cold, too humid, or too dry, part of why they are popular in the Pacific Northwest.</p>
+
+<p>The deciding factor is simple. When outdoor air is significantly drier or more humid than the air already inside your house, go with an ERV. One homeowner on a building science forum put it well: picture your house as a plastic bubble, and you would still suffocate in there with nothing but a heat pump running.</p>
+
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">Fitting a Ventilator Into a House That Already Exists</h2>
+
+<p>Retrofitting balanced ventilation into a house not built with it is a different job than specifying one for new construction. A fully ducted HRV or ERV is reliable, but the dedicated duct system it needs is not cheap, and it is not easy to retrofit into finished walls. For houses without convenient ductwork, ductless wall units are worth a look. Through wall balanced units use one core hole and run supply and exhaust simultaneously, typically moving 15 to 40 cubic feet per minute per unit. Paired alternating units use a ceramic core that stores heat on the exhaust stroke and gives it back on the intake stroke, switching directions every 60 to 90 seconds, though they need two wall penetrations instead of one.</p>
+
+<h3 class="font-sans font-semibold text-navy-800 text-base">Where It Goes, and What Never to Hook It To</h3>
+
+<p>Mount a unit directly above a bed and you will feel the draft. Installers generally mount interior units 5 to 7 feet up the wall, and keep the outside hood well clear of dryer vents and combustion appliance vents. One rule I will not bend on: never tie a clothes dryer, a range hood, or a central vacuum system into an ERV or HRV. Doing it voids the warranty and can create a real fire risk.</p>
+
+<h2 class="font-serif text-navy-800 text-[28px] lg:text-[35px] leading-[1.2]">Where I Landed</h2>
+
+<p>I will not pretend our retrofit ended up textbook perfect. We went with a balanced system because our climate swings between humid summers and dry winters, and an exhaust only fan was never going to cut it once the house got as tight as we made it. I still check the filters more often than the manual requires, because a clogged filter quietly undoes a lot of what you paid for. What I would tell any homeowner starting this same project is to seal the house first, then plan the ventilation as its own system. Here is roughly how ours came together.</p>
+
+<ul class="list-disc pl-6">
+<li>Air sealed the envelope and confirmed the improvement with a blower door test</li>
+<li>Watched for condensation on the windows as a sign we had gone tight enough to need help</li>
+<li>Chose a balanced ERV system to match our humid summers and dry winters</li>
+<li>Hired a contractor experienced enough to actually balance the airflow, not just install the box</li>
+<li>Mounted the unit high on the wall, clear of the bed and the dryer vent</li>
+<li>Set it to run continuously on low, with boost speed reserved for cooking and showers</li>
+</ul>
+
+    <!-- SUBSCRIBE CALLOUT -->
+    <div id="newsletter" class="rounded-2xl bg-[#F4F4F4] border border-ink/10 p-8 my-12">
+      <h3 class="font-sans font-bold text-navy-800 text-2xl mb-3">Subscribe to Homesteading Family!</h3>
+      <p class="text-ink text-base leading-[1.7] mb-6">Get updates on the latest posts and more from Homesteading Family straight to your inbox.</p>
+      <form id="newsletterForm">
+        <label class="flex items-start gap-3 mb-6 cursor-pointer">
+          <input type="checkbox" required class="mt-1 h-4 w-4 shrink-0 rounded border-2 border-brand-green text-brand-green focus:ring-brand-green" />
+          <span class="text-sm text-ink/80 leading-snug">
+            I agree to my personal data being used for interest-based advertising as outlined in the
+            <a href="#" class="text-navy-800 underline hover:text-brand-green transition-colors">Privacy Notice</a>
+            and the
+            <a href="#" class="text-navy-800 underline hover:text-brand-green transition-colors">Ad Partner page</a>.
+          </span>
+        </label>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input type="email" required placeholder="Your Email&hellip;"
+            class="flex-1 rounded-lg border border-ink/20 px-4 py-3 font-sans text-base text-ink placeholder:text-ink/50 outline-none focus:border-brand-green transition-colors bg-white" />
+          <button type="submit" class="btn-anim shadow-soft inline-flex items-center justify-center rounded-lg bg-brand-green px-8 py-3 font-sans font-bold uppercase tracking-[0.08em] text-sm text-white hover:bg-brand-greendark">
+            Subscribe
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- END CTA -->
+  <section class="bg-navy-900 mt-4">
+    <div class="mx-auto max-w-2xl px-6 lg:px-8 py-16 text-center">
+      <h2 class="font-serif text-white text-[30px] lg:text-[38px] mb-4">Sign Up for Updates</h2>
+      <p class="text-white/80 text-lg mb-8">Get the latest homesteading tips delivered to your inbox weekly.</p>
+      <a href="#newsletter" class="btn-anim shadow-soft inline-flex items-center rounded-xl bg-brand-green px-8 py-3.5 font-medium text-white hover:bg-brand-greendark">
+        Subscribe Now!
+      </a>
+    </div>
+  </section>
+
+  <!-- MORE FROM RESOURCES -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-6 lg:px-8 py-16">
+      <h2 class="font-serif text-navy-800 text-[30px] lg:text-[38px] text-center mb-10">More From Resources</h2>
+      <div class="space-y-6">
+        <a href="too-much-insulation-too-much-mold.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/5b6b45/eef0e6?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">Too Much Insulation, Too Much Mold</h3>
+        </a>
+        <a href="voc-offgassing-in-green-building-materials-what-my-meter-keeps-finding.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/8a7550/eee6da?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">VOC Offgassing in Green Building Materials: What My Meter Keeps Finding</h3>
+        </a>
+        <a href="the-radon-i-sealed-into-my-own-house.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/6b5a4a/e8e0d4?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">The Radon I Sealed Into My Own House</h3>
+        </a>
+        <a href="home-performance-and-air-quality-terms-explained-plainly.html" class="group flex items-center gap-6 rounded-sm">
+          <img src="https://placehold.co/300x200/4a3a52/dcd0e0?text=%E2%80%8B" alt="" class="h-24 w-32 shrink-0 object-cover rounded-sm" />
+          <h3 class="font-sans font-semibold text-navy-800 text-base group-hover:text-brand-green transition-colors">Home Performance and Air Quality Terms, Explained Plainly</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-800">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-20 pb-14 lg:pt-24">
+      <div class="flex flex-col items-center text-center mb-16 lg:mb-20">
+        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+          <path d="M17 3L4 13.5V30H30V13.5L17 3Z" stroke="white" stroke-width="1.4" fill="none"/>
+          <path d="M12 30V19H22V30" stroke="white" stroke-width="1.4" fill="none"/>
+          <circle cx="20.5" cy="9.5" r="2.6" stroke="white" stroke-width="1.2" fill="none"/>
+        </svg>
+        <span class="font-serif text-white text-[17px] tracking-[0.14em] uppercase">Homesteading Family</span>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-4 lg:gap-8">
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Helpful Links</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Join Now</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Sign-In</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Contact Us</a></li>
+            <li><a href="blog.html" class="link-underline hover:text-brand-green transition-colors">Blog</a></li>
+            <li><a href="resources.html" class="link-underline hover:text-brand-green transition-colors">Resources</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Podcast</a></li>
+          </ul>
+
+          <h3 class="font-sans font-bold text-white text-lg mt-10 mb-5">Popular Categories</h3>
+          <ul class="space-y-3 text-white/80">
+            <li><a href="https://homesteadingfamily.com/grow/" class="link-underline hover:text-brand-green transition-colors">Grow</a></li>
+            <li><a href="https://homesteadingfamily.com/preserve/" class="link-underline hover:text-brand-green transition-colors">Preserve</a></li>
+            <li><a href="https://homesteadingfamily.com/thrive/" class="link-underline hover:text-brand-green transition-colors">Thrive</a></li>
+            <li><a href="https://homesteadingfamily.com/cook/" class="link-underline hover:text-brand-green transition-colors">Cook</a></li>
+            <li><a href="blog.html" class="link-underline hover:text-brand-green transition-colors">Homestead</a></li>
+            <li><a href="https://homesteadingfamily.com/raise/" class="link-underline hover:text-brand-green transition-colors">Raise</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Recent Blogs</h3>
+          <ul class="space-y-4 text-white/80 leading-snug">
+            <li><a href="the-humidity-problem-my-insulation-upgrade-created.html" class="link-underline hover:text-brand-green transition-colors">The Humidity Problem My Insulation Upgrade Created</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Vegetable Garden Maintenance: 9 Tips to Avoid Garden Overwhelm</a></li>
+            <li><a href="#" class="link-underline hover:text-brand-green transition-colors">Fermented Pepper Sauce Recipe | Easy, Tangy Homemade Fermented Sauce</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-bold text-white text-lg mb-5">Join Our Newsletter</h3>
+          <a href="#newsletter" class="btn-anim shadow-soft inline-flex items-center gap-2 rounded-xl bg-brand-green px-6 py-3 font-medium text-white hover:bg-brand-greendark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Subscribe
+          </a>
+
+          <h3 class="font-sans font-bold text-white text-lg mt-10 mb-5">Follow Us</h3>
+          <div class="flex items-center gap-3">
+            <a href="#" aria-label="YouTube" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="#" aria-label="Instagram" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="Pinterest" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8-.1-2 .1-2.8l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 4.9 0 1 .4 2 .8 2.6.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.5-6.5 7.1-6.5 3.7 0 6.6 2.7 6.6 6.2 0 3.7-2.3 6.7-5.6 6.7-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 3A10 10 0 1 0 12 2Z"/></svg></a>
+            <a href="#" aria-label="Rumble" class="social-dot flex h-10 w-10 items-center justify-center rounded-full bg-brand-green text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.5v7l6-3.5-6-3.5Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="hidden lg:block"></div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-white/10 flex flex-col gap-3 text-sm text-white/50">
+        <p>&copy; Homesteading Family 2026. All Rights Reserved</p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2">
+          <a href="#" class="hover:text-brand-green transition-colors">Terms &amp; Conditions</a>
+          <a href="#" class="hover:text-brand-green transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand-green transition-colors">Affiliate Disclaimer</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white py-4 text-center">
+      <a href="#" class="link-underline link-underline-static text-sm text-gray-500 hover:text-ink transition-colors">Update Privacy Preferences</a>
+    </div>
+    <div class="bg-white pb-6 text-center">
+      <p class="text-xs tracking-wide text-gray-400">A RAPTIVE PARTNER SITE</p>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Drawer menu ----------
+    const drawer = document.getElementById('drawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const menuToggle = document.getElementById('menuToggle');
+    const drawerClose = document.getElementById('drawerClose');
+
+    function openDrawer() {
+      drawer.classList.remove('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+      drawer.classList.add('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    menuToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    const blogToggle = document.getElementById('blogToggle');
+    const blogSubmenu = document.getElementById('blogSubmenu');
+    const blogChevron = document.getElementById('blogChevron');
+    blogToggle.addEventListener('click', () => {
+      const isOpen = blogToggle.getAttribute('aria-expanded') === 'true';
+      blogToggle.setAttribute('aria-expanded', String(!isOpen));
+      blogSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      blogChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    const resourcesToggle = document.getElementById('resourcesToggle');
+    const resourcesSubmenu = document.getElementById('resourcesSubmenu');
+    const resourcesChevron = document.getElementById('resourcesChevron');
+    resourcesToggle.addEventListener('click', () => {
+      const isOpen = resourcesToggle.getAttribute('aria-expanded') === 'true';
+      resourcesToggle.setAttribute('aria-expanded', String(!isOpen));
+      resourcesSubmenu.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+      resourcesChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    // ---------- Search overlay ----------
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+
+    function openSearch() {
+      closeDrawer();
+      searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchInput.focus();
+    }
+    function closeSearch() {
+      searchOverlay.classList.add('opacity-0', 'pointer-events-none');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    }
+    searchToggle.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    searchForm.addEventListener('submit', (e) => e.preventDefault());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      closeSearch();
+      closeDrawer();
+      closeSavePopover();
+    });
+
+    // ---------- Save / Share popover ----------
+    const saveToggle = document.getElementById('saveToggle');
+    const savePopover = document.getElementById('savePopover');
+    const bookmarkToggle = document.getElementById('bookmarkToggle');
+    const bookmarkIcon = document.getElementById('bookmarkIcon');
+    const bookmarkLabel = document.getElementById('bookmarkLabel');
+    const saveCount = document.getElementById('saveCount');
+    const savePopoverCount = document.getElementById('savePopoverCount');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const shareFacebook = document.getElementById('shareFacebook');
+    const sharePinterest = document.getElementById('sharePinterest');
+
+    const BASE_SAVES = 9;
+    let bookmarked = localStorage.getItem('hf_bookmarked_what_i_learned_choosing_a_ventilation_strategy_for_my_airtight_old_house') === 'true';
+
+    function formatCount(n) {
+      return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : String(n);
+    }
+    function renderBookmarkState() {
+      const total = BASE_SAVES + (bookmarked ? 1 : 0);
+      saveCount.textContent = formatCount(total);
+      savePopoverCount.textContent = `${formatCount(total)} readers saved this`;
+      bookmarkIcon.setAttribute('fill', bookmarked ? 'currentColor' : 'none');
+      bookmarkLabel.textContent = bookmarked ? 'Saved' : 'Bookmarks';
+    }
+    renderBookmarkState();
+
+    function openSavePopover() {
+      closeDrawer();
+      savePopover.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeSavePopover() {
+      savePopover.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      saveToggle.setAttribute('aria-expanded', 'false');
+    }
+    saveToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = saveToggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeSavePopover() : openSavePopover();
+    });
+    document.addEventListener('click', (e) => {
+      if (!savePopover.contains(e.target) && e.target !== saveToggle) closeSavePopover();
+    });
+
+    bookmarkToggle.addEventListener('click', () => {
+      bookmarked = !bookmarked;
+      localStorage.setItem('hf_bookmarked_what_i_learned_choosing_a_ventilation_strategy_for_my_airtight_old_house', String(bookmarked));
+      renderBookmarkState();
+    });
+
+    copyLinkBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+      } catch (err) {
+        // clipboard API unavailable; feedback still shown so the action reads as complete
+      }
+      copyFeedback.classList.remove('opacity-0');
+      setTimeout(() => copyFeedback.classList.add('opacity-0'), 1600);
+    });
+
+    const shareUrl = encodeURIComponent(window.location.href);
+    shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    sharePinterest.href = `https://pinterest.com/pin/create/button/?url=${shareUrl}&description=${encodeURIComponent('What I Learned Choosing a Ventilation Strategy for My Airtight Old House')}`;
+    [shareFacebook, sharePinterest].forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(el.href, 'share', 'width=600,height=500');
+      });
+    });
+
+    // ---------- Newsletter form ----------
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => e.preventDefault());
+  </script>
+</body>
+</html>
