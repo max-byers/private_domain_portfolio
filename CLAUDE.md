@@ -14,6 +14,11 @@
 - Only dev-time tooling (`serve.mjs`, `screenshot.mjs`, `package.json`) is shared at the repo root — none of it ships with any site.
 - Reference material for a clone (source screenshots, DevTools notes) goes in `sites/<site-name>/reference/`.
 
+## Finding an Existing Site (before concluding one doesn't exist)
+- Never trust a bare repo-root glob (`*`, `**/*`) to survey what exists — `node_modules/` at the repo root holds thousands of files and will bury or crowd out a real site's results.
+- `sites/*` alone returns nothing even when a site exists — glob only matches files, not directory names. Match a file inside the site instead, e.g. `sites/*/index.html` or `sites/*/CLAUDE.md`.
+- If that comes up empty, search by a distinctive fragment of the domain name (e.g. `**/*<fragment>*`, scoped to this repo, excluding `node_modules`) before concluding no site exists for that domain — folder naming may not exactly match the domain string.
+
 ## Local Server
 - **Always serve on localhost** — never screenshot a `file:///` URL.
 - Start the dev server: `node serve.mjs sites/<site-name>` (e.g. `node serve.mjs sites/ecolibriumsolar`) — serves that site at `http://localhost:3000`
