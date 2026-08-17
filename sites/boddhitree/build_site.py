@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Build Boddhitree's static HTML from the portfolio CSV source of truth."""
+
+from __future__ import annotations
+
+import csv
+import html
+import re
+from datetime import datetime
+from pathlib import Path
+
+
+SITE = Path(__file__).resolve().parent
+DOMAIN = Path(r"C:\Users\Max\Max OS\projects\private_domain_portfolio\boddhitree.com")
+POSTS_CSV = DOMAIN / "boddhitree_posts.csv"
+PAGES_CSV = DOMAIN / "boddhitree_pages_content.csv"
+
+
+def slugify(value: str) -> str:
+    value = html.unescape(value).lower().replace("’", "'")
+    value = re.sub(r"[^a-z0-9]+", "-", value).strip("-")
+    return value
+
+
+def read_rows(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def parse_date(value: str) -> datetime:
+    return datetime.strptime(value.strip(), "%d/%m/%Y %H:%M" if ":" in value else "%d/%m/%Y")
+
+
+def display_date(value: str) -> str:
+    return parse_date(value).strftime("%-d %B %Y") if __import__("os").name != "nt" else parse_date(value).strftime("%#d %B %Y")
+
+
+CSS = """
+:root{--navy:#17344b;--deep:#10283a;--gold:#bd8b2e;--cream:#f7f2e8;--ink:#17212a;--muted:#66717a;--line:rgba(23,52,75,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.72}a{color:inherit}a:hover{color:var(--gold)}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.notice{background:var(--navy);color:#fff;text-align:center;padding:10px;font-size:14px}.header{border-bottom:1px solid var(--line);background:#fff}.header .wrap{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.mark{width:38px;height:38px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font:700 23px/1 Georgia}.brand strong{font:700 28px/1 'Cormorant Garamond',Georgia,serif;color:var(--navy)}nav{display:flex;gap:24px;align-items:center}nav a{text-decoration:none;font-size:14px;font-weight:700}.hero{background:radial-gradient(circle at 80% 20%,rgba(189,139,46,.15),transparent 35%),var(--cream);padding:88px 0}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--gold);font-weight:800;font-size:12px}.hero h1,.page-title{font:700 clamp(42px,7vw,76px)/.98 'Cormorant Garamond',Georgia,serif;letter-spacing:-.035em;color:var(--navy);margin:15px 0 22px;max-width:850px}.hero p{font-size:19px;max-width:670px;color:#43515d}.button{display:inline-block;margin-top:18px;background:var(--navy);color:white!important;text-decoration:none;padding:13px 20px;border-radius:5px;font-weight:800;box-shadow:0 10px 28px rgba(23,52,75,.18)}.section{padding:68px 0}.section.alt{background:#fbfaf7}.section h2{font:700 40px/1.1 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:0 0 12px}.intro{max-width:690px;color:var(--muted);margin-bottom:30px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{border:1px solid var(--line);border-radius:10px;padding:26px;background:#fff;box-shadow:0 12px 34px rgba(23,52,75,.07)}.card h3{font:700 25px/1.15 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:8px 0 12px}.card p{color:var(--muted);font-size:15px}.card a{font-weight:800;text-decoration-thickness:1px;text-underline-offset:4px}.article-head{background:var(--cream);padding:58px 0 48px}.article-head .page-title{font-size:clamp(40px,6vw,66px);max-width:900px}.meta{color:var(--muted);font-size:14px}.article{width:min(720px,calc(100% - 40px));margin:auto;padding:54px 0 80px;font-size:18px}.article h2{font:700 36px/1.12 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:48px 0 16px}.article h3{font:700 27px/1.2 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:35px 0 12px}.article p{margin:0 0 22px}.article ul,.article ol{padding-left:26px;margin:0 0 26px}.article li{margin:8px 0}.article img{display:block;width:100%;max-height:500px;object-fit:cover;border-radius:8px;margin:34px 0;box-shadow:0 16px 38px rgba(23,52,75,.13)}.article a{color:#8a6119;font-weight:700;text-underline-offset:3px}.listing{padding:58px 0 80px}.listing-row{display:grid;grid-template-columns:150px 1fr;gap:25px;padding:28px 0;border-bottom:1px solid var(--line)}.listing-row time{color:var(--muted);font-size:14px}.listing-row h2{font:700 30px/1.15 'Cormorant Garamond',Georgia,serif;margin:0 0 10px;color:var(--navy)}.listing-row a{text-decoration:none}.footer{background:var(--deep);color:rgba(255,255,255,.75);padding:38px 0}.footer .wrap{display:flex;justify-content:space-between;gap:24px;align-items:center}.footer a{color:white}.footer nav{flex-wrap:wrap}@media(max-width:760px){.header .wrap{padding:18px 0;align-items:flex-start}.header nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}.brand strong{font-size:24px}.hero{padding:62px 0}.grid{grid-template-columns:1fr}.listing-row{grid-template-columns:1fr;gap:5px}.footer .wrap{display:block}.footer nav{margin-top:18px}.article{font-size:17px}}
+"""
+
+
+def chrome(title: str, main: str, description: str = "Practical wisdom for steady habits and a more considered daily life.") -> str:
+    return f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(title)} — Boddhitree</title><meta name="description" content="{html.escape(description)}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>{CSS}</style></head>
+<body><div class="notice">Small practices. Clearer days. A steadier life.</div>
+<header class="header"><div class="wrap"><a class="brand" href="/"><span class="mark">B</span><strong>Boddhitree</strong></a>
+<nav aria-label="Main navigation"><a href="/">Home</a><a href="blog">Articles</a><a href="six-habit-tracking-methods-compared-honestly">Habit tracking guide</a></nav></div></header>
+{main}<footer class="footer"><div class="wrap"><div>© 2026 Boddhitree. Practical wisdom for daily life.</div><nav aria-label="Footer navigation"><a href="/">Home</a><a href="blog">Articles</a><a href="six-habit-tracking-methods-compared-honestly">Habit tracking guide</a></nav></div></footer></body></html>'''
+
+
+def article_page(title: str, body: str, date: str, kind: str) -> str:
+    label = "Reference guide" if kind == "page" else "Field notes"
+    main = f'''<main><header class="article-head"><div class="wrap"><div class="eyebrow">{label}</div><h1 class="page-title">{html.escape(title)}</h1><div class="meta">By Theo Marsh · {display_date(date)}</div></div></header>
+<article class="article">{body}</article></main>'''
+    return chrome(title, main, re.sub(r"<[^>]+>", " ", body)[:155].strip())
+
+
+def build() -> None:
+    posts = read_rows(POSTS_CSV)
+    pages = read_rows(PAGES_CSV)
+    for row in posts:
+        (SITE / f"{slugify(row['post_title'])}.html").write_text(article_page(row['post_title'], row['post_content'], row['post_date'], "post"), encoding="utf-8")
+    for row in pages:
+        (SITE / f"{slugify(row['page_title'])}.html").write_text(article_page(row['page_title'], row['page_content'], row['page_date'], "page"), encoding="utf-8")
+
+    ordered = sorted(posts, key=lambda row: parse_date(row["post_date"]), reverse=True)
+    rows = "".join(f'''<article class="listing-row" data-content-slug="{slugify(r['post_title'])}"><time>{display_date(r['post_date'])}</time><div><h2><a href="{slugify(r['post_title'])}">{html.escape(r['post_title'])}</a></h2><p>{html.escape(re.sub(r'<[^>]+>', ' ', r['post_content']).strip()[:210])}…</p></div></article>''' for r in ordered)
+    blog_main = f'''<main><header class="article-head"><div class="wrap"><div class="eyebrow">The journal</div><h1 class="page-title">Practices tested in ordinary life</h1><p class="intro">Notes on building habits, protecting attention, recovering from broken routines, and making structure feel humane.</p></div></header><section class="listing"><div class="wrap">{rows}</div></section></main>'''
+    (SITE / "blog.html").write_text(chrome("Articles", blog_main), encoding="utf-8")
+
+    first = min(posts, key=lambda row: parse_date(row["post_date"]))
+    guide = pages[0]
+    cards = "".join(f'''<article class="card" data-content-slug="{slugify(r['post_title'])}"><div class="eyebrow">Latest field note</div><h3>{html.escape(r['post_title'])}</h3><p>{html.escape(re.sub(r'<[^>]+>', ' ', r['post_content']).strip()[:170])}…</p><a href="{slugify(r['post_title'])}">Read the article →</a></article>''' for r in sorted(posts, key=lambda row: parse_date(row["post_date"]), reverse=True)[:3])
+    home = f'''<main><section class="hero"><div class="wrap"><div class="eyebrow">Practical wisdom for daily life</div><h1>Build a life you can return to.</h1><p>Boddhitree is a quiet place for testing routines in the mess of ordinary days. No perfect streaks. No heroic morning schedules. Just useful practices, honest adjustments, and a little more room to notice what works.</p><a class="button" href="{slugify(first['post_title'])}">Start with the first practice</a></div></section>
+<section class="section" id="start"><div class="wrap"><h2>Where to begin</h2><p class="intro">Choose a practical starting point. Read one piece, try one small change, and let the evidence of your own day do the rest.</p><div class="grid"><article class="card"><div class="eyebrow">Start here</div><h3>{html.escape(first['post_title'])}</h3><p>A grounded first step into making a morning practice easier to keep.</p><a href="{slugify(first['post_title'])}">Read the article →</a></article><article class="card"><div class="eyebrow">Reference</div><h3>{html.escape(guide['page_title'])}</h3><p>Compare six common tracking methods and choose one that fits how you actually live.</p><a href="{slugify(guide['page_title'])}">Open the guide →</a></article><article class="card"><div class="eyebrow">Browse</div><h3>All articles</h3><p>Explore the full journal on routines, reflection, attention, meditation, and recovery.</p><a href="blog">Browse the journal →</a></article></div></div></section>
+<section class="section alt"><div class="wrap"><h2>Latest articles</h2><p class="intro">The newest notes from Theo's ongoing experiments with routines that can bend without breaking.</p><div class="grid"><!-- LATEST_POSTS_START -->{cards}<!-- LATEST_POSTS_END --></div></div></section></main>'''
+    (SITE / "index.html").write_text(chrome("Practical Wisdom for Daily Life", home), encoding="utf-8")
+
+    urls = ["https://boddhitree.com/", "https://boddhitree.com/blog", *[f"https://boddhitree.com/{slugify(r['page_title'])}" for r in pages], *[f"https://boddhitree.com/{slugify(r['post_title'])}" for r in posts]]
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n"
+    (SITE / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    print(f"Built homepage, blog, {len(posts)} posts, {len(pages)} pages, and sitemap in {SITE}")
+
+
+if __name__ == "__main__":
+    build()

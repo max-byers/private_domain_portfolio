@@ -1,0 +1,103 @@
+SOURCE: https://www.stoichandbook.co/ (homepage)
+Captured via Chrome DevTools computed styles, 2026-08-12.
+Chosen as boddhitree.com's model domain via the private_domain_portfolio project's
+model_domain_research skill — see boddhitree_model_domain_reference.txt there.
+(Replaces an earlier pick, lauranguyen.co — that capture was deleted.)
+
+Note: viewport was 767x730 CSS px (extension side panel caps width). Treat
+spacing/type numbers below as the base scale and widen responsibly with sm:/lg:
+breakpoints per CLAUDE.md.
+
+====================
+COLORS
+====================
+Hero / "Where to start" background: rgb(245, 239, 224) -> #F5EFE0  (warm cream/parchment)
+Primary CTA button fill: rgb(0, 0, 0) -> #000000  (solid black, "Take the Free 7-Day
+  Stoic Challenge" button)
+Dark navy CTA block (footer-area "Take the Free..." panel): rgb(27, 37, 56) -> #1B2538
+Footer background: rgb(26, 26, 26) -> #1A1A1A  (near-black, slightly warmer than pure black)
+Secondary dark gray (borders/dividers on dark sections): rgb(58, 58, 58) -> #3A3A3A
+Body background: #FFFFFF (white, used between the cream/navy/black bands)
+
+Text colors:
+  H1 / H2 heading text: rgb(51, 51, 51) -> #333333  (dark charcoal, not pure black)
+  Body copy on dark backgrounds: rgb(255, 255, 255) -> #FFFFFF
+
+Note: rgb(47, 125, 50) / #2F7D32 (green) only appeared on the cookie-consent banner's
+"Accept optional" button — that's the browser consent widget, not part of the site's
+own brand palette. Ignore it when deriving boddhitree's color scheme.
+
+====================
+TYPOGRAPHY
+====================
+Headings (H1, H2) — serif, distinct from body:
+  font-family: "Cormorant Garamond", Georgia, serif
+  H1: font-size 40px, font-weight 600, line-height 56px (1.4x), color #333333
+  H2: font-size 28px, font-weight 600, line-height 39.2px (1.4x), color #333333
+
+Body copy / nav / UI text — sans-serif:
+  font-family: Inter, sans-serif
+  body paragraph: font-size 15px, font-weight 400, line-height 23px (1.53x),
+    letter-spacing -0.32px
+
+This is a genuine display-serif + sans-serif pairing already (Cormorant Garamond
+headings over Inter body) — matches this repo's CLAUDE.md typography guardrail
+(never same font for headings and body) without needing to change anything.
+
+====================
+BUTTONS
+====================
+Primary CTA ("Take the Free 7-Day Stoic Challenge", appears twice — hero and
+pre-footer):
+  background: #000000 (solid black)
+  text color: #FFFFFF
+  border-radius: 6px
+  padding: 0px 19px (button has fixed height via line-height, not vertical padding)
+  font-family: system-ui stack (-apple-system, "Segoe UI", Roboto, ...) — NOT Inter,
+    this button breaks from the site's declared font stack
+  font-size: 19px, font-weight: 500
+  border: none, box-shadow: none (flat fill)
+
+Text/inline link ("Start here →" in the top announcement bar):
+  background: transparent
+  text color: #FFFFFF (sits on the dark announcement bar)
+  font: Inter, 15px, weight 700, no padding — underlined link style
+
+====================
+LAYOUT / RECURRING CONTENT BLOCKS
+====================
+Homepage section order (top to bottom), from the 4 saved screenshots:
+  01 — Dark announcement bar ("Free: 7-Day Stoic Challenge — one practice per day,
+       no fluff. Start here →" + dismiss X) sitting above a white header
+       (STOIC HANDBOOK logo mark + wordmark, search icon, hamburger menu) + hero
+       on cream background (#F5EFE0): H1 "Practical Stoicism for Real-Life Calm
+       and Discipline", intro copy ("I'm Jon Brooks — Stoicism teacher, podcaster,
+       and BJJ practitioner..."), black CTA button, small YouTube-playlist photo
+       callout ("sparring partner" video thumbnail), "Trusted by 45,000+..." trust
+       line
+  02 — Hero trust-line continued + "Where to start" H2 (centered, gold underline
+       rule) + 3-column icon/card grid (7-Day Stoic Challenge / The Stoic Vault /
+       The Stoic Handbook Podcast), each card: icon, serif card title, sans body
+       copy, white card on white page (no card background differentiation)
+  03 — "Explore" column (2 stacked icon+text link blocks: "Courses and programmes",
+       "Practical guides") beside a "Latest Articles" column (5 stacked article
+       list items, each: category eyebrow label, serif-ish link title, divider rule)
+  04 — Articles list end + cream-background CTA band ("Start with the free 7-Day
+       Stoic Challenge" H2 + copy, paired with a navy #1B2538 CTA box repeating
+       "Take the Free 7-Day Stoic Challenge") + footer (near-black #1A1A1A):
+       nav links (Start Here/About/Articles/Podcast/Contact), social icons
+       (X/YouTube/Facebook/RSS), legal links (Privacy/Cookies/Terms/Contact/
+       Manage cookies)
+
+Recurring patterns to reuse as components when building the clone:
+  - Two-tone rhythm: cream (#F5EFE0) sections alternate with white sections, then a
+    navy CTA block and near-black footer close the page — a light-to-dark descent
+    rather than this repo's usual alternating-band pattern.
+  - Every CTA is the same solid-black pill/rounded-rect button (#000000, 6px
+    radius) — single consistent button style site-wide, no secondary button color.
+  - Centered section headings use a short gold/mustard underline rule beneath them
+    ("Where to start").
+  - Icon + serif-title + sans-body is the repeated card/list-item pattern (used in
+    both the 3-column card grid and the 2-item "Explore" list).
+  - A cookie-consent banner (bottom-fixed, off-white with dark buttons) appears on
+    load — not part of the design to replicate, dismissed before capture.

@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Redirect explicit .html requests to the clean public URL.
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html(?:[\s?]) [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
+
+# Serve the matching static HTML file for extensionless requests.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+DirectoryIndex index.html

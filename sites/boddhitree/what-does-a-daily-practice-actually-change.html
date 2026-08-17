@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What Does a Daily Practice Actually Change? &mdash; Boddhitree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#F5EFE0',
+          ink: '#333333',
+          navy: {
+            DEFAULT: '#1B2538',
+            deep: '#1A1A1A',
+          },
+          gold: '#B08D3E',
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  .btn-anim {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-anim:hover { transform: translateY(-2px); }
+  .btn-anim:active { transform: translateY(0) scale(0.98); }
+
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .link-underline:hover::after { transform: scaleX(1); }
+
+  .shadow-soft {
+    box-shadow: 0 10px 30px -10px rgba(27, 37, 56, 0.35);
+  }
+  .shadow-card {
+    box-shadow: 0 20px 40px -20px rgba(51, 51, 51, 0.25);
+  }
+
+  .card-hover {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Menu icon morph */
+  .menu-line {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+    transform-origin: center;
+  }
+  #menu-btn[aria-expanded="true"] .menu-line-1 { transform: translateY(5px) rotate(45deg); }
+  #menu-btn[aria-expanded="true"] .menu-line-2 { opacity: 0; }
+  #menu-btn[aria-expanded="true"] .menu-line-3 { transform: translateY(-5px) rotate(-45deg); }
+
+  /* Drawer + search overlay */
+  #drawer-backdrop, #search-overlay {
+    transition: opacity 0.3s ease;
+  }
+  #drawer {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #search-panel {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  }
+  .drawer-link {
+    position: relative;
+    padding-left: 0;
+    transition: padding-left 0.25s ease, color 0.2s ease;
+  }
+  .drawer-link::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: #B08D3E;
+    transition: height 0.25s ease;
+  }
+  .drawer-link:hover, .drawer-link:focus-visible {
+    padding-left: 10px;
+    color: #B08D3E;
+  }
+  .drawer-link:hover::before, .drawer-link:focus-visible::before {
+    height: 60%;
+  }
+
+  /* Content-page body link — distinct muted gold from the brand gold, per reference capture */
+  .body-link {
+    color: #8F6F33;
+    text-decoration: underline;
+  }
+  .body-link:hover {
+    color: #333333;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-anim, .link-underline::after, .card-hover,
+    .menu-line, #drawer-backdrop, #search-overlay, #drawer, #search-panel, .drawer-link, .drawer-link::before {
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body class="font-sans text-ink bg-white antialiased">
+
+  <!-- Announcement bar -->
+  <div id="announcement" class="bg-navy-deep text-white text-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-center gap-3 relative">
+      <p class="text-center">
+        <span class="font-bold">Free: 7-Day Habit Reset</span> &mdash; one practice a day, no fluff.
+        <a href="index.html#start" class="link-underline font-bold ml-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Start here &rarr;</a>
+      </p>
+      <button
+        id="announcement-dismiss"
+        aria-label="Dismiss announcement"
+        class="absolute right-4 sm:right-6 text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm"
+      >
+        &times;
+      </button>
+    </div>
+  </div>
+  <script>
+    if (localStorage.getItem('boddhitree_announcement_dismissed') === '1') {
+      var el = document.getElementById('announcement');
+      if (el) el.style.display = 'none';
+    }
+  </script>
+
+  <!-- Header -->
+  <header class="border-b border-black/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+          <circle cx="17" cy="17" r="16.5" stroke="#333333" stroke-width="0.75"/>
+          <path d="M17 6C17 6 11 11 11 17.5C11 21.5 13.5 24 17 24C20.5 24 23 21.5 23 17.5C23 11 17 6 17 6Z" stroke="#333333" stroke-width="0.9" fill="none"/>
+          <path d="M17 24V28.5" stroke="#333333" stroke-width="0.9"/>
+          <path d="M17 13V21" stroke="#333333" stroke-width="0.6"/>
+        </svg>
+        <span class="font-serif text-xl tracking-wide uppercase text-ink" style="letter-spacing: 0.04em;">Boddhitree</span>
+      </a>
+      <nav class="flex items-center gap-5">
+        <button id="search-btn" aria-label="Search" aria-expanded="false" aria-controls="search-overlay" class="text-ink/70 hover:text-ink transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm p-1">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M18 18L14 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" class="text-ink/70 hover:text-ink transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm p-1">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="menu-line menu-line-1" d="M3 6H19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path class="menu-line menu-line-2" d="M3 11H19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path class="menu-line menu-line-3" d="M3 16H19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Search overlay -->
+  <div id="search-overlay" class="fixed inset-0 z-50 opacity-0 pointer-events-none" role="dialog" aria-modal="true" aria-label="Search" inert>
+    <div id="search-backdrop" class="absolute inset-0 bg-navy-deep/50 backdrop-blur-sm"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 sm:mt-32 px-4 sm:px-6">
+      <div id="search-panel" class="bg-white rounded-xl shadow-card p-2 flex items-center gap-3 opacity-0" style="transform: translateY(-12px);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-3 shrink-0 text-ink/40">
+          <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M18 18L14 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <input id="search-input" type="text" placeholder="Search articles, guides, episodes&hellip;" class="flex-1 py-4 text-lg font-sans text-ink placeholder:text-ink/40 focus:outline-none bg-transparent" />
+        <button id="search-close" aria-label="Close search" class="text-ink/50 hover:text-ink transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm p-2 mr-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <p class="text-center text-white/70 text-sm mt-4">Press <kbd class="px-1.5 py-0.5 rounded border border-white/30 text-xs">Esc</kbd> to close</p>
+    </div>
+  </div>
+
+  <!-- Drawer menu -->
+  <div id="drawer-backdrop" class="fixed inset-0 bg-navy-deep/50 backdrop-blur-sm opacity-0 pointer-events-none z-40" aria-hidden="true"></div>
+  <aside id="drawer" class="fixed top-0 right-0 h-full w-full max-w-xs bg-cream shadow-soft z-50 flex flex-col" style="transform: translateX(100%);" role="dialog" aria-modal="true" aria-label="Site menu" inert>
+    <div class="flex items-center justify-between px-6 py-5 border-b border-black/10">
+      <span class="font-serif text-lg uppercase tracking-wide text-ink" style="letter-spacing: 0.04em;">Menu</span>
+      <button id="drawer-close" aria-label="Close menu" class="text-ink/70 hover:text-ink transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm p-1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav class="flex flex-col px-6 py-8 gap-1">
+      <a href="index.html#start" class="drawer-link font-serif text-xl text-ink py-3 border-b border-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm">Start Here</a>
+      <a href="#" class="drawer-link font-serif text-xl text-ink py-3 border-b border-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm">About</a>
+      <a href="#" class="drawer-link font-serif text-xl text-ink py-3 border-b border-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm">Articles</a>
+      <a href="#" class="drawer-link font-serif text-xl text-ink py-3 border-b border-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm">Podcast</a>
+      <a href="#" class="drawer-link font-serif text-xl text-ink py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm">Contact</a>
+    </nav>
+    <div class="mt-auto px-6 py-6 border-t border-black/10">
+      <a href="index.html#start" id="drawer-cta" class="btn-anim block text-center bg-black text-white font-medium rounded-md px-5 py-3 shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+        Take the Free 7-Day Habit Reset
+      </a>
+    </div>
+  </aside>
+
+  <!-- Featured image -->
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16">
+    <img
+      src="https://placehold.co/1200x675/2a2a2a/e8e0cc?text=Morning+Notes"
+      alt="Placeholder image for the article's featured photo"
+      class="w-full"
+    />
+  </div>
+
+  <!-- Title & meta -->
+  <div class="max-w-[680px] mx-auto px-4 sm:px-6 pt-10 pb-2 text-center">
+    <h1 class="font-serif font-semibold text-4xl leading-tight text-ink mb-4">
+      What Does a Daily Practice Actually Change?
+    </h1>
+    <p class="text-sm text-ink/60">
+      By <a href="#" class="font-semibold text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold rounded-sm">Theo Marsh</a> &middot; 12 March 2026
+    </p>
+    <p class="mt-4 text-xs font-bold uppercase tracking-tight text-ink/60">Habits</p>
+  </div>
+
+  <!-- Body -->
+  <article class="max-w-[680px] mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <p class="text-base leading-relaxed text-ink/70 mb-6">
+      A daily practice sounds like it should change everything at once. It rarely does.
+    </p>
+    <p class="text-base leading-relaxed text-ink/70 mb-6">
+      What shifts first is smaller and slower than that, and easy to miss if you're
+      waiting for the dramatic version. Most people stop within the first two weeks
+      &mdash; not because the practice failed, but because they were watching for the
+      wrong thing.
+    </p>
+    <p class="text-base leading-relaxed text-ink/70 mb-6">
+      Here's what actually changes, and in what order.
+    </p>
+
+    <h2 class="font-serif text-2xl text-ink mt-9 mb-8">The three things a daily practice changes, in order</h2>
+    <ol class="space-y-4 mb-6 text-lg text-ink leading-relaxed list-decimal list-inside">
+      <li><span class="font-semibold">Attention, first.</span> Before anything else shifts, you notice sooner &mdash; the bad mood, the rushed decision, the old pattern. You catch it a beat earlier than you used to.</li>
+      <li><span class="font-semibold">Recovery speed, second.</span> You still get knocked off course. You just find your way back faster. A bad morning stops swallowing the whole day.</li>
+      <li><span class="font-semibold">Identity, last.</span> Somewhere past the first month, "I'm trying to be someone who does this" quietly turns into "I'm someone who does this." That's the part people are actually waiting for, and it's always the last to arrive.</li>
+    </ol>
+
+    <h2 class="font-serif text-2xl text-ink mt-9 mb-8">Signs it's working (that don't look like progress)</h2>
+    <ul class="space-y-3 mb-6 text-lg text-ink leading-relaxed list-disc list-inside">
+      <li>"I almost skipped it, but did it anyway."</li>
+      <li>"I noticed I was annoyed before I said anything."</li>
+      <li>"I did the short version instead of skipping entirely."</li>
+      <li>"I didn't think about it. I just did it."</li>
+    </ul>
+    <p class="text-base leading-relaxed text-ink/70 mb-6">
+      None of these feel like a breakthrough. That's the point. A practice that only
+      works when you're motivated isn't a practice yet &mdash; it's a mood.
+    </p>
+
+    <h2 class="font-serif text-2xl text-ink mt-9 mb-8">Keep the floor low</h2>
+    <p class="text-base leading-relaxed text-ink/70 mb-6">
+      The fastest way to lose a daily practice is to keep adding to it. A breathing
+      exercise becomes a breathing exercise plus journalling plus a walk plus a cold
+      shower. Missing one part makes the whole morning feel like a failure.
+    </p>
+    <p class="text-base leading-relaxed text-ink/70 mb-6">
+      Keep the smallest version for a full week before you add anything. At the end
+      of the week, ask:
+    </p>
+    <ul class="space-y-3 mb-6 text-lg text-ink leading-relaxed list-disc list-inside">
+      <li>Which part actually changed a decision?</li>
+      <li>Which part did I quietly skip?</li>
+      <li>What made the skipped part harder than the rest?</li>
+      <li>What's the smallest version that would still count?</li>
+    </ul>
+    <p class="text-base leading-relaxed text-ink/70">
+      Add time only once the short version has become ordinary. If you want a
+      structured way to start, <a href="index.html#start" class="body-link">the free 7-Day Habit Reset</a>
+      walks through one practice a day for a week. For something to return to after
+      that, <a href="index.html" class="body-link">the Practice Vault</a> holds the
+      full library.
+    </p>
+  </article>
+
+  <!-- CTA band -->
+  <section class="bg-cream">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="font-serif font-semibold text-3xl text-ink mb-4 leading-tight">
+          Start with the free 7-Day Habit Reset
+        </h2>
+        <p class="text-ink/75 leading-relaxed max-w-md">
+          One short practice a day for a week. No theory dumps, no guru talk.
+          It's the best place to start if you're new here.
+        </p>
+      </div>
+      <a
+        href="index.html#start"
+        class="btn-anim block bg-navy text-white text-center font-semibold text-xl rounded-md px-8 py-8 shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+      >
+        Take the Free 7-Day Habit Reset
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-deep text-white/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <a href="index.html#start" class="link-underline hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Start Here</a>
+          <a href="#" class="link-underline hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">About</a>
+          <a href="#" class="link-underline hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Articles</a>
+          <a href="#" class="link-underline hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Podcast</a>
+          <a href="#" class="link-underline hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Contact</a>
+        </nav>
+        <div class="flex items-center gap-5">
+          <a href="#" aria-label="X" class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L21 21M21 3L3 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 9L15 12L10 15V9Z" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 8H17V4H15C12.5 4 11 5.7 11 8.2V10H9V14H11V21H15V14H17.5L18 10H15V8.5C15 8.2 15.2 8 15 8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" aria-label="RSS" class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="18" r="2" fill="currentColor"/><path d="M4 11C9.5 11 13 14.5 13 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 5C13.4 5 19 10.6 19 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/50">
+        <a href="#" class="link-underline hover:text-white/80 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Privacy</a>
+        <a href="#" class="link-underline hover:text-white/80 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Cookies</a>
+        <a href="#" class="link-underline hover:text-white/80 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Terms</a>
+        <a href="#" class="link-underline hover:text-white/80 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-sm">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Announcement bar dismissal
+      var announcement = document.getElementById('announcement');
+      var announcementDismiss = document.getElementById('announcement-dismiss');
+      if (announcementDismiss) {
+        announcementDismiss.addEventListener('click', function () {
+          localStorage.setItem('boddhitree_announcement_dismissed', '1');
+          if (announcement) announcement.remove();
+        });
+      }
+
+      // Shared helpers for the drawer + search overlays
+      var lastFocused = null;
+
+      function lockScroll() {
+        document.body.style.overflow = 'hidden';
+      }
+      function unlockScroll() {
+        document.body.style.overflow = '';
+      }
+      function trapFocus(container, event) {
+        var focusable = container.querySelectorAll('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+
+      // Drawer menu
+      var menuBtn = document.getElementById('menu-btn');
+      var drawer = document.getElementById('drawer');
+      var drawerBackdrop = document.getElementById('drawer-backdrop');
+      var drawerClose = document.getElementById('drawer-close');
+
+      function openDrawer() {
+        lastFocused = document.activeElement;
+        drawer.removeAttribute('inert');
+        drawer.style.transform = 'translateX(0)';
+        drawerBackdrop.classList.remove('pointer-events-none');
+        drawerBackdrop.classList.add('opacity-100');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        lockScroll();
+        drawerClose.focus();
+        document.addEventListener('keydown', onDrawerKeydown);
+      }
+      function closeDrawer() {
+        drawer.style.transform = 'translateX(100%)';
+        drawerBackdrop.classList.remove('opacity-100');
+        drawerBackdrop.classList.add('pointer-events-none');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('inert', '');
+        unlockScroll();
+        document.removeEventListener('keydown', onDrawerKeydown);
+        if (lastFocused) lastFocused.focus();
+      }
+      function onDrawerKeydown(event) {
+        if (event.key === 'Escape') closeDrawer();
+        if (event.key === 'Tab') trapFocus(drawer, event);
+      }
+
+      menuBtn.addEventListener('click', function () {
+        var isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeDrawer(); else openDrawer();
+      });
+      drawerClose.addEventListener('click', closeDrawer);
+      drawerBackdrop.addEventListener('click', closeDrawer);
+
+      // Search overlay
+      var searchBtn = document.getElementById('search-btn');
+      var searchOverlay = document.getElementById('search-overlay');
+      var searchBackdrop = document.getElementById('search-backdrop');
+      var searchPanel = document.getElementById('search-panel');
+      var searchInput = document.getElementById('search-input');
+      var searchClose = document.getElementById('search-close');
+
+      function openSearch() {
+        lastFocused = document.activeElement;
+        searchOverlay.removeAttribute('inert');
+        searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        searchPanel.classList.remove('opacity-0');
+        searchPanel.style.transform = 'translateY(0)';
+        searchBtn.setAttribute('aria-expanded', 'true');
+        lockScroll();
+        searchInput.focus();
+        document.addEventListener('keydown', onSearchKeydown);
+      }
+      function closeSearch() {
+        searchOverlay.classList.add('opacity-0', 'pointer-events-none');
+        searchPanel.classList.add('opacity-0');
+        searchPanel.style.transform = 'translateY(-12px)';
+        searchBtn.setAttribute('aria-expanded', 'false');
+        searchOverlay.setAttribute('inert', '');
+        unlockScroll();
+        document.removeEventListener('keydown', onSearchKeydown);
+        if (lastFocused) lastFocused.focus();
+      }
+      function onSearchKeydown(event) {
+        if (event.key === 'Escape') closeSearch();
+        if (event.key === 'Tab') trapFocus(searchOverlay, event);
+      }
+
+      searchBtn.addEventListener('click', openSearch);
+      searchClose.addEventListener('click', closeSearch);
+      searchBackdrop.addEventListener('click', closeSearch);
+    })();
+  </script>
+
+</body>
+</html>

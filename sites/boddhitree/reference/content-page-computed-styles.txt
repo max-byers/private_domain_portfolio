@@ -1,0 +1,81 @@
+SOURCE: https://www.stoichandbook.co/ultimate-stoic-daily-routine/ (content page —
+"A Stoic Daily Routine You Can Actually Keep")
+Captured via Chrome computed styles, 2026-08-12.
+Same model domain as boddhitree.com's homepage clone (stoichandbook.co) — see
+sites/boddhitree/reference/devtools-computed-styles.txt for homepage tokens, and
+projects/private_domain_portfolio/boddhitree.com/boddhitree_model_domain_reference.txt
+for how this specific post was picked (via the model_domain_research skill's
+content-page follow-up step).
+
+Note: viewport was ~767x730 CSS px (extension side panel caps width). Treat
+spacing/type numbers below as the base scale and widen responsibly with sm:/lg:
+breakpoints per CLAUDE.md.
+
+====================
+TITLE & META
+====================
+No eyebrow/category label above the title — category pill sits BELOW the byline
+instead (title -> byline -> category pill, top to bottom).
+
+H1 (post title): Cormorant Garamond, 36px, weight 600, line-height 43.2px (1.2),
+  color #333333, margin-bottom 16px. Notably smaller than would be assumed —
+  close to the homepage's H2 size, not the homepage H1 (which runs 40-48px).
+Byline row ("By Jon Brooks · 16 February 2023"): Inter, 15.2px, color #666666
+  (lighter than body's #333333 ink), centered, margin-top 8px, margin-bottom 24px.
+  Author name is a link (not styled distinctly from surrounding text besides
+  being underlined/bold via the <strong> or <a> tag it's wrapped in).
+Category pill ("DAILY ROUTINES"): Inter, 14px, weight 700, uppercase, color
+  #666666, letter-spacing -0.32px (tight tracking despite uppercase — unusual,
+  but that's the measured value), margin-top 16px. Plain text, not a
+  pill/badge shape (no background/border).
+All three (title, byline, category) are center-aligned, unlike the homepage's
+left-aligned hero text.
+
+====================
+BODY TYPOGRAPHY
+====================
+Body column max-width: 680px — this is the measure/line-length to replicate.
+  (Boddhitree's homepage doesn't have a body-copy column this narrow anywhere,
+  so this is a new token for content pages specifically.)
+
+Paragraph: Inter, 15.2px, weight 400, line-height 24.32px (1.6), color #666666,
+  margin-bottom 24px. Body copy is a lighter gray than the homepage's
+  text-ink/80 — closer to a muted #666 than #333.
+Bold/emphasis text (e.g. "Morning, five minutes:"): weight 700, color #333333
+  (darker than surrounding body text — used to lead a list-style paragraph).
+Numbered/bulleted list items: Inter, 18px, line-height 28.8px (1.6), color
+  #333333 — larger and darker than regular body paragraphs, used to make
+  scannable steps stand out from prose.
+Inline links within body copy: color #8F6F33 (a muted gold — darker/more
+  brown than the homepage's brand gold #B08D3E), underlined, weight 400 (not
+  bold). Treat this as a distinct "body-link" gold rather than reusing the
+  homepage's --gold token directly, unless a future check shows they're meant
+  to match.
+Pull-style quotes are just italicized/quoted inline text within a paragraph
+  (e.g. "Finish the first draft by 11" is better than...") — there is no
+  separate blockquote element/styling on this page.
+
+====================
+INLINE MEDIA
+====================
+One large featured image sits ABOVE the title (not inline within the body
+copy) — displayed at 600px wide x 338px tall (~16:9), object-fit: fill,
+border-radius: 0 (square corners — no rounding, unlike the homepage's
+rounded-lg image treatment). No caption underneath it.
+No further images appear within the body copy itself on this post.
+
+====================
+CLOSING ELEMENTS
+====================
+Present:
+- A CTA band identical in structure/style to the homepage's repeated CTA
+  band (cream background, navy filled button: "Take the Free 7-Day Stoic
+  Challenge").
+- Footer identical to the homepage footer (same nav links, social icons,
+  legal links, navy-deep background).
+
+NOT present on this template — don't invent these:
+- No author bio block.
+- No related-posts / "read next" strip.
+- No comments section.
+- No share buttons.
