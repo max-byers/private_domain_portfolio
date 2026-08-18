@@ -1,0 +1,86 @@
+SLEEPHUBS.COM — HOMEPAGE REFERENCE
+Source: https://www.sleepadvisor.org/ (model domain chosen for sleephubs.com)
+Captured: 2026-08-15
+
+====================
+COLORS
+====================
+- Primary orange (CTA buttons, accents): #F4772C  (rgb(244, 119, 44))
+- Dark navy (hero bg, footer bg, headings on dark): ~#1E3A52 (estimated from
+  screenshot — hero/footer background did not resolve via computed
+  backgroundColor, likely painted by an absolute-positioned wave/pattern
+  layer; treat as approximate and eyeball-correct against
+  homepage-01-hero.jpg / homepage-06-footer.jpg during build)
+- Body/heading text on light backgrounds: #2A4964 (rgb(42, 73, 100))
+- White: #FFFFFF (hero heading text, card backgrounds)
+- Light gray section background (stats bar, alternating sections): near-white
+  #F7F8F9 (eyeball against homepage-02-sleep-knowledge-cards.jpg)
+
+====================
+TYPOGRAPHY
+====================
+- Font family (body + headings): "Montserrat", sans-serif — single font
+  family used throughout, no serif pairing on this reference site.
+- H2 (hero heading, "Better Sleep for a Better You"):
+  font-size 32px / weight 700 / line-height 41.6px (1.3) / color #FFFFFF
+- Body paragraph:
+  font-size 16px / weight 400 / line-height 20.8px (1.3) / color #2A4964
+- Nav link: font-size 16px / weight 400
+- CTA button ("Best Mattress 2026"):
+  font-size 16px / weight 700 / color #FFFFFF / background #F4772C /
+  border-radius 16px / padding 12px / text-transform uppercase /
+  letter-spacing 1px / box-shadow none
+
+====================
+LAYOUT
+====================
+- Header: position sticky, background white/transparent, subtle shadow
+  `0 2px 8px rgba(0,0,0,0.06)` on scroll.
+- Nav: horizontal link row (Best Mattress / Mattress Reviews / Accessories /
+  Sleep Resources) each with a chevron-triggered dropdown, search icon at
+  far right.
+- Hero: full-width dark navy section with wavy bottom edge (SVG divider),
+  centered white H2 + subtext + single orange pill CTA button.
+- Content sections alternate white and light-gray backgrounds, each with an
+  eyebrow label (small orange uppercase text) above a large navy H2.
+- Cards: white background, rounded corners, icon + heading + short copy +
+  "Learn More" link — used repeatedly for topic clusters (Mattress Reviews,
+  Mattress Comparisons, Mattress Information, etc.)
+- Grid sections (mattress type, pain relief, sleeper type, accessories):
+  4-column card grid on desktop, image + label per card.
+- Footer: dark navy background, logo + social icons row, 3-column link
+  list (Sleep Solutions / Sleep Topics / About Us), two pill buttons
+  (Mattress Comparison / Buyer's Guides), copyright + disclosure text below
+  in a lighter/muted tone.
+
+====================
+INTERACTIVE FEATURES
+====================
+- Nav dropdown (desktop): clicking a top-level nav item (e.g. "Best
+  Mattress") opens a full-width mega-menu panel below the header —
+  multi-column list of links with chevron icons, white background,
+  box-shadow `0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35)`,
+  overlays page content rather than pushing it down. See
+  homepage-interactive-01-nav-dropdown.jpg.
+- Search (desktop): clicking the search icon expands an inline bar directly
+  below the header (search input + orange "SEARCH" button + "Close Search"
+  link) — not a modal/overlay. See homepage-interactive-02-search-bar.jpg.
+- Mobile header: nav collapses to logo + hamburger icon under ~600px viewport
+  width. See homepage-mobile-01-header-hamburger.jpg.
+- Mobile drawer: hamburger opens a full-screen white overlay — search input
+  at top, accordion-style nav list (chevron per item, expandable), a second
+  search bar repeated near the bottom, and a close ("X") icon top-right
+  replacing the hamburger. See homepage-mobile-02-drawer-open.jpg.
+
+====================
+RECURRING CONTENT BLOCKS
+====================
+- Eyebrow label + H2 + short intro paragraph, repeated at the top of every
+  homepage section (Testing Process, Sleep Knowledge, Buyer's Guides, Family
+  & Sleep, Sleep Aids, etc.)
+- Icon-circle + heading + copy + "Learn More" link card, reused across
+  multiple sections with different icon/copy.
+- 4-up image card grid, reused for mattress types, pain-relief categories,
+  sleeper types, accessories.
+- "MORE ON X" orange pill button closing out several sections (Physical
+  Health & Sleep, Babies & Sleep).

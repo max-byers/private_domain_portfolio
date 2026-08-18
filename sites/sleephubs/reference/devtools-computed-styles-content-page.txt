@@ -1,0 +1,127 @@
+SLEEPHUBS — CONTENT PAGE REFERENCE
+Source: https://www.sleepadvisor.org/dreamcloud-mattress-review/ (model content page)
+Captured via headless Puppeteer at 800x1000 viewport (Chrome extension tool was
+unstable this session; see screenshots post-00 through post-13 in this folder).
+
+Cross-checked against sites/sleephubs/index.html's existing tailwind.config —
+all values below match the homepage's tokens exactly, so REUSE those tokens,
+don't invent new ones:
+  - navy-700 (#2A4964) = model's body/heading text color (rgb(42,73,100)) exactly
+  - font-sans (Montserrat) = model's font-family everywhere
+  - orange, mist, navy-800/900 — reuse as already defined
+
+====================
+TITLE & META
+====================
+- Eyebrow breadcrumb above title: "Home – Mattress Reviews – [Post Title]", small
+  gray/navy text, links separated by en-dash, sits above an hr divider.
+- Above breadcrumb: small transparency-disclosure line + "Read More" link (affiliate
+  disclosure — skip this, not relevant to Sleep Hubs' content, no affiliate program).
+- H1: font-size 40px, weight 700, line-height 52px (1.3), color navy-700, max-width
+  ~800px (this governs wrap point), margin-top 16px, margin-bottom 0.
+- Below H1: "Last Updated on [date]" (small, gray) then "Written by [Author link]"
+  (13px, blue link color rgb(51,102,204) — a generic blog-link blue, not the
+  brand orange).
+- Below that: a light-gray rounded box (bg ~#F1F3F5-ish, matches "mist" family)
+  containing:
+  - Left half: circular author avatar (orange ring border) + "Written by" + bold
+    author name/title
+  - Right two columns: "Our Testing Process" icon+heading+short blurb, and
+    "In This Article" icon+heading+short blurb (both H3-level, 20px/700/20px
+    line-height... effectively tight leading, not the same as body H3s further
+    down which use 24px/700/31.2px)
+  Sleep Hubs equivalent: rebrand as "Our Review Process" / "In This Guide" — no
+  affiliate disclosure needed, keep the two-column info-box structure.
+
+====================
+BODY TYPOGRAPHY
+====================
+- Paragraph: font-family Montserrat, 16px, weight 400, line-height 24px (1.5),
+  color navy-700 (rgb(42,73,100)) — same navy as headings, not a separate gray
+  body color. This is a deliberate design choice on the model site.
+- H2 (major section, e.g. "DreamCloud Mattress FAQs"): 32px / 700 / line-height
+  41.6px (1.3).
+- H3 (subsection, e.g. "How Does the DreamCloud Mattress Feel?"): 24px / 700 /
+  line-height 31.2px (1.3), margin-top 16px.
+- Inline link in body copy: color rgb(51,102,204) (generic blue), underlined,
+  weight 400 — distinct from the brand orange, used only for in-text citations/
+  cross-links, not CTAs.
+- Reading measure: content column caps at ~800px max-width regardless of
+  viewport — this is the single biggest factor in why the article "reads"
+  right. Sleep Hubs build should use a matching `max-w-[800px]` (or Tailwind's
+  `max-w-3xl`/`prose` equivalent) on the article body wrapper.
+- Lists: plain bullet lists for body content; pros/cons list items use a leading
+  bold phrase + em-dash + explanation, prefixed with a checkmark (pros) or a
+  dash/minus icon (cons) instead of a bullet — see post-03-pros-cons.jpg.
+
+====================
+INLINE MEDIA
+====================
+- No distinct hero/featured image above the title — the "hero" is instead the
+  first product recommendation card (see below), which functions as both intro
+  CTA and featured visual.
+- In-body real photos (product testing shots) are full-width within the content
+  column, rounded corners, with a centered caption directly below: 13px, color
+  rgb(85,85,85) (plain gray, NOT navy — captions are the one place that breaks
+  from the navy-everywhere rule), margin-top ~6.5px, text-align center.
+  Example captions: "Sosha testing the DreamCloud for side sleepers",
+  "Take a closer look at the construction of a DreamCloud mattress".
+- Device-test graphics (pressure maps, thermal camera images, seismograph
+  charts) follow the same full-width-image-plus-caption pattern. These are
+  illustrative "proof" images — Sleep Hubs has no physical products to test,
+  so these should NOT be replicated for lifestyle-habit content; use simple
+  explanatory diagrams/charts instead where the model uses lab photos.
+- Tables (comparison tables, sleeping-position-by-body-type tables): full
+  content-column width, 1px solid navy-700 borders, cell padding 8px, 16px
+  font-size, header row bold.
+
+====================
+CLOSING ELEMENTS
+====================
+- Recurring "Product Recommendation" card block (repeats ~4-5 times through
+  the article: hero position, and again for each alternative/comparison
+  product): product photo left, name/tagline/score/star-rating/CTA button
+  right, plus a highlighted deal-callout strip below the CTA. Score shown as
+  "4.5 / 5" + star icons. CTA button is solid navy-800, white text, uppercase,
+  rounded.
+- "Who I Recommend [Product] For" — short bulleted persona list, repeats once
+  per alternative product compared.
+- "My Verdict" section — closing summary paragraph(s), same body typography,
+  no special styling.
+- Author bio card (bottom of article, before footer): light-gray rounded box,
+  circular photo left, name/title/social icons below photo, "About Author"
+  heading + bio paragraph right, plus "[Sleep type] icon + label" and
+  "Education & Credentials" mini-fields. No related-posts strip and no
+  comments section on this template — don't invent either.
+- Footer is the same shared footer as the homepage (already built) — reuse it
+  as-is, don't recreate.
+
+====================
+FAQ ACCORDION
+====================
+- "[Product] FAQs" H2, followed by a stack of rounded light-gray boxes, one
+  per question. Closed state: question text (16px/400/navy-700) + chevron-down
+  icon, right-aligned. First item defaults open in the model (chevron flips to
+  up), revealing an indented answer paragraph inside the same box. Click-to-
+  toggle, single question open at a time is plausible but not confirmed —
+  matches the same interaction pattern as the homepage's nav dropdowns
+  (classList toggle), so reuse that JS pattern for consistency.
+
+====================
+SCREENSHOTS IN THIS FOLDER
+====================
+post-00-fullpage.jpg              — entire article, full-page capture
+post-01-title-meta.jpg            — title, byline, testing-process/in-this-article box
+post-02-hero-product-card.jpg     — first product recommendation card
+post-03-pros-cons.jpg             — pros/cons boxes
+post-04-ratings-donuts.jpg        — donut-chart category scores
+post-05-comparison-table.jpg      — "how it compares to average" table
+post-06-body-typography.jpg       — plain paragraph + subheading flow
+post-07-sleeping-position-table.jpg — side/back/stomach body-type tables
+post-08-inline-photo-caption.jpg  — real testing photo + caption
+post-09-pressure-map-images.jpg   — dual pressure-map lab images
+post-10-device-test-charts.jpg    — seismograph chart / thermal camera images
+post-11-construction-cutaway.jpg  — mattress cutaway photo + bulleted layers
+post-12-faq-accordion.jpg         — FAQ accordion (one open, rest closed) +
+                                     start of "vs other brands" comparison cards
+post-13-author-bio.jpg            — author bio card + full footer
