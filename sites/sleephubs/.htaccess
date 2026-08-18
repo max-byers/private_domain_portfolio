@@ -1,4 +1,12 @@
 RewriteEngine On
+# BEGIN Semrush legacy homepage redirects for sleephubs.com
+# Homepage variants and subdomains were intentionally excluded; rules below are path-only and backlink-qualified.
+RewriteRule ^service/tweak\-mattress/?$ https://sleephubs.com/? [R=301,L]
+RewriteRule ^hotel\-trial/?$ https://sleephubs.com/? [R=301,L]
+RewriteRule ^product/selectus\-luxe\-split\-comfort\-mattress\-and\-topper/?$ https://sleephubs.com/? [R=301,L]
+RewriteRule ^yours/?$ https://sleephubs.com/? [R=301,L]
+RewriteRule ^terms/?$ https://sleephubs.com/? [R=301,L]
+# END Semrush legacy homepage redirects for sleephubs.com
 RewriteRule ^blog/?$ blog.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
