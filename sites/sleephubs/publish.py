@@ -11,7 +11,7 @@ PAGES = DOMAIN_DIR / "sleephubs_pages_content.csv"
 HOSTS = DOMAIN_DIR.parent / "hosting_accounts.csv"
 DEPLOY = SITE / "_deploy"
 DOMAIN = "sleephubs.com"
-SKIP = {"reference", "temporary screenshots", "_deploy", "publish.py", "build_site.py", ".generated-manifest.json", "CLAUDE.md"}
+SKIP = {"reference", "temporary screenshots", "_deploy", "publish.py", "build_site.py", ".generated-manifest.json", ".gitignore", "CLAUDE.md"}
 
 def date(value):
     for fmt in ("%d/%m/%Y %H:%M", "%d/%m/%Y"):
