@@ -84,7 +84,7 @@ def build():
     urls=['https://sleephubs.com/','https://sleephubs.com/blog']+[f'https://sleephubs.com/{slug(r["page_title"])}' for r in pages]+[f'https://sleephubs.com/blog/{slug(r["post_title"])}' for r in posts]
     urls += [f'https://sleephubs.com/category/{c}' for c in cats]
     (SITE/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc></url>\n' for u in urls)+'</urlset>\n',encoding='utf-8'); generated.append('sitemap.xml')
-    (SITE/'.htaccess').write_text('RewriteEngine On\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteCond %{REQUEST_FILENAME} !-d\nRewriteRule ^(.+?)/?$ $1.html [L]\nRewriteCond %{THE_REQUEST} \\s/+(.+?)\\.html[\\s?] [NC]\nRewriteRule ^ /%1 [R=301,L,NE]\n',encoding='utf-8'); generated.append('.htaccess')
+    (SITE/'.htaccess').write_text('RewriteEngine On\nRewriteRule ^blog/?$ blog.html [L]\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteCond %{REQUEST_FILENAME} !-d\nRewriteCond %{DOCUMENT_ROOT}/$1.html -f\nRewriteRule ^(.+?)/?$ $1.html [L]\nRewriteCond %{THE_REQUEST} \\s/+(.+?)\\.html[\\s?] [NC]\nRewriteRule ^ /%1 [R=301,L,NE]\n',encoding='utf-8'); generated.append('.htaccess')
     MANIFEST.write_text(json.dumps(sorted(set(generated)),indent=2),encoding='utf-8')
     print(f'Built homepage, blog, {len(posts)} posts, {len(pages)} pages, 6 categories, local images, sitemap, and clean URL rewrites.')
 if __name__=='__main__': build()
