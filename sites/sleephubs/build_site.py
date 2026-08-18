@@ -30,7 +30,7 @@ def plain(v): return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", v)).strip()
 
 def link_body(body, post_slugs, page_slugs):
     body = body.replace('""', '"')
-    body = re.sub(r'(?i)(src|href)=["\'](?:[^"\']*\\)?sleephubs_images/', r'\1="images/', body)
+    body = re.sub(r'(?i)(src|href)=["\'](?:[^"\']*\\)?sleephubs_images/', r'\1="/images/', body)
     def fix(m):
         attr, val = m.group(1), m.group(2)
         if val.startswith(("http:", "https:", "#", "mailto:")): return m.group(0)
