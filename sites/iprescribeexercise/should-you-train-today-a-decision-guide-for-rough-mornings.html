@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should You Train Today? A Decision Guide for Rough Mornings — I Prescribe Exercise</title>
+<meta name="description" content="You wake up thirty minutes before a planned hard session. Your legs feel heavy, your mind is fuzzy, and you barely slept six hours. The question hits…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            teal: '#0492BF',
+            'teal-dark': '#037A9E',
+            red: '#D33939',
+            'red-dark': '#B62E2E',
+            ink: '#444444',
+            mauve: '#C19393',
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['"Fira Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; color: #444444; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .btn-red { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease; }
+  .btn-red:hover { background-color: #B62E2E; transform: translateY(-1px); }
+  .btn-red:active { transform: translateY(0); }
+  .btn-red:focus-visible { outline: 2px solid #0492BF; outline-offset: 2px; }
+  .nav-panel { transition: max-height 0.25s ease, opacity 0.2s ease; }
+  .card-cta { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .card-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(4,146,191,0.35); }
+  .pill { transition: background-color 0.15s ease, color 0.15s ease; }
+  .pill:hover { background-color: #0492BF; color: #fff; }
+  .icon-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #0492BF; outline-offset: 2px;
+  }
+  .post-body a { color: #0492BF; }
+  .post-body a:hover { color: #037A9E; }
+  .post-body h2 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.5rem; color: #444444; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .post-body h3 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.25rem; color: #444444; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .post-body p { margin-bottom: 1.25rem; }
+  .post-body ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body li + li { margin-top: 0.5rem; }
+  .post-body img { width: 100%; border-radius: 2px; margin: 1.75rem 0; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+  .post-body th, .post-body td { border: 1px solid #e5e5e5; padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+  .post-body th { background: #f7f7f7; font-family: Poppins, sans-serif; font-weight: 600; color: #444444; }
+  .post-body dl { margin-bottom: 1.25rem; }
+  .post-body dt { font-weight: 700; color: #444444; margin-top: 1rem; }
+  .post-body dd { margin-left: 0; margin-bottom: 0.5rem; }
+  .post-body blockquote { border-left: 3px solid #0492BF; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #555; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body class="bg-white">
+  <header class="bg-white relative z-30">
+    <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="/" class="block">
+        <div class="font-display font-bold text-2xl sm:text-3xl leading-none tracking-tight">
+          <span class="text-brand-ink">I PRESCRIBE</span><span class="text-brand-teal">EXERCISE</span>
+        </div>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-gray-500 mt-1">
+          TRAIN SMART &bull; PREVENT INJURY &bull; RECOVER STRONGER
+        </p>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="searchToggle" aria-label="Open search" aria-expanded="false" class="icon-btn text-brand-ink hover:text-brand-teal transition-colors rounded p-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="icon-btn text-brand-teal hover:text-brand-teal-dark transition-colors rounded p-1">
+          <svg id="menuIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="navPanel" class="nav-panel max-h-0 opacity-0 overflow-hidden bg-brand-teal">
+      <ul class="max-w-6xl mx-auto px-5 py-6 flex flex-col gap-4 text-white font-display font-semibold uppercase tracking-wide text-sm">
+        <li><a href="/#about" class="hover:text-white/70">About</a></li>
+        <li><a href="/blog" class="hover:text-white/70">Blog</a></li>
+        <li><a href="/#guides" class="hover:text-white/70">Guides</a></li>
+        <li><a href="/#newsletter" class="hover:text-white/70">Join the List</a></li>
+      </ul>
+    </nav>
+
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-brand-teal z-40 flex items-start justify-center">
+      <div class="w-full max-w-xl mt-32 sm:mt-48 px-6">
+        <div class="relative border-b border-white/50 pb-3">
+          <input type="text" placeholder="Search..." class="w-full bg-transparent text-white placeholder-white/70 text-2xl font-body outline-none" />
+          <button id="searchClose" aria-label="Close search" class="absolute right-0 top-0 text-white/80 hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <nav class="text-sm text-brand-ink" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-teal">Home</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <a href="/blog" class="hover:text-brand-teal">Guides</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <span class="text-gray-500">Should You Train Today? A Decision Guide for Rough Mornings</span>
+    </nav>
+  </div>
+  <header class="max-w-3xl mx-auto px-5 pt-4">
+    <h1 class="font-display font-bold text-[32px] leading-[1.15] sm:text-[42px] sm:leading-[1.15] text-brand-ink">
+      Should You Train Today? A Decision Guide for Rough Mornings
+    </h1>
+    <p class="text-sm mt-4">
+      <span class="text-gray-500 uppercase">Posted 17 August 2026 by</span>
+      <span class="font-semibold text-brand-teal">I Prescribe Exercise</span>
+    </p>
+  </header>
+  <article class="post-body max-w-3xl mx-auto px-5 py-10 text-base sm:text-lg leading-relaxed">
+    <p>You wake up thirty minutes before a planned hard session. Your legs feel heavy, your mind is fuzzy, and you barely slept six hours. The question hits immediately: should you train today?</p>
+<p>The honest answer is that it depends, and not on motivation or how the weather looks outside. It depends on what kind of tired you actually are. Fatigue is not one thing. You can be tired from one bad night of sleep, tired from a heavy week of training, tired from stress that has nothing to do with the gym, or tired from genuine overtraining, and each of those states calls for a different response.</p>
+
+<h2>Fatigue Has Four Forms</h2>
+<p><b>Acute sleep deficit</b> is one bad night. You got home late or the night got interrupted, so you slept five or six hours instead of the usual eight. The body is fatigued but adaptation capacity is still mostly intact, and a single bad night produces a small but measurable performance dip that recovers within a session or two.</p>
+<p><b>Cumulative training fatigue</b> shows up as heavy limbs and a resting heart rate that sits 5 to 7 beats per minute above baseline. This is common in week three of a hard block and is a normal adaptation response rather than an alarm. Heavy legs or arms in this state usually mean reduce intensity or shorten the session and prioritize sleep, not skip entirely.</p>
+<p><b>Life stress fatigue</b> is real fatigue, just not caused by training. Work is overwhelming, or a family situation is draining, or travel has thrown off the routine. Sleep quality is often poor even when hours are adequate, and resting heart rate sits above baseline without a matching training load behind it. This kind of fatigue usually calls for a session with reduced demand on the nervous system rather than a full skip.</p>
+<p><b>True overreaching</b> is rare and is the one state worth actually being cautious about. For a week or more, every session feels harder than it should, easy movement leaves you wiped out, resting heart rate sits 10 or more beats per minute above baseline, and mood turns flat or irritable. This is the point where the right move is to skip and reassess the training load rather than push through.</p>
+
+<h2>The Short Version of the Science</h2>
+<p>The question underneath all of this is whether the nervous system has the capacity to handle more stress today. The parasympathetic nervous system is what restores the body between sessions. When it is suppressed, resting heart rate stays above baseline. When it is functioning well, heart rate drops quickly after effort. Heart rate variability, the tiny variation in time between heartbeats, tracks this recovery capacity closely, dropping when under recovered and rising as recovery improves.</p>
+<p>Sleep loss compounds the same way. One bad night produces a real but recoverable dip in performance. Two or three consecutive short nights compound that effect, and by the third night, performance loss becomes large enough to change the calculation for the day. Perceived effort is a useful signal here too. If a warmup that normally feels easy suddenly feels noticeably harder at the same load, that gap between expected and actual effort is worth paying attention to.</p>
+
+<h2>Three Signals That Override Everything Else</h2>
+<p>When any of these three show up, stop planning the workout and start planning recovery instead.</p>
+<p><b>Signal 1: Resting heart rate more than 10 beats per minute above baseline.</b> Measure it correctly, lying down for a few minutes first thing in the morning before getting up, counting the pulse for a full 60 seconds. A reading this far above baseline means the parasympathetic system is suppressed and the body has not recovered from the last session or from outside stress. Adding a hard session on top pushes further into deficit.</p>
+<p><b>Signal 2: Less than 6 hours of sleep for two consecutive nights.</b> One short night is common and manageable. Two nights compounds the deficit into something that costs more in recovery than a hard session would return in adaptation. This calls for a lighter session or skipping the hard work entirely until sleep catches up.</p>
+<p><b>Signal 3: Any pain beyond normal muscle soreness.</b> Ordinary soreness, sometimes called DOMS, is diffuse across a muscle group, typically peaks 24 to 72 hours after training, and tends to ease as movement warms it up. Sharp, localized pain in a joint or tendon is different and is an injury signal rather than a training load signal. Anything that rates above roughly a 4 out of 10, or that worsens rather than eases during a warmup, is reason to stop and reassess rather than push through.</p>
+
+<h2>Four Options When You Are Not at Full Capacity</h2>
+<p>Most of the time, a modified session gives most of the benefit for a fraction of the risk. Skipping entirely is sometimes right, but it is not the only option.</p>
+<p><b>Option 1: Same session, volume cut by about 20 percent.</b> If the plan called for 10 sets, do 8. If it called for a longer session, trim it down while keeping the same intensity. This works when fatigue is mild, meaning one short night, a resting heart rate only 3 to 5 beats above baseline, or heavy limbs with an otherwise normal nervous system response.</p>
+<p><b>Option 2: Trade the hardest work for something steadier.</b> Replace planned near maximal sets or high intensity intervals with longer, moderate effort work that maintains the training stimulus without repeatedly maxing out the nervous system. Use this when two short nights, a resting heart rate 7 to 10 beats above baseline, or heavy limbs plus a warmup that is not settling are present.</p>
+<p><b>Option 3: Light training only.</b> Easy movement with no near maximal effort and no intervals, enough to promote blood flow and clear metabolic byproducts without adding real training stress. Use this when true overreaching signals are present, when returning from illness, or after several consecutive hard days.</p>
+<p><b>Option 4: Active recovery.</b> Twenty to thirty minutes of easy walking or mobility work. This is the lowest possible training load, stimulating blood flow without any real demand on the nervous system. Use this when in a genuine overreaching state, or when two or more of the three override signals above are present at once.</p>
+
+<h2>What Skipping Actually Costs You</h2>
+<p>Most people overestimate what one skipped session costs. Measurable fitness loss only shows up after two or more weeks without training. One skipped session produces no measurable drop in fitness. One full week off results in roughly 1 to 2 percent loss, recoverable within two or three sessions back. Even two weeks off from baseline produces only about 5 to 10 percent loss. Functional overreaching resolves in days to weeks once addressed. What actually costs months of lost training is overtraining that goes unaddressed, not the single skipped or modified session that could have prevented it.</p>
+
+<h2>A Daily Decision Routine</h2>
+<p>Three questions, asked first thing in the morning before a demanding session, cover most of what matters.</p>
+<p><b>Question 1: Is resting heart rate more than 10 beats per minute above baseline?</b> Check it lying down before getting up. If yes, skip the hard work or move to Option 2 or 3.</p>
+<p><b>Question 2: Was sleep under 6 hours last night and the night before?</b> One short night is manageable with Option 1. Two nights running calls for Option 2 or 3, and three nights running is a reason to skip the hard session until sleep improves.</p>
+<p><b>Question 3: How does the body feel in the first few minutes of warming up?</b> If fatigue lifts or stays the same, proceed at reduced intensity or full intensity. If fatigue deepens or heart rate will not settle, move to Option 2 or 3.</p>
+<p>Measuring resting heart rate for a week establishes a real baseline. After that, these three questions before every demanding session replace guesswork with an actual routine.</p>
+
+<h2>Frequently Asked Questions</h2>
+<p><b>How is normal training fatigue different from overtraining?</b><br>
+Normal fatigue reverses within a few days of decent sleep and easier sessions. Overtraining is persistent and shows up across several signals at once: performance declining for a week or more despite rest, resting heart rate staying 10 or more beats above baseline, poor sleep quality, mood changes, and effort that feels harder than it should day after day. When several of these line up together, it is time to skip hard work and reduce total load, not just push through one more session.</p>
+<p><b>What is the difference between tired muscles and a tired nervous system?</b><br>
+Tired muscles feel heavy and may take a few minutes to warm up, but they respond normally once they do. That is ordinary fatigue and can usually be trained through at reduced intensity. A tired nervous system feels different, the body will not respond the way it should, heart rate stays above baseline even at easy effort, and movement feels disconnected rather than simply heavy. Training hard through that state is where overtraining actually starts.</p>
+<p><b>Does one bad night of sleep really hurt performance?</b><br>
+A single short night produces a small, noticeable, but fully recoverable dip in performance within a session or two. The session will likely feel harder than usual. Warm up carefully and cut volume by roughly 20 percent if heavy limbs or a resting heart rate above baseline show up alongside it. The real problem starts after two consecutive nights under 6 hours, when the deficit starts compounding.</p>
+<p><b>How do I tell soreness from pain that means stop?</b><br>
+Soreness is diffuse across a muscle group, feels worse the moment you start moving, and eases as you warm up. It typically peaks 24 to 72 hours after training. Sharp, localized pain in a specific joint or tendon is different, and pain that worsens during a warmup or does not ease with movement is a reason to stop rather than push. When in doubt, drop to light effort and see whether the sharp pain persists at rest afterward.</p>
+<p><b>How do I actually use the four options instead of just skipping?</b><br>
+Start with the mildest adjustment that fits the signals present. One short night calls for Option 1. Two short nights or a resting heart rate moderately above baseline calls for Option 2. Clear overreaching signals call for Option 3. Genuine overreaching, injury concern, or multiple override signals at once call for Option 4. Reserve a full skip for mornings where resting heart rate is more than 10 beats above baseline, pain is sharp, or several overtraining signals are showing up together.</p>
+<p><b>If I keep needing to skip or modify sessions, what does that mean?</b><br>
+Occasional modified or skipped sessions are normal and cost nothing measurable. Needing to do it most weeks is a different signal, usually meaning the current training load is too aggressive for present recovery capacity and life stress. A sustainable fix is trimming total weekly volume by 10 to 20 percent or cutting one hard session from the week, not continuing to grind through a plan that keeps producing this pattern.</p>
+
+<h2>The Bottom Line</h2>
+<p>The answer depends on what kind of tired you actually are. After one bad night, a full effort session with volume trimmed by about 20 percent is usually fine. After two bad nights, trade the hardest planned work for something steadier. If true overreaching signals show up, meaning performance declining for a week or more, resting heart rate well above baseline, and mood gone flat, skip the hard session and reassess the training load rather than pushing through it. The body sends real signals. Listening to them and adjusting is part of training, not a failure of it.</p>
+  </article>
+  <div class="max-w-3xl mx-auto px-5 pb-10">
+    <div class="border-t border-gray-200 pt-8">
+      <p class="text-xs font-display font-semibold tracking-wide text-gray-500 mb-3">RELATED</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-brand-teal font-display font-semibold text-sm"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-brand-teal-dark">Is It Soreness or Is It an Injury?</a></li><li><a href="/are-you-ego-lifting-a-checklist-of-red-flags" class="hover:text-brand-teal-dark">Are You Ego Lifting? A Checklist of Red Flags</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-brand-teal-dark">Warming Up Before You Lift: What Actually Works</a></li></ul>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
+      
+    </div>
+  </div>
+  <section class="relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-ink to-black"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 sm:py-20">
+      <div class="max-w-xl">
+        <p class="text-white text-2xl sm:text-3xl font-display font-semibold leading-snug mb-4">
+          Not sure where to start? Get matched to the right guide.
+        </p>
+        <p class="text-white/85 text-base leading-relaxed mb-8">
+          Tell me what hurts and how it started, and I'll point you to the exact guide that
+          fits &mdash; no account needed, no upsell.
+        </p>
+        <a href="/#newsletter" class="btn-red inline-block bg-brand-red text-white font-display font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-sm">
+          Find Your Starting Point &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-brand-teal text-white">
+    <div class="max-w-6xl mx-auto px-5 py-14 grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">PAGES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/#about" class="hover:text-white">About</a></li>
+          <li><a href="/blog" class="hover:text-white">Blog</a></li>
+          <li><a href="/#guides" class="hover:text-white">Guides</a></li>
+          <li><a href="/#newsletter" class="hover:text-white">Join the List</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">GUIDES</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-white">Is It Soreness or Is It an Injury?</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-white">Warming Up Before You Lift: What Actually Works</a></li><li><a href="/deload-weeks-when-and-how-to-back-off-on-purpose" class="hover:text-white">Deload Weeks: When and How to Back Off on Purpose</a></li><li><a href="/should-you-train-today-a-decision-guide-for-rough-mornings" class="hover:text-white">Should You Train Today? A Decision Guide for Rough Mornings</a></li></ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">TOPICS</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/blog/joint-specific-pain" class="hover:text-white">Joint Specific Pain</a></li><li><a href="/blog/reading-the-warning-signs" class="hover:text-white">Reading the Warning Signs</a></li><li><a href="/blog/recovery-and-rehab" class="hover:text-white">Recovery and Rehab</a></li><li><a href="/blog/smarter-training-approach" class="hover:text-white">Smarter Training Approach</a></li></ul>
+      </div>
+    </div>
+    <div class="border-t border-white/25">
+      <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Instagram" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 15,12 10,15" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+          </a>
+        </div>
+        <p class="text-xs text-white/80 uppercase tracking-wide">I Prescribe Exercise is reader supported</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">Copyright &copy; 2026 iprescribeexercise.com</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuToggle.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        navPanel.style.maxHeight = navPanel.scrollHeight + 'px';
+        navPanel.style.opacity = '1';
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        navPanel.style.maxHeight = '0px';
+        navPanel.style.opacity = '0';
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    searchToggle.addEventListener('click', () => {
+      searchOverlay.classList.remove('hidden');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchOverlay.querySelector('input').focus();
+    });
+    searchClose.addEventListener('click', () => {
+      searchOverlay.classList.add('hidden');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchOverlay.classList.add('hidden');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

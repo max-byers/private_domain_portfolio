@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My shoulder was not asking for more discipline — I Prescribe Exercise</title>
+<meta name="description" content="I used to treat a sore shoulder as a test of character. If I could still get my arm into position, I told myself I could still train. I would change my…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            teal: '#0492BF',
+            'teal-dark': '#037A9E',
+            red: '#D33939',
+            'red-dark': '#B62E2E',
+            ink: '#444444',
+            mauve: '#C19393',
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['"Fira Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; color: #444444; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .btn-red { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease; }
+  .btn-red:hover { background-color: #B62E2E; transform: translateY(-1px); }
+  .btn-red:active { transform: translateY(0); }
+  .btn-red:focus-visible { outline: 2px solid #0492BF; outline-offset: 2px; }
+  .nav-panel { transition: max-height 0.25s ease, opacity 0.2s ease; }
+  .card-cta { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .card-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(4,146,191,0.35); }
+  .pill { transition: background-color 0.15s ease, color 0.15s ease; }
+  .pill:hover { background-color: #0492BF; color: #fff; }
+  .icon-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #0492BF; outline-offset: 2px;
+  }
+  .post-body a { color: #0492BF; }
+  .post-body a:hover { color: #037A9E; }
+  .post-body h2 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.5rem; color: #444444; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .post-body h3 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.25rem; color: #444444; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .post-body p { margin-bottom: 1.25rem; }
+  .post-body ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body li + li { margin-top: 0.5rem; }
+  .post-body img { width: 100%; border-radius: 2px; margin: 1.75rem 0; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+  .post-body th, .post-body td { border: 1px solid #e5e5e5; padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+  .post-body th { background: #f7f7f7; font-family: Poppins, sans-serif; font-weight: 600; color: #444444; }
+  .post-body dl { margin-bottom: 1.25rem; }
+  .post-body dt { font-weight: 700; color: #444444; margin-top: 1rem; }
+  .post-body dd { margin-left: 0; margin-bottom: 0.5rem; }
+  .post-body blockquote { border-left: 3px solid #0492BF; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #555; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body class="bg-white">
+  <header class="bg-white relative z-30">
+    <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="/" class="block">
+        <div class="font-display font-bold text-2xl sm:text-3xl leading-none tracking-tight">
+          <span class="text-brand-ink">I PRESCRIBE</span><span class="text-brand-teal">EXERCISE</span>
+        </div>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-gray-500 mt-1">
+          TRAIN SMART &bull; PREVENT INJURY &bull; RECOVER STRONGER
+        </p>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="searchToggle" aria-label="Open search" aria-expanded="false" class="icon-btn text-brand-ink hover:text-brand-teal transition-colors rounded p-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="icon-btn text-brand-teal hover:text-brand-teal-dark transition-colors rounded p-1">
+          <svg id="menuIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="navPanel" class="nav-panel max-h-0 opacity-0 overflow-hidden bg-brand-teal">
+      <ul class="max-w-6xl mx-auto px-5 py-6 flex flex-col gap-4 text-white font-display font-semibold uppercase tracking-wide text-sm">
+        <li><a href="/#about" class="hover:text-white/70">About</a></li>
+        <li><a href="/blog" class="hover:text-white/70">Blog</a></li>
+        <li><a href="/#guides" class="hover:text-white/70">Guides</a></li>
+        <li><a href="/#newsletter" class="hover:text-white/70">Join the List</a></li>
+      </ul>
+    </nav>
+
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-brand-teal z-40 flex items-start justify-center">
+      <div class="w-full max-w-xl mt-32 sm:mt-48 px-6">
+        <div class="relative border-b border-white/50 pb-3">
+          <input type="text" placeholder="Search..." class="w-full bg-transparent text-white placeholder-white/70 text-2xl font-body outline-none" />
+          <button id="searchClose" aria-label="Close search" class="absolute right-0 top-0 text-white/80 hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <nav class="text-sm text-brand-ink" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-teal">Home</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <a href="/blog/joint-specific-pain" class="hover:text-brand-teal">Joint Specific Pain</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <span class="text-gray-500">My shoulder was not asking for more discipline</span>
+    </nav>
+  </div>
+  <header class="max-w-3xl mx-auto px-5 pt-4">
+    <h1 class="font-display font-bold text-[32px] leading-[1.15] sm:text-[42px] sm:leading-[1.15] text-brand-ink">
+      My shoulder was not asking for more discipline
+    </h1>
+    <p class="text-sm mt-4">
+      <span class="text-gray-500 uppercase">Posted 17 August 2026 by</span>
+      <span class="font-semibold text-brand-teal">I Prescribe Exercise</span>
+    </p>
+  </header>
+  <article class="post-body max-w-3xl mx-auto px-5 py-10 text-base sm:text-lg leading-relaxed">
+    <p>I used to treat a sore shoulder as a test of character. If I could still get my arm into position, I told myself I could still train. I would change my grip, warm up a little longer, and carry on as if the discomfort was simply part of getting stronger.</p>
+<p>That is how a small ache became something I had to plan around. It showed up when I pressed, when I reached overhead, and sometimes when I tried to get a bar into position for a squat. I did not need another confident person online telling me to push through it. I needed to admit that the movement, load, or range I had chosen was not working.</p>
+<p>Stopping every form of training was not the answer either. Pretending nothing had changed definitely was not.
+<img src="/images/shoulder_discipline_1_7289370.jpeg" alt="A man performing a dumbbell shoulder press in a gym, focused on controlled overhead pressing."></p>
+<h2>What I had to notice first</h2>
+<p>Shoulder pain is not one neat thing. It can sit at the front or top of the shoulder, feel deep and vague, or arrive with weakness as the arm comes up. Pressing, push ups, dips, wide grip pulling, and the position of a straight bar on the back can all ask different things of the joint.</p>
+<p>I could not diagnose my own shoulder from a gym floor. What I could do was pay attention to the pattern. A sharp sudden pain, an audible pop, visible change, new weakness, numbness or tingling, night pain, or a loss of motion that did not improve were not signals to work around by myself. They were reasons to get assessed.</p>
+<p>For the ordinary irritation that settled between sessions, I started asking a simpler question. Can I find a version of this training that does not make the shoulder worse?</p>
+<h2>I stopped forcing the same lifts</h2>
+<p>My old mistake was thinking that changing the exercise meant losing progress. In practice, a substitute often let me keep the purpose of the session without repeating the position that was irritating me.</p>
+<p>These were the changes that made more sense than proving I could tolerate a painful rep:</p>
+<ul>
+<li>I used a single dumbbell or kettlebell when a barbell press felt fixed and uncomfortable.</li>
+<li>I tried an angled press when direct overhead work was not agreeing with me.</li>
+<li>I shortened the bottom range of pressing with a floor press when the shoulder objected there.</li>
+<li>I used dumbbells with a neutral grip when that gave the shoulder room to find a better position.</li>
+<li>I chose push ups when the free movement of the shoulder blades felt better than being pinned against a bench.</li>
+<li>I changed the squat variation when holding a straight bar on my back was the problem.</li>
+</ul>
+<p>A substitution is not a magic fix. It is a way to keep training effect while I work out what the shoulder will tolerate. If the modified movement still produced pain, I stopped trying to win an argument with it and picked something else.</p>
+<h2>Technique and volume were part of the problem</h2>
+<p>I had spent plenty of time blaming a single exercise. The sources I read kept bringing me back to the way a lift was performed and how much pressing I was asking the shoulder to absorb.</p>
+<p>During bench pressing, letting the elbows drift far behind the body and allowing the shoulder blades to roll forward can make the bottom position feel crowded. The useful cue was to keep the shoulder blades back and down, row the bar down with control, and meet it with the chest instead of letting it fall. On push ups, actively drawing the ground toward the chest gave me something to focus on besides just getting the rep done.</p>
+<p>I also had to look at my training balance. Pressing had been easy to count and easy to chase. Rows and other pulling work were the things I rushed or skipped. Increasing pulling work relative to pressing was a practical change, not a punishment. It gave my upper back more of a role in the programme.
+<img src="/images/shoulder_discipline_2_4162482.jpeg" alt="A woman using a seated cable row machine to build upper back pulling strength."></p>
+<p>There was no reason to make the warm up theatrical. I used a few movements that prepared the shoulder and upper back for the session, then lighter sets to rehearse the lift. The point was to arrive at the first working set warmer and more aware, not tired from a ritual.</p>
+<h2>What I do when the shoulder speaks up</h2>
+<p>I am not a clinician, and I no longer pretend that a few drills give me the authority to explain every painful shoulder. My job is to train honestly around what I feel and get professional help when the pattern calls for it.</p>
+<p>For now, that means reducing the pressing that flares it up, keeping the rest of my training moving where it is comfortable, and building back only when the shoulder has given me a reason to trust the next step. I still like training hard. I just do not confuse stubbornness with discipline anymore.</p>
+  </article>
+  <div class="max-w-3xl mx-auto px-5 pb-10">
+    <div class="border-t border-gray-200 pt-8">
+      <p class="text-xs font-display font-semibold tracking-wide text-gray-500 mb-3">RELATED</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-brand-teal font-display font-semibold text-sm"><li><a href="/blog/joint-specific-pain/the-ache-after-lifting-was-not-always-the-same-thing" class="hover:text-brand-teal-dark">The ache after lifting was not always the same thing</a></li><li><a href="/blog/joint-specific-pain/i-stopped-calling-the-same-ankle-sprain-bad-luck" class="hover:text-brand-teal-dark">I stopped calling the same ankle sprain bad luck</a></li><li><a href="/blog/joint-specific-pain/my-knee-pain-was-not-a-reason-to-abandon-the-squat" class="hover:text-brand-teal-dark">My knee pain was not a reason to abandon the squat</a></li></ul>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
+      <a href="#" class="pill bg-gray-100 text-brand-ink text-sm font-medium px-4 py-2 rounded-full">Joint Specific Pain</a>
+    </div>
+  </div>
+  <section class="relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-ink to-black"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 sm:py-20">
+      <div class="max-w-xl">
+        <p class="text-white text-2xl sm:text-3xl font-display font-semibold leading-snug mb-4">
+          Not sure where to start? Get matched to the right guide.
+        </p>
+        <p class="text-white/85 text-base leading-relaxed mb-8">
+          Tell me what hurts and how it started, and I'll point you to the exact guide that
+          fits &mdash; no account needed, no upsell.
+        </p>
+        <a href="/#newsletter" class="btn-red inline-block bg-brand-red text-white font-display font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-sm">
+          Find Your Starting Point &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-brand-teal text-white">
+    <div class="max-w-6xl mx-auto px-5 py-14 grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">PAGES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/#about" class="hover:text-white">About</a></li>
+          <li><a href="/blog" class="hover:text-white">Blog</a></li>
+          <li><a href="/#guides" class="hover:text-white">Guides</a></li>
+          <li><a href="/#newsletter" class="hover:text-white">Join the List</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">GUIDES</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-white">Is It Soreness or Is It an Injury?</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-white">Warming Up Before You Lift: What Actually Works</a></li><li><a href="/deload-weeks-when-and-how-to-back-off-on-purpose" class="hover:text-white">Deload Weeks: When and How to Back Off on Purpose</a></li><li><a href="/should-you-train-today-a-decision-guide-for-rough-mornings" class="hover:text-white">Should You Train Today? A Decision Guide for Rough Mornings</a></li></ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">TOPICS</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/blog/joint-specific-pain" class="hover:text-white">Joint Specific Pain</a></li><li><a href="/blog/reading-the-warning-signs" class="hover:text-white">Reading the Warning Signs</a></li><li><a href="/blog/recovery-and-rehab" class="hover:text-white">Recovery and Rehab</a></li><li><a href="/blog/smarter-training-approach" class="hover:text-white">Smarter Training Approach</a></li></ul>
+      </div>
+    </div>
+    <div class="border-t border-white/25">
+      <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Instagram" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 15,12 10,15" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+          </a>
+        </div>
+        <p class="text-xs text-white/80 uppercase tracking-wide">I Prescribe Exercise is reader supported</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">Copyright &copy; 2026 iprescribeexercise.com</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuToggle.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        navPanel.style.maxHeight = navPanel.scrollHeight + 'px';
+        navPanel.style.opacity = '1';
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        navPanel.style.maxHeight = '0px';
+        navPanel.style.opacity = '0';
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    searchToggle.addEventListener('click', () => {
+      searchOverlay.classList.remove('hidden');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchOverlay.querySelector('input').focus();
+    });
+    searchClose.addEventListener('click', () => {
+      searchOverlay.classList.add('hidden');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchOverlay.classList.add('hidden');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

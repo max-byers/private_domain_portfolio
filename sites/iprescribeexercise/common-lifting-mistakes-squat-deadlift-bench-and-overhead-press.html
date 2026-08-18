@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Lifting Mistakes: Squat, Deadlift, Bench, and Overhead Press — I Prescribe Exercise</title>
+<meta name="description" content="Everyone has a plan until the bar gets heavy. From the feet up, there are a handful of errors that show up again and again across the four big lifts, and…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            teal: '#0492BF',
+            'teal-dark': '#037A9E',
+            red: '#D33939',
+            'red-dark': '#B62E2E',
+            ink: '#444444',
+            mauve: '#C19393',
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['"Fira Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; color: #444444; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .btn-red { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease; }
+  .btn-red:hover { background-color: #B62E2E; transform: translateY(-1px); }
+  .btn-red:active { transform: translateY(0); }
+  .btn-red:focus-visible { outline: 2px solid #0492BF; outline-offset: 2px; }
+  .nav-panel { transition: max-height 0.25s ease, opacity 0.2s ease; }
+  .card-cta { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .card-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(4,146,191,0.35); }
+  .pill { transition: background-color 0.15s ease, color 0.15s ease; }
+  .pill:hover { background-color: #0492BF; color: #fff; }
+  .icon-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #0492BF; outline-offset: 2px;
+  }
+  .post-body a { color: #0492BF; }
+  .post-body a:hover { color: #037A9E; }
+  .post-body h2 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.5rem; color: #444444; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .post-body h3 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.25rem; color: #444444; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .post-body p { margin-bottom: 1.25rem; }
+  .post-body ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body li + li { margin-top: 0.5rem; }
+  .post-body img { width: 100%; border-radius: 2px; margin: 1.75rem 0; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+  .post-body th, .post-body td { border: 1px solid #e5e5e5; padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+  .post-body th { background: #f7f7f7; font-family: Poppins, sans-serif; font-weight: 600; color: #444444; }
+  .post-body dl { margin-bottom: 1.25rem; }
+  .post-body dt { font-weight: 700; color: #444444; margin-top: 1rem; }
+  .post-body dd { margin-left: 0; margin-bottom: 0.5rem; }
+  .post-body blockquote { border-left: 3px solid #0492BF; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #555; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body class="bg-white">
+  <header class="bg-white relative z-30">
+    <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="/" class="block">
+        <div class="font-display font-bold text-2xl sm:text-3xl leading-none tracking-tight">
+          <span class="text-brand-ink">I PRESCRIBE</span><span class="text-brand-teal">EXERCISE</span>
+        </div>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-gray-500 mt-1">
+          TRAIN SMART &bull; PREVENT INJURY &bull; RECOVER STRONGER
+        </p>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="searchToggle" aria-label="Open search" aria-expanded="false" class="icon-btn text-brand-ink hover:text-brand-teal transition-colors rounded p-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="icon-btn text-brand-teal hover:text-brand-teal-dark transition-colors rounded p-1">
+          <svg id="menuIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="navPanel" class="nav-panel max-h-0 opacity-0 overflow-hidden bg-brand-teal">
+      <ul class="max-w-6xl mx-auto px-5 py-6 flex flex-col gap-4 text-white font-display font-semibold uppercase tracking-wide text-sm">
+        <li><a href="/#about" class="hover:text-white/70">About</a></li>
+        <li><a href="/blog" class="hover:text-white/70">Blog</a></li>
+        <li><a href="/#guides" class="hover:text-white/70">Guides</a></li>
+        <li><a href="/#newsletter" class="hover:text-white/70">Join the List</a></li>
+      </ul>
+    </nav>
+
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-brand-teal z-40 flex items-start justify-center">
+      <div class="w-full max-w-xl mt-32 sm:mt-48 px-6">
+        <div class="relative border-b border-white/50 pb-3">
+          <input type="text" placeholder="Search..." class="w-full bg-transparent text-white placeholder-white/70 text-2xl font-body outline-none" />
+          <button id="searchClose" aria-label="Close search" class="absolute right-0 top-0 text-white/80 hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <nav class="text-sm text-brand-ink" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-teal">Home</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <a href="/blog" class="hover:text-brand-teal">Guides</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <span class="text-gray-500">Common Lifting Mistakes: Squat, Deadlift, Bench, and Overhead Press</span>
+    </nav>
+  </div>
+  <header class="max-w-3xl mx-auto px-5 pt-4">
+    <h1 class="font-display font-bold text-[32px] leading-[1.15] sm:text-[42px] sm:leading-[1.15] text-brand-ink">
+      Common Lifting Mistakes: Squat, Deadlift, Bench, and Overhead Press
+    </h1>
+    <p class="text-sm mt-4">
+      <span class="text-gray-500 uppercase">Posted 17 August 2026 by</span>
+      <span class="font-semibold text-brand-teal">I Prescribe Exercise</span>
+    </p>
+  </header>
+  <article class="post-body max-w-3xl mx-auto px-5 py-10 text-base sm:text-lg leading-relaxed">
+    <p>Everyone has a plan until the bar gets heavy. From the feet up, there are a handful of errors that show up again and again across the four big lifts, and most of them can be scanned and fixed one at a time rather than rebuilding the whole movement from scratch. Use this as a lookup reference: find the lift, find the error that matches what you are feeling, and go straight to the fix.</p>
+
+<h2>Squat</h2>
+
+<p><b>Knees Caving Inward</b>. Also called knee valgus, this usually comes from weak glutes, tight hips, or poor muscle activation, and it puts uneven stress through the knee joint under load.<br>
+<b>The Fix:</b> Actively push the knees outward as you descend, as if pressing against a resistance band around the thighs. Adding an actual band during warmups can reinforce the same cue and help build glute activation over time.</p>
+
+<p><b>Heels Lifting Off the Ground</b>. Tight calves or limited ankle mobility force the weight forward onto the toes, which reduces stability at the bottom of the squat.<br>
+<b>The Fix:</b> Stretch the calves regularly and, temporarily, practice squatting with the heels raised on small plates while working on ankle mobility separately so flat footed squats become possible again over time.</p>
+
+<p><b>Rounding the Lower Back at the Bottom</b>. Often called a butt wink, this comes from limited hip mobility or a core that is not bracing hard enough to hold the spine in place at depth.<br>
+<b>The Fix:</b> Do not force depth past what current mobility allows. Work hip flexor stretches and core bracing separately, and in the meantime stop the squat just before the point where the rounding starts, gradually working depth back down as mobility improves.</p>
+
+<p><b>Leaning Too Far Forward</b>. Tight hip flexors, weak quads, or bar placement that sits too low on the back all push the torso forward during the descent.<br>
+<b>The Fix:</b> Stretch the hip flexors before squatting, and use goblet squats to reinforce a more upright torso position. If lifting a barbell, experimenting with a higher bar position can reduce how far forward the torso needs to lean.</p>
+
+<p><b>Not Reaching Full Depth</b>. This is usually fear of the bottom position, a genuine mobility limit, or stabilizer muscles that have not caught up to the load yet.<br>
+<b>The Fix:</b> Start with bodyweight squats or use a box as a depth target, then gradually lower the target or the box height as strength and confidence build.</p>
+
+<h2>Deadlift</h2>
+<p>The deadlift breaks down into a few distinct zones, feet, hips, back, grip, and setup, and most pulling problems trace back to one of them.</p>
+
+<h3>Stance</h3>
+<p><b>Feet Rotating Mid Pull</b>. If the feet try to turn out as force builds, the body is often just looking for room, usually because the stance was too close or the feet started pointed too straight ahead.<br>
+<b>The Fix:</b> Set up in a comfortable stance width with the feet subtly turned out from the start, which gives the knees room to track outward as they bend to reach the bar.</p>
+
+<p><b>Setting Up Too Close or Too Far From the Bar</b>. The shins should sit about an inch from the bar, keeping it directly over the middle of the foot. Setting up too close pushes the bar behind the midfoot and the shoulders too far forward, which often makes the bar swing away from the shins as it leaves the floor.<br>
+<b>The Fix:</b> Check the shin to bar distance before every pull rather than assuming it is right, and adjust foot position until the bar sits over the middle of the foot at the bottom.</p>
+
+<h3>Hips</h3>
+<p><b>Hips Sitting Too Low</b>. Dropping the hips too low at setup can feel like it helps brace the back, but it also shifts body weight distribution against the lift and can leave the shoulders behind the bar.<br>
+<b>The Fix:</b> Keep a soft bend in the knees while gripping the bar, and aim for the shoulders to sit slightly higher than the hips at the start of the pull.</p>
+
+<p><b>Hips Sitting Too High</b>. This turns the deadlift into something closer to a stiff legged pull and takes the quads out of the initial drive off the floor.<br>
+<b>The Fix:</b> Involve enough knee bend that the shoulders stay slightly higher than the hips, checking that relationship before every heavy set.</p>
+
+<p><b>Hips Shooting Up Early</b>. This usually points to weak quads relative to the back, or foot pressure that is too heel dominant, and it means the bar has to travel further with the back doing more of the work.<br>
+<b>The Fix:</b> Keep foot pressure even across the whole foot, cue a strong leg press feeling off the floor before the hips move, and strengthen the quads directly if the pattern keeps repeating.</p>
+
+<h3>Back</h3>
+<p><b>Lack of Lat Engagement</b>. Without tight lats, the bar path drifts away from the body and the back has to absorb more force than it should.<br>
+<b>The Fix:</b> Keep the lats actively engaged through the whole pull. Practicing a straight arm pulldown between warmup sets can help build the feel for that tension before it is needed under load.</p>
+
+<p><b>Losing Back Extension</b>. Failing to set, or failing to hold, the spinal erectors in normal extension is one of the most common and consequential deadlift errors, and it can show up even in lifters who set up correctly but round under a heavier load.<br>
+<b>The Fix:</b> Pull the chest up and flatten the back before the bar leaves the floor, and treat any rounding mid rep as a signal to reduce the weight until that extension can be held for the whole lift.</p>
+
+<h3>Grip</h3>
+<p><b>Gripping Too Wide or Too Narrow</b>. A grip that is too wide artificially shortens the arms and makes the pull longer and less efficient. A grip that is too narrow can prevent the knees from being pushed out without bending the elbows.<br>
+<b>The Fix:</b> Reach straight down and grip the bar without extra width unless stance specifically requires it, keeping the arms snug against the legs.</p>
+
+<p><b>Grip Rotating During the Pull</b>, sometimes called a helicopter grip. This usually comes from uneven hand placement or limited shoulder mobility in a mixed grip, particularly in the underhand arm.<br>
+<b>The Fix:</b> Warm up shoulder mobility before pulling, and give the supine hand slightly more width if the bar keeps twisting during heavy sets.</p>
+
+<h3>Setup</h3>
+<p><b>Not Pulling the Slack Out</b>. Skipping this step means the bar can feel jerky or awkward the moment it leaves the floor, since most barbells have a small amount of give before the plates actually lift.<br>
+<b>The Fix:</b> Grip the bar and apply upward pressure until it goes taut against the plates before beginning the pull, and hold that tension through the rest of the setup.</p>
+
+<p><b>Not Wedging Into Position</b>. Rushing the setup without getting tight and braced against the bar leaves the body out of position before the pull even starts.<br>
+<b>The Fix:</b> Slow the setup down, shifting the body as close to the bar as possible while maintaining upward pressure against it, rather than rushing into the pull.</p>
+
+<p>As a quick reference, a clean pull generally moves through five steps: set a hip to shoulder width stance with the bar over the middle of the foot, grip the bar with the hands close to the body, pull the chest up to flatten the back while the hips settle slightly below the shoulders, brace the core and engage the lats and upper back, then drive through the floor while the hips and knees extend together.</p>
+
+<h2>Bench Press</h2>
+
+<p><b>Grip Too Wide or Too Narrow</b>. Too wide a grip can stress the shoulders, while too narrow limits chest engagement.<br>
+<b>The Fix:</b> Aim for a grip slightly wider than shoulder width, with the wrist stacked directly over the elbow at the bottom of the press.</p>
+
+<p><b>Elbow Flare</b>. Excessive flare disengages the shoulder blades from the bench and adds unnecessary stress to the shoulder joints, and it usually shows up as an inefficient bar path.<br>
+<b>The Fix:</b> Start with roughly a 45 degree tuck relative to the torso and adjust from there based on what feels stable, rather than pinning the elbows tight against the body.</p>
+
+<p><b>Wrists Rolling Back</b>. Relaxed wrists bleed pressing power and can create real wrist discomfort under load.<br>
+<b>The Fix:</b> Let the bar sit in the meat of the palm rather than up in the fingers, keeping the wrist stacked directly over the elbow through the press.</p>
+
+<p><b>Bar Hitting Too High on the Chest</b>. This is often a downstream effect of flared elbows and reduces how much the chest muscles actually contribute to the lift.<br>
+<b>The Fix:</b> Aim to lower the bar toward the bottom of the sternum rather than higher on the chest, checking elbow position first if the bar keeps drifting too high.</p>
+
+<p><b>Losing Scapular Retraction</b>. Shoulders rounding forward, or lifting off the bench at the top of the press, disengages the upper back's point of contact and tends to produce reps that lose their shape from one to the next.<br>
+<b>The Fix:</b> Keep the shoulder blades pulled back and down against the bench for the entire set, not just during the setup.</p>
+
+<p><b>Feet Sliding or Lifting</b>. Losing contact with the floor removes one of the main points of tension that supports the press.<br>
+<b>The Fix:</b> Keep the entire foot in contact with the floor and drive through it throughout the lift rather than letting the feet float or shift mid set.</p>
+
+<p><b>Hips Coming Off the Bench</b>. This usually signals the weight is heavier than the current setup can support, and in competition it is an automatic fault.<br>
+<b>The Fix:</b> Allow a natural arch in the lower back while keeping the hips in contact with the bench, and check foot pressure and upper body tightness if the hips keep rising.</p>
+
+<p><b>Bouncing the Bar Off the Chest</b>. This trades control for speed, teaches poor mechanics over time, and tends to cost upper back tightness right when it matters most.<br>
+<b>The Fix:</b> Lower the bar under control, counting roughly three seconds on the way down if the tendency to bounce is hard to break, and focus on absorbing the weight rather than letting the chest act as a springboard.</p>
+
+<h2>Overhead Press</h2>
+
+<p><b>Grip Too Wide</b>. A grip that is wider than needed makes it harder to keep the forearms vertical at the bottom of the press.<br>
+<b>The Fix:</b> Take a grip slightly wider than shoulder width with the bar sitting deep in the heel of the palm, keeping the forearms as close to vertical as possible before pressing.</p>
+
+<p><b>Wrists Bent Back</b>. A hyperextended wrist often masks poor elbow position and a lack of overall rigidity in the setup.<br>
+<b>The Fix:</b> Keep the wrists straight and stacked under the bar, with the elbows pushed slightly in front of the bar before the press begins.</p>
+
+<p><b>Elbows Flaring Out</b>. Flared elbows reduce how much the triceps and upper back contribute to the press and add extra stress to the shoulder joints.<br>
+<b>The Fix:</b> Keep the elbows angled in under the bar through the setup and initial drive, only letting them open slightly as the bar approaches lockout.</p>
+
+<p><b>Excessive Lower Back Arch</b>. Leaning back turns the movement into more of a standing incline press and puts unnecessary strain on the lumbar spine.<br>
+<b>The Fix:</b> Brace the core and keep the glutes active through the press, and lighten the load if an arch is being used to move more weight than can be pressed with a neutral spine.</p>
+
+<p><b>Pressing the Bar Forward Instead of Straight Up</b>. Any forward drift off a vertical bar path makes the lift less efficient and usually traces back to setup mistakes or limited overhead shoulder mobility.<br>
+<b>The Fix:</b> Keep the bar traveling in a straight line over the midfoot, and work on overhead mobility separately if the bar keeps drifting forward rep after rep.</p>
+
+<h2>The Bottom Line</h2>
+<p>Most of these errors recur, sometimes across years of training, even once the fix is known. That is normal. The point of a reference like this is not to fix every lift permanently in one session, it is to give a quick place to check the next time a specific lift starts feeling off, so the fix can be applied before the habit sets back in.</p>
+  </article>
+  <div class="max-w-3xl mx-auto px-5 pb-10">
+    <div class="border-t border-gray-200 pt-8">
+      <p class="text-xs font-display font-semibold tracking-wide text-gray-500 mb-3">RELATED</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-brand-teal font-display font-semibold text-sm"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-brand-teal-dark">Is It Soreness or Is It an Injury?</a></li><li><a href="/are-you-ego-lifting-a-checklist-of-red-flags" class="hover:text-brand-teal-dark">Are You Ego Lifting? A Checklist of Red Flags</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-brand-teal-dark">Warming Up Before You Lift: What Actually Works</a></li></ul>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
+      
+    </div>
+  </div>
+  <section class="relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-ink to-black"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 sm:py-20">
+      <div class="max-w-xl">
+        <p class="text-white text-2xl sm:text-3xl font-display font-semibold leading-snug mb-4">
+          Not sure where to start? Get matched to the right guide.
+        </p>
+        <p class="text-white/85 text-base leading-relaxed mb-8">
+          Tell me what hurts and how it started, and I'll point you to the exact guide that
+          fits &mdash; no account needed, no upsell.
+        </p>
+        <a href="/#newsletter" class="btn-red inline-block bg-brand-red text-white font-display font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-sm">
+          Find Your Starting Point &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-brand-teal text-white">
+    <div class="max-w-6xl mx-auto px-5 py-14 grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">PAGES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/#about" class="hover:text-white">About</a></li>
+          <li><a href="/blog" class="hover:text-white">Blog</a></li>
+          <li><a href="/#guides" class="hover:text-white">Guides</a></li>
+          <li><a href="/#newsletter" class="hover:text-white">Join the List</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">GUIDES</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-white">Is It Soreness or Is It an Injury?</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-white">Warming Up Before You Lift: What Actually Works</a></li><li><a href="/deload-weeks-when-and-how-to-back-off-on-purpose" class="hover:text-white">Deload Weeks: When and How to Back Off on Purpose</a></li><li><a href="/should-you-train-today-a-decision-guide-for-rough-mornings" class="hover:text-white">Should You Train Today? A Decision Guide for Rough Mornings</a></li></ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">TOPICS</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/blog/joint-specific-pain" class="hover:text-white">Joint Specific Pain</a></li><li><a href="/blog/reading-the-warning-signs" class="hover:text-white">Reading the Warning Signs</a></li><li><a href="/blog/recovery-and-rehab" class="hover:text-white">Recovery and Rehab</a></li><li><a href="/blog/smarter-training-approach" class="hover:text-white">Smarter Training Approach</a></li></ul>
+      </div>
+    </div>
+    <div class="border-t border-white/25">
+      <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Instagram" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 15,12 10,15" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+          </a>
+        </div>
+        <p class="text-xs text-white/80 uppercase tracking-wide">I Prescribe Exercise is reader supported</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">Copyright &copy; 2026 iprescribeexercise.com</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuToggle.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        navPanel.style.maxHeight = navPanel.scrollHeight + 'px';
+        navPanel.style.opacity = '1';
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        navPanel.style.maxHeight = '0px';
+        navPanel.style.opacity = '0';
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    searchToggle.addEventListener('click', () => {
+      searchOverlay.classList.remove('hidden');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchOverlay.querySelector('input').focus();
+    });
+    searchClose.addEventListener('click', () => {
+      searchOverlay.classList.add('hidden');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchOverlay.classList.add('hidden');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

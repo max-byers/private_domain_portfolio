@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deload Weeks: When and How to Back Off on Purpose — I Prescribe Exercise</title>
+<meta name="description" content="You have built the habit. You show up consistently and push hard. So when someone says to take it easy for a week, cut sets in half, and leave weight on…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            teal: '#0492BF',
+            'teal-dark': '#037A9E',
+            red: '#D33939',
+            'red-dark': '#B62E2E',
+            ink: '#444444',
+            mauve: '#C19393',
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['"Fira Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; color: #444444; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .btn-red { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease; }
+  .btn-red:hover { background-color: #B62E2E; transform: translateY(-1px); }
+  .btn-red:active { transform: translateY(0); }
+  .btn-red:focus-visible { outline: 2px solid #0492BF; outline-offset: 2px; }
+  .nav-panel { transition: max-height 0.25s ease, opacity 0.2s ease; }
+  .card-cta { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .card-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(4,146,191,0.35); }
+  .pill { transition: background-color 0.15s ease, color 0.15s ease; }
+  .pill:hover { background-color: #0492BF; color: #fff; }
+  .icon-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #0492BF; outline-offset: 2px;
+  }
+  .post-body a { color: #0492BF; }
+  .post-body a:hover { color: #037A9E; }
+  .post-body h2 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.5rem; color: #444444; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .post-body h3 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.25rem; color: #444444; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .post-body p { margin-bottom: 1.25rem; }
+  .post-body ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body li + li { margin-top: 0.5rem; }
+  .post-body img { width: 100%; border-radius: 2px; margin: 1.75rem 0; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+  .post-body th, .post-body td { border: 1px solid #e5e5e5; padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+  .post-body th { background: #f7f7f7; font-family: Poppins, sans-serif; font-weight: 600; color: #444444; }
+  .post-body dl { margin-bottom: 1.25rem; }
+  .post-body dt { font-weight: 700; color: #444444; margin-top: 1rem; }
+  .post-body dd { margin-left: 0; margin-bottom: 0.5rem; }
+  .post-body blockquote { border-left: 3px solid #0492BF; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #555; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body class="bg-white">
+  <header class="bg-white relative z-30">
+    <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="/" class="block">
+        <div class="font-display font-bold text-2xl sm:text-3xl leading-none tracking-tight">
+          <span class="text-brand-ink">I PRESCRIBE</span><span class="text-brand-teal">EXERCISE</span>
+        </div>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-gray-500 mt-1">
+          TRAIN SMART &bull; PREVENT INJURY &bull; RECOVER STRONGER
+        </p>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="searchToggle" aria-label="Open search" aria-expanded="false" class="icon-btn text-brand-ink hover:text-brand-teal transition-colors rounded p-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="icon-btn text-brand-teal hover:text-brand-teal-dark transition-colors rounded p-1">
+          <svg id="menuIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="navPanel" class="nav-panel max-h-0 opacity-0 overflow-hidden bg-brand-teal">
+      <ul class="max-w-6xl mx-auto px-5 py-6 flex flex-col gap-4 text-white font-display font-semibold uppercase tracking-wide text-sm">
+        <li><a href="/#about" class="hover:text-white/70">About</a></li>
+        <li><a href="/blog" class="hover:text-white/70">Blog</a></li>
+        <li><a href="/#guides" class="hover:text-white/70">Guides</a></li>
+        <li><a href="/#newsletter" class="hover:text-white/70">Join the List</a></li>
+      </ul>
+    </nav>
+
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-brand-teal z-40 flex items-start justify-center">
+      <div class="w-full max-w-xl mt-32 sm:mt-48 px-6">
+        <div class="relative border-b border-white/50 pb-3">
+          <input type="text" placeholder="Search..." class="w-full bg-transparent text-white placeholder-white/70 text-2xl font-body outline-none" />
+          <button id="searchClose" aria-label="Close search" class="absolute right-0 top-0 text-white/80 hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <nav class="text-sm text-brand-ink" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-teal">Home</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <a href="/blog" class="hover:text-brand-teal">Guides</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <span class="text-gray-500">Deload Weeks: When and How to Back Off on Purpose</span>
+    </nav>
+  </div>
+  <header class="max-w-3xl mx-auto px-5 pt-4">
+    <h1 class="font-display font-bold text-[32px] leading-[1.15] sm:text-[42px] sm:leading-[1.15] text-brand-ink">
+      Deload Weeks: When and How to Back Off on Purpose
+    </h1>
+    <p class="text-sm mt-4">
+      <span class="text-gray-500 uppercase">Posted 17 August 2026 by</span>
+      <span class="font-semibold text-brand-teal">I Prescribe Exercise</span>
+    </p>
+  </header>
+  <article class="post-body max-w-3xl mx-auto px-5 py-10 text-base sm:text-lg leading-relaxed">
+    <p>You have built the habit. You show up consistently and push hard. So when someone says to take it easy for a week, cut sets in half, and leave weight on the bar, every instinct says that is backwards. The lifters who make progress year after year are not the ones who never back off. They are the ones who understand that fitness and fatigue rise together during hard training, and a deload is what clears the fatigue so the fitness underneath can actually show up.</p>
+
+<table>
+<tr><th>Training variable</th><th>Normal hard training</th><th>Deload week target</th></tr>
+<tr><td>Set volume</td><td>Your usual weekly hard sets</td><td>Reduce by 30 to 60 percent</td></tr>
+<tr><td>Load</td><td>Normal working weights</td><td>Reduce by 5 to 20 percent when needed</td></tr>
+<tr><td>Effort</td><td>RPE 8 to 10, 0 to 2 reps in reserve</td><td>RPE 5 to 7, 3 to 5 reps in reserve</td></tr>
+<tr><td>Frequency</td><td>Your normal split</td><td>Usually keep it, or drop 1 to 2 sessions if very fatigued</td></tr>
+<tr><td>Exercise selection</td><td>Normal lifts</td><td>Keep familiar lifts, remove high fatigue extras</td></tr>
+<tr><td>Failure training</td><td>Sometimes used</td><td>Avoid completely</td></tr>
+</table>
+
+<h2>What a Deload Week Is, and What It Is Not</h2>
+<p>A deload week is a short, planned period of easier training used to reduce accumulated fatigue while keeping the training adaptations already built. It is different from missing a workout, which is accidental, and different from a full rest week, which is complete time off. For most healthy lifters dealing with ordinary training fatigue, an active deload, meaning you keep lifting but reduce the dose, works better than stopping altogether. It preserves technique, coordination, and the habit of training.</p>
+<table>
+<tr><th>Term</th><th>Main purpose</th><th>What changes</th></tr>
+<tr><td>Rest day</td><td>Recover between sessions</td><td>No lifting for 1 to 3 days</td></tr>
+<tr><td>Deload week</td><td>Reduce accumulated fatigue before the next block</td><td>Lower volume, load, effort, frequency, or exercise stress</td></tr>
+<tr><td>Taper</td><td>Peak performance for a competition or a test</td><td>Reduce volume while keeping specificity and intensity</td></tr>
+<tr><td>Training break</td><td>Recover from illness, injury, burnout, or life stress</td><td>May involve no lifting at all</td></tr>
+</table>
+<p>A deload is about being ready for more productive training. A taper is about expressing peak performance on one specific day. The two get confused often, but they are built for different jobs.</p>
+
+<h2>How Fatigue Hides Your Strength Gains</h2>
+<p>Training works through a cycle of stress, adaptation, and recovery. You create an adaptation signal by training hard, then recover and come back stronger. The complication is that fitness and fatigue build together. Deep into a hard block, your actual strength may be improving week over week, but your performance in the gym starts looking flat. The weights feel heavier, effort at the same load creeps up, and reps that used to be crisp turn into grinds. That is not weakness, it is fatigue hiding fitness that is already there.</p>
+<p>A deload reduces the fatigue without undoing the fitness. When you return to full training afterward, the work from the previous block shows itself: weights feel lighter, technique sharpens, and you can push harder than before backing off. This is also why more training only helps up to a point. Past that point, volume keeps adding fatigue faster than you can recover from it, and the gains stop showing up until something reduces the load.</p>
+
+<h2>When to Take a Deload Week</h2>
+<p>There are two ways to time a deload: plan one in advance, or take one reactively when the signs pile up. Serious lifters usually end up using both.</p>
+
+<h3>Planned Deloads</h3>
+<p>A planned deload is built into the program before fatigue becomes a real problem. This works best if you train hard and consistently four to six days a week, push sets close to failure regularly, are intermediate or advanced and accumulate fatigue faster than a beginner, or know you tend to push too long before admitting you need to back off. A common structure is three to five hard weeks followed by one deload week for advanced lifters or very high volume blocks, four to eight hard weeks followed by one deload week for most intermediate lifters, and eight to twelve weeks or as needed for many beginners.</p>
+
+<h3>Reactive Deloads</h3>
+<p>A reactive deload responds to evidence that fatigue is building faster than you are recovering from it. This fits best if your sleep or life stress is inconsistent week to week, you are in a calorie deficit, or you are earlier in your lifting career and are not yet accumulating fatigue at the same rate as an advanced lifter. Reactive deloading is not random, it is a decision based on what your training log is actually showing you.</p>
+
+<h3>Signs You Need a Deload Right Now</h3>
+<p>You probably need a deload if two or more of these signals have shown up for at least several sessions in a row.</p>
+<table>
+<tr><th>Signal</th><th>What it looks like</th></tr>
+<tr><td>Performance drop</td><td>You lose reps or load on lifts that are usually stable</td></tr>
+<tr><td>Higher effort at the same load</td><td>Normal working weights feel unusually heavy</td></tr>
+<tr><td>Persistent soreness</td><td>Soreness lasts longer than normal and starts affecting performance</td></tr>
+<tr><td>Joint aches</td><td>Knees, elbows, shoulders, hips, or lower back feel increasingly irritated</td></tr>
+<tr><td>Poor motivation</td><td>You dread sessions you normally enjoy</td></tr>
+<tr><td>Declining sleep or appetite</td><td>Sleep quality, hunger, and energy trend downward</td></tr>
+<tr><td>Technique breakdown</td><td>Reps feel awkward even at normal working weights</td></tr>
+<tr><td>Repeated failed progressions</td><td>You miss the same targets across multiple sessions</td></tr>
+<tr><td>Resting heart rate above normal</td><td>Resting heart rate sits noticeably above your normal baseline</td></tr>
+</table>
+<p>One bad workout is usually not a reason to deload. One bad week is worth watching, maybe with an easier session or two. Two bad weeks with worsening performance and recovery is a real signal to deload now. Sharp pain, swelling, numbness, or pain that worsens as you warm up is a different situation entirely, and deserves medical attention rather than a lighter training week.</p>
+<p>A deload will not fix everything. If you are still progressing normally, sleeping and eating well, or simply bored and want a new program, you probably do not need one yet. A deload also cannot substitute for enough sleep, enough food, or fixing poor technique. If you are under eating and under sleeping, backing off the training volume alone will not solve it.</p>
+
+<h2>How to Structure a Deload: Four Variables to Adjust</h2>
+<p>A deload is built by adjusting one or more of four variables. Understanding them separately makes it easier to calibrate the week to your actual situation instead of guessing.</p>
+<p><b>Volume</b> is usually the first lever to pull. Cut sets per exercise, hard sets per muscle group, and total weekly work. A bench press that is normally 4 sets of 8 might become 2 sets of 6 to 8. You still practice the movement, you just stop digging the fatigue hole deeper.</p>
+<p><b>Load</b> is the weight on the bar. How much to reduce depends on how beat up you are: 5 to 10 percent for mild fatigue, 10 to 20 percent for moderate fatigue, especially on heavy compound work, and 20 percent or more if you are very fatigued, returning from illness, or dealing with a technical breakdown.</p>
+<p><b>Effort</b>, measured by RPE or reps in reserve, is how close to failure each set goes. During a deload, most sets should sit at RPE 5 to 7. Cutting the number of sets while still pushing each one close to failure is a common mistake, since two all out sets can still generate real fatigue on their own.</p>
+<p><b>Frequency and exercise selection</b> can also flex. Keep the normal split and make every session easier, or drop from five or six sessions to three or four. Replace high fatigue exercise variations with lower fatigue alternatives, and remove intensifiers like drop sets, forced reps, and heavy eccentrics. Most lifters should stick with familiar movement patterns during a deload rather than experimenting with something new, since new exercises create their own soreness from unfamiliar loading.</p>
+
+<h2>Deload by Training Goal</h2>
+<p>The right approach depends on what kind of fatigue the training actually creates.</p>
+
+<h3>Strength Training Deload Protocol</h3>
+<p>Strength work accumulates neural fatigue, technical stress, and joint loading, particularly from heavy compound lifts. Use a combination of reduced load, reduced volume, and reduced effort.</p>
+<table>
+<tr><th>Lift</th><th>Normal week</th><th>Deload week</th></tr>
+<tr><td>Squat</td><td>5 sets of 5 at 80 percent</td><td>3 sets of 5 at 60 to 70 percent</td></tr>
+<tr><td>Bench</td><td>4 sets of 4 at 82 percent</td><td>3 sets of 4 at 65 to 72 percent</td></tr>
+<tr><td>Deadlift</td><td>4 sets of 3 at 85 percent</td><td>2 sets of 3 at 60 to 70 percent</td></tr>
+<tr><td>Row</td><td>4 sets of 8, hard effort</td><td>2 sets of 8, easy effort</td></tr>
+</table>
+<p>The goal is to leave the gym feeling like there was plenty more in the tank.</p>
+
+<h3>Hypertrophy and Bodybuilding Deload Protocol</h3>
+<p>Hypertrophy training accumulates fatigue through high volume, proximity to failure, and local muscle damage. Keep most exercises the same, since familiarity reduces novelty soreness. Cut sets by 40 to 60 percent, use 80 to 90 percent of the normal working load, and stop every set with 4 to 5 reps in reserve.</p>
+<table>
+<tr><th>Exercise</th><th>Normal week</th><th>Deload week</th></tr>
+<tr><td>Leg press</td><td>4 sets of 10, near failure</td><td>2 sets of 10, 4 to 5 reps in reserve</td></tr>
+<tr><td>Leg curl</td><td>3 sets of 12, hard effort</td><td>1 to 2 sets of 12, easy effort</td></tr>
+<tr><td>Hack squat</td><td>3 sets of 8, hard effort</td><td>2 sets of 8, moderate effort</td></tr>
+<tr><td>Calf raise</td><td>4 sets of 12 to 15</td><td>2 sets of 12, easy effort</td></tr>
+</table>
+
+<h3>Powerlifting Deload Protocol</h3>
+<p>Powerlifters should keep the squat, bench, and deadlift patterns in the week, since staying connected to the competition lifts matters, but both load and volume need to drop meaningfully. A default prescription: squat 2 to 3 sets of 3 to 5 at 60 to 70 percent, bench 2 to 4 sets of 3 to 5 at 60 to 75 percent, deadlift 1 to 3 sets of 2 to 4 at 55 to 70 percent, with 1 to 2 light accessory movements per session and no heavy singles.</p>
+
+<h2>Common Deload Mistakes</h2>
+<p><b>Mistake 1: Testing your max during a deload.</b> The weights feel light by midweek because fatigue is dropping, which is exactly the mechanism the deload is using. Maxing out interrupts that recovery process and creates new fatigue instead of resolving old fatigue.</p>
+<p><b>Mistake 2: Cutting volume but still going to failure.</b> Reducing set count while keeping effort at RPE 9 or 10 is not a deload. Volume and effort both need to come down together.</p>
+<p><b>Mistake 3: Trying new exercises during a deload.</b> New exercises create new soreness through unfamiliar movement patterns, which defeats the point of the week. Stick with lifts your body has already adapted to.</p>
+<p><b>Mistake 4: Replacing lifting with hard cardio.</b> Conditioning is still training stress. Easy walking and relaxed cycling are fine, but hard intervals and long conditioning circuits add fatigue right back in.</p>
+<p><b>Mistake 5: Taking a full week off when less would have worked.</b> A full week off makes sense after illness, injury, or genuine burnout. For ordinary accumulated fatigue, an active deload at reduced volume and intensity usually preserves skill and momentum better than stopping completely.</p>
+
+<h2>How to Return to Training After a Deload</h2>
+<p>The week after a deload is where a lot of lifters undo the recovery they just earned. The weights feel light, and the instinct is to make up for lost time. That instinct usually leads to an artificially hard first week back, fatigue building right back up by week two, and a fast return to the same plateau that was just escaped.</p>
+<table>
+<tr><th>Why you deloaded</th><th>First week back</th></tr>
+<tr><td>Planned deload, no stall</td><td>Resume the normal plan or make a small progression</td></tr>
+<tr><td>Mild fatigue</td><td>Resume at 95 to 100 percent of previous working loads</td></tr>
+<tr><td>Reactive deload after stalled performance</td><td>Restart at 90 to 95 percent</td></tr>
+<tr><td>Joint aches or technique breakdown</td><td>Restart at 85 to 95 percent and rebuild</td></tr>
+<tr><td>Illness, poor sleep, or major life stress</td><td>Restart at 70 to 90 percent depending on severity</td></tr>
+</table>
+<p>A simple three week return: clean, confident work at RPE 7 to 8 in week one with no grinding, resume harder progression at your normal effort in week two, then push when performance and recovery markers both look good from week three onward.</p>
+
+<h2>How to Know If a Deload Worked</h2>
+<p>A deload worked if, within the next one to two weeks, normal working weights feel lighter than before, effort drops at the same loads that felt hard, reps become cleaner, motivation returns, and soreness and joint irritation settle back to baseline. A deload did not work if you still feel exhausted after the first week back, performance keeps declining, sleep is still poor, or you need another deload after just two or three hard weeks. If the deload does not fix the problem, the problem is usually not the deload, it is the program: too much total volume for your recovery capacity, too much failure training, not enough rest days, or ongoing sleep and food deficits underneath all of it.</p>
+
+<h2>Frequently Asked Questions</h2>
+<p><b>Will I lose muscle during a deload week?</b><br>
+Almost certainly not from one sensible deload. Muscle loss does not happen from training easier for five to seven days. The bigger real risk runs the other way, pushing too long without backing off until it forces a longer, unplanned break.</p>
+<p><b>Should I take a full week off or keep lifting during a deload?</b><br>
+Most lifters should keep lifting at reduced volume and effort. Take a full week off if you are sick, injured, badly sleep deprived, or genuinely burned out. Otherwise, an active deload preserves skill and momentum better than complete rest.</p>
+<p><b>How often should I deload?</b><br>
+Every four to eight weeks fits most intermediate lifters. Advanced lifters and high volume blocks may need it every three to six weeks. Many beginners do not need scheduled deloads that often, since their lighter loads and faster recovery let them train productively for longer first.</p>
+<p><b>Can I do cardio during a deload?</b><br>
+Yes, but keep it easy. Walking and relaxed cycling are fine. Hard intervals and long, exhausting conditioning work add training stress right back in and work against the point of the week.</p>
+<p><b>Should I deload before testing my one rep max or a competition?</b><br>
+That is a taper, not a standard deload. A taper preserves familiarity with the lift being tested while reducing fatigue, and it should be planned deliberately around the test or meet date rather than treated as a general recovery week.</p>
+
+<h2>The Bottom Line</h2>
+<p>A deload week is programmed recovery, a planned drop in training stress that lets accumulated fatigue fall before it forces a longer break on its own terms. It is not the opposite of training hard, it is part of training hard. Every four to eight hard weeks, or whenever the signs of rising fatigue stack up, take five to seven days to cut volume by roughly 40 to 50 percent, trim load a little if needed, and keep most sets around RPE 5 to 7. Then return gradually, and make the next block the one where the actual progress shows up.</p>
+  </article>
+  <div class="max-w-3xl mx-auto px-5 pb-10">
+    <div class="border-t border-gray-200 pt-8">
+      <p class="text-xs font-display font-semibold tracking-wide text-gray-500 mb-3">RELATED</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-brand-teal font-display font-semibold text-sm"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-brand-teal-dark">Is It Soreness or Is It an Injury?</a></li><li><a href="/are-you-ego-lifting-a-checklist-of-red-flags" class="hover:text-brand-teal-dark">Are You Ego Lifting? A Checklist of Red Flags</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-brand-teal-dark">Warming Up Before You Lift: What Actually Works</a></li></ul>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
+      
+    </div>
+  </div>
+  <section class="relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-ink to-black"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 sm:py-20">
+      <div class="max-w-xl">
+        <p class="text-white text-2xl sm:text-3xl font-display font-semibold leading-snug mb-4">
+          Not sure where to start? Get matched to the right guide.
+        </p>
+        <p class="text-white/85 text-base leading-relaxed mb-8">
+          Tell me what hurts and how it started, and I'll point you to the exact guide that
+          fits &mdash; no account needed, no upsell.
+        </p>
+        <a href="/#newsletter" class="btn-red inline-block bg-brand-red text-white font-display font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-sm">
+          Find Your Starting Point &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-brand-teal text-white">
+    <div class="max-w-6xl mx-auto px-5 py-14 grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">PAGES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/#about" class="hover:text-white">About</a></li>
+          <li><a href="/blog" class="hover:text-white">Blog</a></li>
+          <li><a href="/#guides" class="hover:text-white">Guides</a></li>
+          <li><a href="/#newsletter" class="hover:text-white">Join the List</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">GUIDES</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-white">Is It Soreness or Is It an Injury?</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-white">Warming Up Before You Lift: What Actually Works</a></li><li><a href="/deload-weeks-when-and-how-to-back-off-on-purpose" class="hover:text-white">Deload Weeks: When and How to Back Off on Purpose</a></li><li><a href="/should-you-train-today-a-decision-guide-for-rough-mornings" class="hover:text-white">Should You Train Today? A Decision Guide for Rough Mornings</a></li></ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">TOPICS</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/blog/joint-specific-pain" class="hover:text-white">Joint Specific Pain</a></li><li><a href="/blog/reading-the-warning-signs" class="hover:text-white">Reading the Warning Signs</a></li><li><a href="/blog/recovery-and-rehab" class="hover:text-white">Recovery and Rehab</a></li><li><a href="/blog/smarter-training-approach" class="hover:text-white">Smarter Training Approach</a></li></ul>
+      </div>
+    </div>
+    <div class="border-t border-white/25">
+      <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Instagram" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 15,12 10,15" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+          </a>
+        </div>
+        <p class="text-xs text-white/80 uppercase tracking-wide">I Prescribe Exercise is reader supported</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">Copyright &copy; 2026 iprescribeexercise.com</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuToggle.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        navPanel.style.maxHeight = navPanel.scrollHeight + 'px';
+        navPanel.style.opacity = '1';
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        navPanel.style.maxHeight = '0px';
+        navPanel.style.opacity = '0';
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    searchToggle.addEventListener('click', () => {
+      searchOverlay.classList.remove('hidden');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchOverlay.querySelector('input').focus();
+    });
+    searchClose.addEventListener('click', () => {
+      searchOverlay.classList.add('hidden');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchOverlay.classList.add('hidden');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

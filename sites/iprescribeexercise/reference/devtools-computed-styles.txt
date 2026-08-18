@@ -1,0 +1,136 @@
+MODEL DOMAIN: strengthrunning.com (homepage)
+Captured 2026-08-15 via live browser inspection (Chrome extension viewport,
+~767px CSS width — treat as mobile/tablet reference per this repo's usual
+capture caveat, use ordinary Tailwind sm:/lg: judgment for desktop widening).
+Built on WordPress + Elementor.
+
+=== COLORS ===
+
+Brand blue/teal (headings link color, nav/dropdown bg, search overlay bg,
+footer bg, "STRENGTHRUNNING" wordmark's first word):
+  rgb(4, 146, 191) → #0492BF
+
+Brand red (primary CTA buttons — "I'M IN!" email signup, form focus accents):
+  rgb(211, 57, 57) → #D33939
+
+Body/heading dark gray text:
+  rgb(68, 68, 68) → #444444
+
+White text (used on blue/teal and dark backgrounds): #FFFFFF
+
+Muted pink/mauve card background (used behind program badges like "Injury
+Prevention for Runners", "High-Performance Lifting"): approx rgb(193,147,147)
+→ #C19393 — sample from a card background, treat as approximate, re-sample
+against the actual badge images if rebuilding pixel-exact.
+
+Light section background (testimonials, category pills): near-white gray,
+#F7F7F7 range (eyeballed from screenshots, not computed).
+
+=== TYPOGRAPHY ===
+
+Headings (H1/H2/H3): "Poppins", sans-serif
+  H1: 42px / 700 weight / line-height 50.4px / color #444
+  H2: 27px / 400 weight / line-height 32.4px / color #FFF (used on colored
+      section backgrounds, e.g. teal banners)
+  H3: 16px / 600 weight / line-height 19.2px / color #444
+
+Body text: "Fira Sans", sans-serif
+  18px / 400 weight / line-height 27px
+
+Site title/logo link text also renders in "Fira Sans", sans-serif at 18px/400
+(the big wordmark itself is styled via a heading-level element with Poppins —
+inspect the live nav bar again before rebuilding if exact weight matters).
+
+No letter-spacing or text-transform overrides observed on any sampled
+element (all "normal"/"none") except the small uppercase tagline under the
+logo ("GET STRONGER • STAY HEALTHY • RACE FASTER"), which is visually
+uppercase+letter-spaced in the screenshot — likely authored uppercase in the
+source text or a text-transform not present on the elements sampled; confirm
+before rebuild.
+
+=== LAYOUT ===
+
+Header: white background, logo wordmark left (two-tone: "STRENGTH" in dark
+gray + "RUNNING" in brand blue), small uppercase tagline underneath, hamburger
+icon + search icon right-aligned. No visible box-shadow on the header itself
+in the sampled state.
+
+Hero: large H1 headline, short underline/divider rule beneath it, then a
+big hero image with an embedded intro video overlay (play button + captioned
+label "Welcome to Strength Running").
+
+Email opt-in block: appears early (First Name + Email inputs, stacked, full
+width within content column) with a red "I'M IN!" submit button — full-width,
+no border-radius visible (sharp corners), all-caps button label.
+
+Search banner: full-width teal/blue bar with white search input and a prompt
+line ("Need a running coach? Want a marathon training plan? Search our
+content!").
+
+Testimonials: "What Our Athletes Are Saying" section — circular avatar photo,
+name in bold, italic pull-quote text above.
+
+Program/course cards: repeated pattern throughout the middle of the page —
+colored badge/logo image (own background color per program), bold headline,
+1-2 line description, red "CLICK HERE" or "CHECK IT OUT" button. Each program
+gets its own full-width card in sequence (Injury Prevention for Runners,
+Bodyweight Power, High-Performance Lifting, Team Strength Running, Mindset
+Mastery, etc.) — this is clearly a reusable card component repeated per
+product/program.
+
+Podcast section: light gray background, square podcast cover art, latest
+episode list (title + date, thin divider between rows), "ALL EPISODES →" link.
+
+Category pills: "Explore More Running Content" section — rounded pill-shaped
+tags in a wrapped row (Strength Workouts, Form & Mechanics, Gym Workouts,
+Injury Prevention, Marathon, Mental Toughness, Podcast, Recovery, Success
+Stories, Training Design), plus a search box beneath.
+
+Final CTA band: full-width photo background (runners) with dark overlay,
+white body copy, red "GET YOUR FIRST LESSON →" button.
+
+Footer: solid teal/blue background (#0492BF), white text, multi-column link
+lists (Pages / Helpful Resources / Courses & Coaching), social icons row
+(circular white-outline icon buttons), centered copyright + "SITE DESIGN BY"
+credit line at the very bottom.
+
+=== INTERACTIVE ELEMENTS ===
+
+Mobile/compact nav: hamburger icon toggles a full-width teal (#0492BF)
+dropdown panel directly under the header, white uppercase-ish link list
+(About, Blog, Coaching, Deals, Podcast, Join SR, ...). Toggling again (icon
+becomes an X while open) closes it. No animation duration/easing captured —
+transition appeared instant/fast in this environment; verify against the
+live site again before assuming a specific timing if it matters to the build.
+
+Search overlay: clicking the magnifying-glass icon replaces the header-area
+content with a full-bleed teal (#0492BF) overlay containing a centered
+"Search..." input (white text/placeholder, underline-style field, no visible
+box) and a close (×) icon top-right of the input row.
+
+=== RECURRING CONTENT BLOCKS ===
+
+1. Header (logo + tagline + hamburger + search icon)
+2. Hero headline + divider + hero image/video
+3. Email opt-in strip (repeats again further down the page in a second form)
+4. Search banner (teal, full-width)
+5. Testimonial block (repeatable, avatar + quote)
+6. Program/course card (repeatable — this is the dominant mid-page pattern,
+   used for every product/offer)
+7. Podcast preview block (cover art + latest episodes list)
+8. Category pill cloud + search
+9. Full-bleed photo CTA band
+10. Footer (teal, multi-column links + social icons + copyright)
+
+=== NOTES FOR REBUILD ===
+
+- iprescribeexercise.com's own brand colors should NOT reuse #0492BF/#D33939
+  literally — this is strengthrunning.com's palette, being cloned for
+  layout/structure only. Pick a distinct custom color per this repo's
+  Anti-Generic Guardrails (CLAUDE.md) once the frontend-design skill runs.
+- The program/course card is the most important reusable component here,
+  since iprescribeexercise's content will lean on repeatable post/page cards
+  the same way — build it as a real reusable pattern, not one-off markup.
+- Screenshots in this folder are numbered homepage-01 through homepage-14 in
+  reading order top to bottom, plus the mobile nav (13) and search overlay
+  (14) interactive states.

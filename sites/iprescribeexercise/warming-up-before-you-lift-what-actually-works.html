@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warming Up Before You Lift: What Actually Works — I Prescribe Exercise</title>
+<meta name="description" content="Raise your hand if your warmup consists of walking from the car to the squat rack. A good warmup gets your blood flowing, your joints ready, and your…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            teal: '#0492BF',
+            'teal-dark': '#037A9E',
+            red: '#D33939',
+            'red-dark': '#B62E2E',
+            ink: '#444444',
+            mauve: '#C19393',
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['"Fira Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; color: #444444; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .btn-red { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease; }
+  .btn-red:hover { background-color: #B62E2E; transform: translateY(-1px); }
+  .btn-red:active { transform: translateY(0); }
+  .btn-red:focus-visible { outline: 2px solid #0492BF; outline-offset: 2px; }
+  .nav-panel { transition: max-height 0.25s ease, opacity 0.2s ease; }
+  .card-cta { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .card-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(4,146,191,0.35); }
+  .pill { transition: background-color 0.15s ease, color 0.15s ease; }
+  .pill:hover { background-color: #0492BF; color: #fff; }
+  .icon-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #0492BF; outline-offset: 2px;
+  }
+  .post-body a { color: #0492BF; }
+  .post-body a:hover { color: #037A9E; }
+  .post-body h2 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.5rem; color: #444444; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .post-body h3 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 1.25rem; color: #444444; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .post-body p { margin-bottom: 1.25rem; }
+  .post-body ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .post-body li + li { margin-top: 0.5rem; }
+  .post-body img { width: 100%; border-radius: 2px; margin: 1.75rem 0; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+  .post-body th, .post-body td { border: 1px solid #e5e5e5; padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+  .post-body th { background: #f7f7f7; font-family: Poppins, sans-serif; font-weight: 600; color: #444444; }
+  .post-body dl { margin-bottom: 1.25rem; }
+  .post-body dt { font-weight: 700; color: #444444; margin-top: 1rem; }
+  .post-body dd { margin-left: 0; margin-bottom: 0.5rem; }
+  .post-body blockquote { border-left: 3px solid #0492BF; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #555; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body class="bg-white">
+  <header class="bg-white relative z-30">
+    <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="/" class="block">
+        <div class="font-display font-bold text-2xl sm:text-3xl leading-none tracking-tight">
+          <span class="text-brand-ink">I PRESCRIBE</span><span class="text-brand-teal">EXERCISE</span>
+        </div>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-gray-500 mt-1">
+          TRAIN SMART &bull; PREVENT INJURY &bull; RECOVER STRONGER
+        </p>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="searchToggle" aria-label="Open search" aria-expanded="false" class="icon-btn text-brand-ink hover:text-brand-teal transition-colors rounded p-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="icon-btn text-brand-teal hover:text-brand-teal-dark transition-colors rounded p-1">
+          <svg id="menuIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="navPanel" class="nav-panel max-h-0 opacity-0 overflow-hidden bg-brand-teal">
+      <ul class="max-w-6xl mx-auto px-5 py-6 flex flex-col gap-4 text-white font-display font-semibold uppercase tracking-wide text-sm">
+        <li><a href="/#about" class="hover:text-white/70">About</a></li>
+        <li><a href="/blog" class="hover:text-white/70">Blog</a></li>
+        <li><a href="/#guides" class="hover:text-white/70">Guides</a></li>
+        <li><a href="/#newsletter" class="hover:text-white/70">Join the List</a></li>
+      </ul>
+    </nav>
+
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-brand-teal z-40 flex items-start justify-center">
+      <div class="w-full max-w-xl mt-32 sm:mt-48 px-6">
+        <div class="relative border-b border-white/50 pb-3">
+          <input type="text" placeholder="Search..." class="w-full bg-transparent text-white placeholder-white/70 text-2xl font-body outline-none" />
+          <button id="searchClose" aria-label="Close search" class="absolute right-0 top-0 text-white/80 hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <nav class="text-sm text-brand-ink" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-teal">Home</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <a href="/blog" class="hover:text-brand-teal">Guides</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <span class="text-gray-500">Warming Up Before You Lift: What Actually Works</span>
+    </nav>
+  </div>
+  <header class="max-w-3xl mx-auto px-5 pt-4">
+    <h1 class="font-display font-bold text-[32px] leading-[1.15] sm:text-[42px] sm:leading-[1.15] text-brand-ink">
+      Warming Up Before You Lift: What Actually Works
+    </h1>
+    <p class="text-sm mt-4">
+      <span class="text-gray-500 uppercase">Posted 17 August 2026 by</span>
+      <span class="font-semibold text-brand-teal">I Prescribe Exercise</span>
+    </p>
+  </header>
+  <article class="post-body max-w-3xl mx-auto px-5 py-10 text-base sm:text-lg leading-relaxed">
+    <p>Raise your hand if your warmup consists of walking from the car to the squat rack. A good warmup gets your blood flowing, your joints ready, and your brain connected to your muscles, and a few arm circles on the way to the bar does not count.</p>
+
+<h2>What Is a Warmup</h2>
+<p>A warmup is a short routine you do before lifting weights to prepare your muscles and joints for what is coming. It can include stretches, dynamic movements, and easier versions of the lifts you are about to do, so your body gets warm and used to the motion.</p>
+<p>There are two broad categories. A passive warmup raises your body temperature without you doing any of the work, through a hot shower, a heating pad, or a sauna. An active warmup involves actually moving, getting your blood flowing and your muscles ready. For lifting, active is the one that matters.</p>
+
+<h2>General Warmup Versus Specific Warmup</h2>
+<p>An active warmup before lifting has two parts, and they do different jobs.</p>
+<p>The general warmup is 5 to 15 minutes of light to moderate cardio, enough to get your heart rate up and maybe break a light sweat. A brisk walk on the treadmill, a stationary bike, a rowing machine, or jumping jacks all work. The goal is simple: raise your core temperature and increase blood flow everywhere, which makes muscles less stiff, speeds up nerve signals, and gets synovial fluid moving in your joints.</p>
+<p>The specific warmup is where the real preparation happens. You perform the actual exercise you are about to do in your workout, but with much lighter weight, ramping up in a series of sets until you reach close to your working weight. This activates the exact muscles and grooves the exact movement pattern you are about to load heavily.</p>
+<p>Studies on the general warmup are mixed. One found 3 to 4 percent improvements in leg press 1RM after 15 minutes of low intensity cardio compared to none. Another found more than 8 percent improvement in leg press 1RM when 20 minutes of cardio was added before ramp up sets. But other studies found no difference in squat, bench press, or bicep curl performance from doing cardio first. If time is limited and a choice has to be made, the specific warmup is the one that matters more.</p>
+
+<h2>Does Warming Up Prevent Injuries</h2>
+<p>Here is the honest answer: maybe, probably, but it is more of a grey area than most people think. No single study directly shows that warming up before lifting reduces injury risk. That does not mean there is no effect, only that it has not been proven. What exists is a plausible physiological mechanism plus data from team sport warmup studies that regularly show lower injury rates, even though team sports are not the same activity as lifting.</p>
+<p>Part of why the evidence is thin is that strength training injuries are already rare to begin with, somewhere around 1 to 4.4 injuries per 1,000 training hours in powerlifting, and pinning any single injury on a missed warmup is close to impossible.</p>
+<p>What is clearer is that warming up matters more the stronger you get. At light loads, your muscles, tendons, and joints have a decent buffer, so a small technical flaw or a bit of stiffness rarely causes real damage. At heavy loads, that margin shrinks fast. Cold, stiff tissue combined with near maximal force leaves very little room for error, which is exactly the situation a proper warmup is meant to reduce.</p>
+
+<h2>Stretching Before Lifting</h2>
+<p>Static stretching, where you hold a stretch for 15 to 60 seconds or longer, was standard practice for decades. The research since has poked holes in that habit. Holding a muscle in a stretched position can acutely reduce strength, and making static stretching a routine part of the warmup before lifting may slightly blunt strength gains over time. The effect is temporary and the risk zone is mostly stretches held past 60 seconds per muscle, but there is little upside to doing it right before a heavy set. Save static stretching for after training or for a separate mobility session.</p>
+<p>Dynamic stretching is the better option before lifting. Instead of holding a position, you move a joint or muscle through its full range of motion, arm circles, leg swings, torso twists. It raises body temperature, increases blood flow, and improves range of motion without the strength cost of static holds. Meta analyses find dynamic stretching boosts explosive performance, with 7 to 10 minutes of dynamic work often being enough.</p>
+
+<h2>Sample Warmup Routines</h2>
+<p>Each of these routines takes about 10 to 15 minutes and is built the same way: a short general warmup, dynamic stretches targeting the muscles about to be worked, then specific ramp up sets that bring you up to your working weight. If you are short on time, the general cardio portion is the one to cut first.</p>
+
+<h3>Sample Push Day Warmup</h3>
+<p>Focus: chest, shoulders including the rotator cuff, triceps, and thoracic spine. Assumed first exercise: bench press.</p>
+<p><b>Part 1: General Warmup (5 minutes)</b><br>
+Choose one: rowing machine for 5 minutes, cross trainer or elliptical for 5 minutes, or jumping jacks for 3 to 4 sets of 30 seconds on and 15 seconds off.</p>
+<p><b>Part 2: Dynamic Stretches (5 minutes)</b></p>
+<ul>
+<li>Arm circles: 15 seconds forward, 15 seconds backward, starting small and gradually widening</li>
+<li>Band pull aparts: 2 sets of 15 to 20 reps with a light resistance band, activating the rear delts and upper back</li>
+<li>Band pass throughs: 10 to 12 slow reps, bringing a band or PVC pipe from the front over the head to the back</li>
+<li>Wall slides: 2 sets of 10 to 12 reps, forearms against the wall in a goal post position, sliding up and down while keeping contact</li>
+<li>Push up to downward dog: 10 reps, pushing the hips up and back at the top of each push up to stretch the shoulders and lats</li>
+</ul>
+<p><b>Part 3: Specific Bench Press Ramp Up</b> (assuming working sets of 5 reps to or close to failure, TW = training weight)</p>
+<table>
+<tr><th>Set</th><th>Load</th><th>Reps</th></tr>
+<tr><td>1</td><td>Empty bar</td><td>12 to 15</td></tr>
+<tr><td>2</td><td>45 percent of TW</td><td>8</td></tr>
+<tr><td>3</td><td>60 percent of TW</td><td>5</td></tr>
+<tr><td>4</td><td>80 percent of TW</td><td>3</td></tr>
+</table>
+<p>Rest about 2 minutes, then do the first working set.</p>
+
+<h3>Sample Pull Day Warmup</h3>
+<p>Focus: lats, upper back, biceps, hips, and hamstrings. Assumed first exercise: deadlift.</p>
+<p><b>Part 1: General Warmup (5 minutes)</b><br>
+Rowing machine for 5 minutes grooves the pulling and hip hinge mechanics needed later, or use a cross trainer or elliptical for 5 minutes.</p>
+<p><b>Part 2: Dynamic Stretches (7 minutes)</b></p>
+<ul>
+<li>Glute bridges: 2 sets of 15 reps to wake up the glutes</li>
+<li>Bird dog: 10 reps per side for core stability and hip to shoulder connection</li>
+<li>Scap pull ups: 8 to 10 reps</li>
+<li>Cat cow: 10 to 12 cycles for spinal control</li>
+<li>Band pull aparts: 2 sets of 15 reps to activate the upper back</li>
+<li>Lat sweeps: reach one arm up and slightly behind, then sweep it down and across the body, 10 reps per arm</li>
+</ul>
+<p><b>Part 3: Specific Deadlift Ramp Up</b> (deadlifts are taxing, so fewer reps per set with 60 to 120 seconds rest between sets)</p>
+<table>
+<tr><th>Set</th><th>Load</th><th>Reps</th></tr>
+<tr><td>1</td><td>40 percent of TW</td><td>5</td></tr>
+<tr><td>2</td><td>55 percent of TW</td><td>3</td></tr>
+<tr><td>3</td><td>70 percent of TW</td><td>2</td></tr>
+<tr><td>4</td><td>80 to 85 percent of TW</td><td>1 to 2</td></tr>
+</table>
+
+<h3>Sample Leg Day Warmup</h3>
+<p>Focus: hips, glutes, hamstrings, quads, ankles, and core. Assumed first exercise: squat.</p>
+<p><b>Part 1: General Warmup (5 minutes)</b><br>
+Choose one at low to moderate intensity: rowing machine for 5 minutes, exercise bike for 5 minutes, or an incline treadmill walk for 5 minutes.</p>
+<p><b>Part 2: Dynamic Stretches (5 minutes)</b></p>
+<ul>
+<li>Leg swings forward and backward: 10 to 12 swings per leg, holding a rack for balance</li>
+<li>Leg swings side to side: 10 to 12 swings per leg to open the adductors and abductors</li>
+<li>Bodyweight squats: 15 to 20 reps, pausing 2 to 3 seconds at the bottom of the last few for hip mobility</li>
+<li>Walking hip cradles: 10 reps per leg, pulling the knee toward the chest and across the body while stepping forward</li>
+<li>Cat cow: 10 to 12 cycles to mobilize the spine</li>
+<li>Ankle rolls: 10 circles in each direction, each ankle</li>
+</ul>
+<p><b>Part 3: Specific Squat Ramp Up</b></p>
+<table>
+<tr><th>Set</th><th>Load</th><th>Reps</th></tr>
+<tr><td>1</td><td>Empty bar</td><td>10 to 12</td></tr>
+<tr><td>2</td><td>40 percent of TW</td><td>8</td></tr>
+<tr><td>3</td><td>60 percent of TW</td><td>5</td></tr>
+<tr><td>4</td><td>80 percent of TW</td><td>3</td></tr>
+<tr><td>5 (optional primer)</td><td>90 percent of TW</td><td>1</td></tr>
+</table>
+
+<h2>Frequently Asked Questions</h2>
+<p><b>How many warmup sets should I do before lifting?</b><br>
+Usually 3 to 5 ramp up sets before the first working set. Stronger lifters or a cold gym may need 1 to 2 extra light sets.</p>
+<p><b>Should I stretch before lifting weights?</b><br>
+Avoid long static holds right before a session. Use dynamic movements that mirror the lift instead, and save static stretching for afterward or a separate day.</p>
+<p><b>How long should a warmup take?</b><br>
+About 8 to 12 minutes for most sessions, more if a general cardio warmup is added. Heavy or max attempt days may take longer.</p>
+<p><b>Do I need general cardio before lifting?</b><br>
+It helps but is not required. If time is short, go straight to dynamic stretching and the specific ramp up sets.</p>
+
+<h2>The Bottom Line</h2>
+<p>Warming up before lifting improves performance and probably lowers injury risk, even though the research on injury prevention specifically is not a slam dunk. What is consistent across the evidence is this: get the blood moving with a short general warmup if there is time for it, use dynamic stretches instead of static ones, and always ramp up to the working weight with a few lighter sets first. The stronger the lift, the more that ramp up earns its place.</p>
+  </article>
+  <div class="max-w-3xl mx-auto px-5 pb-10">
+    <div class="border-t border-gray-200 pt-8">
+      <p class="text-xs font-display font-semibold tracking-wide text-gray-500 mb-3">RELATED</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-brand-teal font-display font-semibold text-sm"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-brand-teal-dark">Is It Soreness or Is It an Injury?</a></li><li><a href="/are-you-ego-lifting-a-checklist-of-red-flags" class="hover:text-brand-teal-dark">Are You Ego Lifting? A Checklist of Red Flags</a></li><li><a href="/deload-weeks-when-and-how-to-back-off-on-purpose" class="hover:text-brand-teal-dark">Deload Weeks: When and How to Back Off on Purpose</a></li></ul>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
+      
+    </div>
+  </div>
+  <section class="relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-ink to-black"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 sm:py-20">
+      <div class="max-w-xl">
+        <p class="text-white text-2xl sm:text-3xl font-display font-semibold leading-snug mb-4">
+          Not sure where to start? Get matched to the right guide.
+        </p>
+        <p class="text-white/85 text-base leading-relaxed mb-8">
+          Tell me what hurts and how it started, and I'll point you to the exact guide that
+          fits &mdash; no account needed, no upsell.
+        </p>
+        <a href="/#newsletter" class="btn-red inline-block bg-brand-red text-white font-display font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-sm">
+          Find Your Starting Point &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-brand-teal text-white">
+    <div class="max-w-6xl mx-auto px-5 py-14 grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">PAGES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/#about" class="hover:text-white">About</a></li>
+          <li><a href="/blog" class="hover:text-white">Blog</a></li>
+          <li><a href="/#guides" class="hover:text-white">Guides</a></li>
+          <li><a href="/#newsletter" class="hover:text-white">Join the List</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">GUIDES</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/is-it-soreness-or-is-it-an-injury" class="hover:text-white">Is It Soreness or Is It an Injury?</a></li><li><a href="/warming-up-before-you-lift-what-actually-works" class="hover:text-white">Warming Up Before You Lift: What Actually Works</a></li><li><a href="/deload-weeks-when-and-how-to-back-off-on-purpose" class="hover:text-white">Deload Weeks: When and How to Back Off on Purpose</a></li><li><a href="/should-you-train-today-a-decision-guide-for-rough-mornings" class="hover:text-white">Should You Train Today? A Decision Guide for Rough Mornings</a></li></ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">TOPICS</p>
+        <ul class="space-y-3 text-white/90"><li><a href="/blog/joint-specific-pain" class="hover:text-white">Joint Specific Pain</a></li><li><a href="/blog/reading-the-warning-signs" class="hover:text-white">Reading the Warning Signs</a></li><li><a href="/blog/recovery-and-rehab" class="hover:text-white">Recovery and Rehab</a></li><li><a href="/blog/smarter-training-approach" class="hover:text-white">Smarter Training Approach</a></li></ul>
+      </div>
+    </div>
+    <div class="border-t border-white/25">
+      <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Instagram" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 15,12 10,15" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+          </a>
+        </div>
+        <p class="text-xs text-white/80 uppercase tracking-wide">I Prescribe Exercise is reader supported</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">Copyright &copy; 2026 iprescribeexercise.com</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuToggle.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        navPanel.style.maxHeight = navPanel.scrollHeight + 'px';
+        navPanel.style.opacity = '1';
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        navPanel.style.maxHeight = '0px';
+        navPanel.style.opacity = '0';
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    searchToggle.addEventListener('click', () => {
+      searchOverlay.classList.remove('hidden');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchOverlay.querySelector('input').focus();
+    });
+    searchClose.addEventListener('click', () => {
+      searchOverlay.classList.add('hidden');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchOverlay.classList.add('hidden');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

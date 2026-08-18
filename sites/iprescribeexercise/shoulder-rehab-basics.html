@@ -1,0 +1,331 @@
+<title>Shoulder Rehab Basics — I Prescribe Exercise</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            teal: '#0492BF',
+            'teal-dark': '#037A9E',
+            red: '#D33939',
+            'red-dark': '#B62E2E',
+            ink: '#444444',
+            mauve: '#C19393',
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['"Fira Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; color: #444444; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .btn-red {
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+  }
+  .btn-red:hover { background-color: #B62E2E; transform: translateY(-1px); }
+  .btn-red:active { transform: translateY(0); }
+  .btn-red:focus-visible { outline: 2px solid #0492BF; outline-offset: 2px; }
+  .nav-panel { transition: max-height 0.25s ease, opacity 0.2s ease; }
+  .icon-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #0492BF; outline-offset: 2px;
+  }
+  .post-body a { color: #0492BF; }
+  .post-body a:hover { color: #037A9E; }
+  .post-body ul { list-style: disc; padding-left: 1.25rem; }
+  .post-body li + li { margin-top: 0.5rem; }
+  .pill { transition: background-color 0.15s ease, color 0.15s ease; }
+  .pill:hover { background-color: #0492BF; color: #fff; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
+
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="bg-white relative z-30">
+    <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="/" class="block">
+        <div class="font-display font-bold text-2xl sm:text-3xl leading-none tracking-tight">
+          <span class="text-brand-ink">I PRESCRIBE</span><span class="text-brand-teal">EXERCISE</span>
+        </div>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-gray-500 mt-1">
+          TRAIN SMART &bull; PREVENT INJURY &bull; RECOVER STRONGER
+        </p>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="searchToggle" aria-label="Open search" aria-expanded="false" class="icon-btn text-brand-ink hover:text-brand-teal transition-colors rounded p-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="icon-btn text-brand-teal hover:text-brand-teal-dark transition-colors rounded p-1">
+          <svg id="menuIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav panel -->
+    <nav id="navPanel" class="nav-panel max-h-0 opacity-0 overflow-hidden bg-brand-teal">
+      <ul class="max-w-6xl mx-auto px-5 py-6 flex flex-col gap-4 text-white font-display font-semibold uppercase tracking-wide text-sm">
+        <li><a href="/#about" class="hover:text-white/70">About</a></li>
+        <li><a href="/blog.html" class="hover:text-white/70">Blog</a></li>
+        <li><a href="/#guides" class="hover:text-white/70">Guides</a></li>
+        <li><a href="/#newsletter" class="hover:text-white/70">Join the List</a></li>
+        <li><a href="/#contact" class="hover:text-white/70">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Search overlay -->
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-brand-teal z-40 flex items-start justify-center">
+      <div class="w-full max-w-xl mt-32 sm:mt-48 px-6">
+        <div class="relative border-b border-white/50 pb-3">
+          <input type="text" placeholder="Search..." class="w-full bg-transparent text-white placeholder-white/70 text-2xl font-body outline-none" />
+          <button id="searchClose" aria-label="Close search" class="absolute right-0 top-0 text-white/80 hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-3xl mx-auto px-5 pt-6">
+    <nav class="text-sm text-brand-ink" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-teal">Home</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <a href="/#guides" class="hover:text-brand-teal">Injury Guides</a>
+      <span class="mx-1 text-gray-400">&raquo;</span>
+      <span class="text-gray-500">Shoulder Rehab Basics</span>
+    </nav>
+  </div>
+
+  <!-- Title & meta -->
+  <header class="max-w-3xl mx-auto px-5 pt-4">
+    <h1 class="font-display font-bold text-[32px] leading-[1.15] sm:text-[42px] sm:leading-[1.15] text-brand-ink">
+      Shoulder Rehab Basics
+    </h1>
+    <p class="text-sm mt-4">
+      <span class="text-gray-500">POSTED AUGUST 3, 2026 BY</span>
+      <span class="font-semibold text-brand-teal">I Prescribe Exercise</span>
+    </p>
+    <p class="italic text-xl sm:text-2xl leading-snug text-gray-600 mt-6">
+      Have you ever pressed through a "twinge" in your shoulder because the set felt too good to rack?
+    </p>
+    <p class="text-base sm:text-lg leading-relaxed mt-6 max-w-2xl">
+      That twinge is exactly how mine started. It took eight months of overhead pressing through
+      warning signs before my shoulder finally forced the issue, and another year of rehab to
+      trust it under a bar again. Here's the habit that wrecked it, and the three checks I now run
+      before every pressing session so it doesn't happen twice.
+    </p>
+  </header>
+
+  <!-- Hero image -->
+  <div class="max-w-3xl mx-auto px-5 mt-8">
+    <img src="https://placehold.co/1100x620/C19393/ffffff?text=Photo%3A+Overhead+Press+Setup" alt="Overhead press setup" class="w-full h-auto object-cover rounded-sm" />
+  </div>
+
+  <!-- Body -->
+  <article class="post-body max-w-3xl mx-auto px-5 py-10 text-base sm:text-lg leading-relaxed space-y-6">
+
+    <h2 class="font-display font-bold text-2xl sm:text-[27px] text-brand-ink !mt-2">What Actually Wrecked My Shoulder</h2>
+    <p>
+      It wasn't one rep. It was months of pressing heavier than my shoulder's mobility could
+      support, then bracing through the pinch at the top instead of backing off. By the time it
+      gave out, the damage wasn't a single tear I could point to. It was a joint that had been
+      compensating for so long it forgot what a clean overhead path felt like.
+    </p>
+    <p>Skipping these things made it worse, not better:</p>
+    <ul>
+      <li>Pressing heavy before warming up rotator cuff and scapular control</li>
+      <li>Chasing a locked-out top position my shoulder mobility didn't actually have</li>
+      <li>Treating a pinch as "just tightness" instead of a setup problem</li>
+      <li>Never deloading, even after weeks of the same twinge showing up</li>
+    </ul>
+
+    <h2 class="font-display font-bold text-2xl sm:text-[27px] text-brand-ink !mt-10">The Three Checks I Run Before Every Pressing Session</h2>
+
+    <h3 class="font-display font-bold text-xl sm:text-2xl text-brand-ink !mt-8">1. Can I Reach an Honest Overhead Position?</h3>
+    <p>
+      Before any weight goes overhead, I check whether my arm can actually get there without my
+      lower back arching to fake the range. If it can't, the session becomes a mobility session,
+      not a pressing session. No exceptions, no matter how the program looks on paper.
+    </p>
+
+    <h3 class="font-display font-bold text-xl sm:text-2xl text-brand-ink !mt-8">2. Is the Pinch Gone, or Just Ignored?</h3>
+    <p>
+      A few band pull-aparts and prone Y-raises tell me the difference fast. If the pinch is still
+      there after warming up the cuff and upper back, that's the shoulder telling me today isn't a
+      heavy day, and I've stopped arguing with it.
+    </p>
+
+    <h3 class="font-display font-bold text-xl sm:text-2xl text-brand-ink !mt-8">3. Am I Programming a Deload, or Waiting for an Injury to Force One?</h3>
+    <p>
+      Every fourth week is lighter, on purpose, whether or not anything hurts yet. That single
+      change has done more for my shoulder's longevity than any single exercise I've added.
+    </p>
+
+    <h2 class="font-display font-bold text-2xl sm:text-[27px] text-brand-ink !mt-10">Where This Leaves You</h2>
+    <p>
+      None of this is exotic. It's the boring stuff I skipped because it slowed my training down.
+      Run the three checks before your next pressing session, and if the honest answer is no on
+      any of them, that's your program for the day.
+    </p>
+    <p>
+      And if your shoulder's already past "twinge" and into something that won't settle, that's a
+      physical therapist's job, not a blog post's.
+      <a href="/#guides">Check out the rest of the injury guides</a> for what to do while you wait for that appointment.
+    </p>
+
+  </article>
+
+  <!-- Closing: related + tag + share -->
+  <div class="max-w-3xl mx-auto px-5 pb-10">
+    <div class="border-t border-gray-200 pt-8">
+      <p class="text-xs font-display font-semibold tracking-wide text-gray-500 mb-3">RELATED</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-brand-teal font-display font-semibold text-sm">
+        <li><a href="#" class="hover:text-brand-teal-dark">Fixing a Cranky Lower Back</a></li>
+        <li><a href="#" class="hover:text-brand-teal-dark">Signs You're Overtraining</a></li>
+        <li><a href="#" class="hover:text-brand-teal-dark">Return-to-Training Protocol</a></li>
+      </ul>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
+      <a href="#" class="pill bg-gray-100 text-brand-ink text-sm font-medium px-4 py-2 rounded-full">Shoulder Injuries</a>
+      <div class="flex items-center gap-3">
+        <a href="#" aria-label="Share on Facebook" class="icon-btn w-9 h-9 rounded-full bg-brand-teal text-white flex items-center justify-center hover:bg-brand-teal-dark">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
+        </a>
+        <a href="#" aria-label="Share on Twitter" class="icon-btn w-9 h-9 rounded-full bg-brand-ink text-white flex items-center justify-center hover:bg-black">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA band (reused from homepage) -->
+  <section class="relative">
+    <img src="https://placehold.co/1600x500/444444/6b6b6b?text=" alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 sm:py-20">
+      <div class="max-w-xl">
+        <p class="text-white text-2xl sm:text-3xl font-display font-semibold leading-snug mb-4">
+          Not sure where to start? Get matched to the right guide.
+        </p>
+        <p class="text-white/85 text-base leading-relaxed mb-8">
+          Tell me what hurts and how it started, and I'll point you to the exact guide that
+          fits &mdash; no account needed, no upsell.
+        </p>
+        <a href="/#newsletter" class="btn-red inline-block bg-brand-red text-white font-display font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-sm">
+          Find Your Starting Point &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand-teal text-white">
+    <div class="max-w-6xl mx-auto px-5 py-14 grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">PAGES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/#about" class="hover:text-white">About</a></li>
+          <li><a href="/blog.html" class="hover:text-white">Blog</a></li>
+          <li><a href="/#guides" class="hover:text-white">Guides</a></li>
+          <li><a href="/#newsletter" class="hover:text-white">Join the List</a></li>
+          <li><a href="/#contact" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">POPULAR GUIDES</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="/shoulder-rehab-basics.html" class="hover:text-white">Shoulder Rehab Basics</a></li>
+          <li><a href="#" class="hover:text-white">Fixing a Cranky Lower Back</a></li>
+          <li><a href="#" class="hover:text-white">Signs You're Overtraining</a></li>
+          <li><a href="#" class="hover:text-white">Return-to-Training Protocol</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-bold text-sm tracking-wide mb-4">TOPICS</p>
+        <ul class="space-y-3 text-white/90">
+          <li><a href="#" class="hover:text-white">Mobility</a></li>
+          <li><a href="#" class="hover:text-white">Recovery</a></li>
+          <li><a href="#" class="hover:text-white">Programming Mistakes</a></li>
+          <li><a href="#" class="hover:text-white">Home Workouts</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/25">
+      <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Instagram" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 15,12 10,15" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="icon-btn w-9 h-9 rounded-full border border-white/60 flex items-center justify-center hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4 4 0 0 0 1.3 5.4c-.6 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+          </a>
+        </div>
+        <p class="text-xs text-white/80 uppercase tracking-wide">I Prescribe Exercise is reader supported</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">Copyright &copy; 2026 iprescribeexercise.com</p>
+        <p class="text-xs text-white/80 uppercase tracking-wide">
+          <a href="#" class="hover:text-white">Terms of Service</a> &bull; <a href="#" class="hover:text-white">Privacy Policy</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuToggle.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        navPanel.style.maxHeight = navPanel.scrollHeight + 'px';
+        navPanel.style.opacity = '1';
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        navPanel.style.maxHeight = '0px';
+        navPanel.style.opacity = '0';
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    searchToggle.addEventListener('click', () => {
+      searchOverlay.classList.remove('hidden');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchOverlay.querySelector('input').focus();
+    });
+    searchClose.addEventListener('click', () => {
+      searchOverlay.classList.add('hidden');
+      searchToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchOverlay.classList.add('hidden');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+
+</body>

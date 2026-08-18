@@ -1,0 +1,118 @@
+CONTENT PAGE REFERENCE — strengthrunning.com
+Source: https://strengthrunning.com/2024/05/side-stitch-while-running/
+Captured: 2026-08-17 via Chrome (viewport ~959px wide — treat as mobile/
+tablet reference per the clone_content_page skill's known capture-width
+limitation; widen with ordinary sm:/lg: judgment for desktop).
+
+Reuses the homepage clone's existing header/footer/nav/search-overlay
+components and Tailwind color/font tokens already defined in
+sites/iprescribeexercise/index.html (brand.teal, brand.red, brand.ink,
+brand.mauve; font-display = Poppins, font-body = Fira Sans). Do not
+re-derive these — same brand, same tokens.
+
+=== TITLE & META (post-01-title-meta.jpg) ===
+- Breadcrumb above title: "Home » Injury Prevention » {Post Title}", each
+  segment a link except the current page. font: Fira Sans, ~14px,
+  color #444.
+- H1 title: Poppins 700, 38px / 45.6px line-height, color #444
+  (rgb(68,68,68)). No eyebrow/category label above it on this template —
+  the breadcrumb serves that role instead.
+- Byline directly under title: "POSTED {Month Day, Year} BY {AUTHOR NAME}"
+  — all-caps label style, author name a colored link (brand teal).
+  font: Fira Sans, ~14px.
+- Lede paragraph (first paragraph, styled larger/italic as a hook):
+  Fira Sans, 22px / 33px line-height, italic, color #4A4A4A. Bold span
+  on the key phrase (e.g. "side stitch") within it.
+
+=== HERO IMAGE (post-02-hero-image.jpg) ===
+- Full-width image directly below the lede paragraph (not above the
+  title — title/breadcrumb/byline/lede all come first, then the hero).
+  No caption. Small circular "Save" badge overlay in the top-left corner
+  in the live source (Pinterest save button) — this is a third-party
+  browser-extension-style overlay, not part of the site's own design;
+  don't reproduce it.
+
+=== BODY TYPOGRAPHY (post-03-body-heading-list.jpg) ===
+- H2 section headings: Poppins 700, 27px / 32.4px, color #4A4A4A.
+- H3 sub-headings (used for named sub-causes/remedies within an H2
+  section, e.g. "Diaphragm Spasm or Cramp" under "What Causes a Side
+  Stitch?"): Poppins 700, 24px / 28.8px, color #4A4A4A.
+- Body paragraphs: Fira Sans 400, 18px / 27px line-height, color #4A4A4A
+  (essentially the site's existing brand-ink, close enough to reuse as-is).
+  Content column measured ~700px wide in this capture width — on desktop
+  this should read as the same max-w-2xl / max-w-3xl measure the homepage
+  already uses for body copy, not full-bleed.
+- Inline links within body copy: brand teal, no underline by default.
+- Unordered lists: disc bullets, no extra left padding beyond the
+  browser default, comfortable spacing between items (~15-20px). Used
+  frequently in this article for enumerated causes/remedies/steps.
+- Structure pattern for this template: intro hook (lede) → context
+  paragraph → "What Is X?" H2 with a bulleted consequence/impact list →
+  "What Causes X?" H2 containing several H3 sub-causes, each 1-3
+  paragraphs → a remedies/prevention H2 containing several H3 sub-remedies
+  (some with their own bulleted step lists) → short wrap-up H2 ("Smash
+  Your Next Workout Pain-Free" style) with 2-3 closing paragraphs and a
+  soft internal CTA link.
+
+=== INLINE MEDIA ===
+- Only one hero image in this particular article; no other in-body
+  photos. The source also embeds one Instagram post and one YouTube
+  video partway through the body (social proof / demonstration content)
+  — these are third-party embeds specific to strengthrunning's own
+  social accounts and shouldn't be reproduced literally. Treat their
+  *slots* as optional: a guide post can include an inline placeholder
+  image (placehold.co) at an equivalent break in the content if it suits
+  the topic, following the homepage's existing placeholder-image
+  convention, but this isn't a required element of the template.
+
+=== CLOSING ELEMENTS (post-04-author-bio-closing.jpg) ===
+- Short italic author-bio line directly after the last body paragraph:
+  "This article was written by {Name}. {One sentence of credential/bio}."
+  — adapt to iprescribeexercise's own single-author persona instead
+    (no separate freelance-writer byline needed; the byline author *is*
+    the site's persona).
+- "Related" strip: small "Related" label, then 2-3 related post titles
+  as plain text links in a row (wraps on narrow widths).
+- Category tag pill below that (e.g. "INJURY PREVENTION"), teal text.
+- Social share row: Facebook / Twitter / LinkedIn / Pinterest icon
+  buttons with labels, each a colored pill.
+- Prev/Post navigation below the share row (not fully captured, but
+  present per the source's "PREVIOUS" label at the very bottom of the
+  in-content area).
+
+=== SIDEBAR / PROMO WIDGETS (post-05-sidebar-widgets.jpg) ===
+- Between the article body and the footer: a couple of stacked promo
+  banner widgets ("RUN FASTER", "GET STRONGER & BUILD POWER" — red CTA
+  buttons on light backgrounds), a search box, and a row of circular
+  social-icon links (Facebook/Twitter/Instagram/YouTube). These sit in a
+  single column here (this capture width is effectively mobile), but on
+  the live desktop site this is a right-hand sidebar per the article's
+  own `right-sidebar` body class. For iprescribeexercise, skip a literal
+  sidebar — fold anything worth keeping (the social icons row) into the
+  existing footer instead, consistent with "don't add sections not
+  needed" guidance; the promo banners are strengthrunning-specific
+  (their own coaching programs) and shouldn't be cloned as content.
+
+=== FINAL CTA + FOOTER (post-06-closing-cta-footer.jpg) ===
+- Full-width dark-teal-tinted photo CTA band ("Want to run faster with
+  fewer injuries?") directly above the footer — this is the same pattern
+  iprescribeexercise's homepage already has as its own final CTA band
+  ("Not sure where to start? Get matched to the right guide."). Reuse
+  that existing section as-is at the bottom of the post page instead of
+  building a new one.
+- Footer below that is the site's normal global footer (Pages / Popular
+  Guides / Topics columns) — identical to the homepage's footer. Reuse
+  the homepage's existing footer markup verbatim; don't rebuild it.
+
+=== BUILD NOTES ===
+- Header/nav/search-overlay: reuse verbatim from index.html — already
+  built and approved, same on every page of this site.
+- New page file: sites/iprescribeexercise/shoulder-rehab-basics.html (or
+  whichever guide topic Max wants written first — index.html currently
+  links four guide card CTAs to "#", e.g. "Shoulder Rehab Basics",
+  "Fixing a Cranky Lower Back", "Signs You're Overtraining",
+  "Return-to-Training Protocol" — any one of these is a natural first
+  real post to build against this template).
+- Placeholder body copy only at this stage (per CLAUDE.md: match layout/
+  typography, don't write real content yet) unless Max supplies actual
+  post copy to drop in.
